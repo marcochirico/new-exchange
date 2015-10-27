@@ -1,0 +1,20 @@
+.container {
+    background: #fff;
+}
+.logo {
+    margin-top: 10px;
+}
+.short-header-menu {
+    text-align: right;
+    margin-top: 10px;
+}
+.short-header-menu ul li {
+    display: inline;
+    margin: 8px;
+    text-align: right;
+}
+.title-bar {
+    background: #f3f3f3;
+    padding:15px;
+    font-size: 15px;
+}
