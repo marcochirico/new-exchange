@@ -6,10 +6,19 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
+    'ClientController' => $baseDir . '/app/controllers/ClientController.php',
+    'ClientTableSeeder' => $baseDir . '/app/database/seeds/ClientTableSeeder.php',
+    'ContractorController' => $baseDir . '/app/controllers/ContractorController.php',
+    'CreateNeClients' => $baseDir . '/app/database/migrations/2015_10_28_163755_create_ne_clients.php',
+    'CreateNeContractors' => $baseDir . '/app/database/migrations/2015_10_28_163936_create_ne_contractors.php',
+    'CreateNeInterviewComments' => $baseDir . '/app/database/migrations/2015_10_30_114833_create_ne_interview_comments.php',
+    'CreateNeInterviews' => $baseDir . '/app/database/migrations/2015_10_30_111517_create_ne_interviews.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'Model\\Client' => $baseDir . '/app/models/Client.php',
     'Normalizer' => $vendorDir . '/patchwork/utf8/src/Normalizer.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',

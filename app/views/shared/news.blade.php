@@ -1,4 +1,4 @@
-<h4 class="title-bar" >News List</h4>
+<h4 class="title-bar news navbar"><i class="glyphicon glyphicon-file"></i>News List</h4>
 <ul>
     <li>News 1</li>
     <li>News 2</li>

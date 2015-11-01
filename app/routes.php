@@ -13,13 +13,14 @@
 
 Route::any('/', 'HomeController@index');
 
-
-Route::any('contractor/login', 'ContractorController@login');
-Route::any('contractor/logout', 'ContractorController@logout');
+Route::get('contractor/login', 'ContractorController@login');
+Route::post('contractor/login/authorize', 'ContractorController@loginAuthorize');
+Route::get('contractor/logout', 'ContractorController@logout');
 Route::get('contractor/register', 'ContractorController@register');
 
-Route::any('client/login', 'ClientController@login');
-Route::any('client/logout', 'ClientController@logout');
+Route::get('client/login', 'ClientController@login');
+Route::post('client/login/authorize', 'ClientController@loginAuthorize');
+Route::get('client/logout', 'ClientController@logout');
 Route::get('client/register', 'ClientController@register');
 
 /*

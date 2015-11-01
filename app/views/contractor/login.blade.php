@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <h4>Login Contractor</h4>
-        {{ Form::open(array('action' => 'ContractorController@login')) }}
+        {{ Form::open(array('action' => 'ContractorController@loginAuthorize')) }}
 
         <div class="form-group">
             {{ Form::text('username', null, ['placeholder' => 'username', 'class' => 'form-control']) }}

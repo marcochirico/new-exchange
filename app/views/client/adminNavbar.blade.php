@@ -1,8 +1,8 @@
-<ul>
-    <li><a href="/contractor/dashboard">Dashboard</a></li>
-    <li><a href="/contractor/edit">Edit Profile</a></li>
-    <li><a href="/contractor/interviews/received">Interviews Received</a></li>
-    <li><a href="/contractor/interviews/replaced">Interviews Replaced</a></li>
-    <li><a href="/contractor/interviews/accepted">Interviews Accepted</a></li>
-    <li><a href="/contractor/logout">Logout</a></li>
-</ul>
+<div class="list-group">
+    <a href="/contractor/dashboard" class="list-group-item">Dashboard</a>
+    <a href="/contractor/edit" class="list-group-item">Edit Profile</a>
+    <a href="/contractor/interviews/received" class="list-group-item active"><span class="badge">14</span>Interviews Received</a>
+    <a href="/contractor/interviews/replaced" class="list-group-item"><span class="badge">14</span>Interviews Replaced</a>
+    <a href="/contractor/interviews/accepted" class="list-group-item"><span class="badge">14</span>Interviews Accepted</a>
+    <a href="/contractor/logout" class="list-group-item">Logout</a>
+</div>

@@ -1,0 +1,2 @@
+php artisan migrate:make create_mail_queues
+php artisan migrate
