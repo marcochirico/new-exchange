@@ -1,6 +1,6 @@
 .container-fluid {
     background: #fff;
-    width:1000px;
+    /*width:1000px;*/
 }
 .logo {
     margin-top: 20px;
@@ -30,6 +30,8 @@
 .navbar-default {
     background-color: #297fc2;
     border-color: #297fc2;
+/*    margin-left: -15px;
+    margin-right: -15px;*/
 }
 .navbar-default > .navbar-nav > li > a {
     color: #fff;
@@ -48,8 +50,14 @@
 .table.internal-block td {
     font-size: 13px;
 }
+
 h3 {
     margin-bottom: 15px;
+}
+
+h4 {
+/*    margin-left: -15px;
+    margin-right: -15px;*/
 }
 
 .navbar-nav .dropdown {
@@ -58,4 +66,40 @@ h3 {
 
 .navbar-nav .glyphicon {
     margin-right: 10px;
+}
+
+.news-box {
+    height:125px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.news-box .content {
+    height:100%;
+    border:1px solid #ff0000;
+}
+
+.service-box {
+    height:125px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.service-box .content {
+    height:100%;
+    border:1px solid #336699;
+}
+
+footer .row {
+    background: #297fc2;
+    margin-right: 0px;
+    margin-left: 0px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+@media only screen  and (min-width : 1000px) {
+    .container-fluid {
+        width: 1000px;
+    }
 }

@@ -15,7 +15,7 @@ class CreateNeInterviews extends Migration {
             $t->increments('interview_id');
             $t->integer('client_id')->unsigned();
             $t->integer('contractor_id')->unsigned();
-            $t->boolean('status');
+            $t->char('status');
             $t->timestamps();
             //foreign keys
             $t->foreign('client_id')->references('client_id')->on('ne_clients')->onDelete('cascade')->onUpdate('cascade');

@@ -3,7 +3,7 @@
 @section('content')
 <h4>Login Client</h4>
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         @if (Session::has('client_credential')) {{ '<div class="alert alert-danger" role="alert">Login Failure.</div>' }} @endif
         {{ Form::open(array('action' => 'ClientController@loginAuthorize')) }}
         <div class="form-group">
@@ -22,7 +22,7 @@
         {{ Form::close() }}
 
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body text-center">
                 <span>if you are not registered please click the button below.</span><br /><br />

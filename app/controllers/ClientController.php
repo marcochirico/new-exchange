@@ -54,6 +54,7 @@ class ClientController extends BaseController {
             'first_name' => isset($input['first_name']) ? $input['first_name'] : '',
             'last_name' => isset($input['last_name']) ? $input['last_name'] : '',
         );
+
         if (isset($input['_token'])) {
             $hashTokenSession = md5(time() . rand(0, 100000000));
             Session::set($hashTokenSession, $arrParams);
@@ -65,14 +66,46 @@ class ClientController extends BaseController {
 
     public function searchContractorsResults($hashTokenSession) {
         $data = new stdClass();
-        $resultSession = Session::get($hashTokenSession);
-        echo '<pre>';
-        print_r($resultSession);
-        echo '</pre>';
+        $paramsSession = Session::get($hashTokenSession);
 
-        $data->searchResults = Model\Contractor::paginate(1);
+        $resultsObj = new Model\Contractor();
+        if (is_array($paramsSession) && count($paramsSession) > 0) {
+            foreach ($paramsSession as $key => $value) {
+                if ($value == '') {
+                    continue;
+                }
+                $resultsObj = $resultsObj->where($key, $value);
+            }
+        }
+
+        $data->searchResults = $resultsObj->paginate(Config::get('pagination.client_search_contractor'));
 
         $this->layout->content = View::make('client.searchContractorResults')->with('data', $data);
+    }
+
+    public function actions($actionType, $index) {
+        $data = new stdClass();
+        $contractorObj = Model\Contractor::find($index);
+        $data->contractor = $contractorObj;
+        $this->layout->content = View::make('client.actions.contractorInvitationForm')->with('data', $data);
+    }
+    
+    public function interviews($interviewType) {
+        $data = new stdClass();
+        
+        switch($interviewType) {
+            case 'required':
+                $data->title = 'Required';
+                
+                break;
+            case 'replaced':
+                $data->title = 'Replaced';
+                break;
+            case 'accepted':
+                $data->title = 'Accepted';
+                break;
+        }
+        $this->layout->content = View::make('client.interview')->with('data', $data);
     }
 
 }

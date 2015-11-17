@@ -46,7 +46,8 @@ Route::any('contractor/projects/closed', 'ContractorController@projectClosed');
 Route::any('client/dashboard', 'ClientController@dashboard');
 Route::any('client/contractors/search', 'ClientController@searchContractors');
 Route::any('client/contractors/search/results/{token}', 'ClientController@searchContractorsResults');
-
+Route::any('client/contractor/action/{action_type}/{contractor_id}', 'ClientController@actions');
+Route::any('client/interviews/{interview_type}', 'ClientController@interviews');
 /*
  * Admin Routes
  */

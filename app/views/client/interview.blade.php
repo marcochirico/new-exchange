@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<h3 class="text-center">Dashboard client</h3>
+<h3 class="text-center">Interviews {{$data->title}}</h3>
 
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
