@@ -21,7 +21,7 @@
     <body class="bckg">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 logo"><img src="/assets/images/logo.jpg" /></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 logo"><a href="/"><img src="/assets/images/logo.jpg" /></a></div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 short-header-menu">
                     <ul>
                         <li><a href="#">About Us</a></li>

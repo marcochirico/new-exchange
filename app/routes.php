@@ -13,15 +13,23 @@
 
 Route::any('/', 'HomeController@index');
 
+Route::get('how-to', 'StaticPageController@howTo');
+Route::get('our-services', 'StaticPageController@ourServices');
+Route::get('payments', 'StaticPageController@payments');
+Route::get('legal', 'StaticPageController@legal');
+
+
 Route::get('contractor/login', 'ContractorController@login');
 Route::post('contractor/login/authorize', 'ContractorController@loginAuthorize');
 Route::get('contractor/logout', 'ContractorController@logout');
 Route::get('contractor/register', 'ContractorController@register');
+Route::post('contractor/register/save', 'ContractorController@save');
 
 Route::get('client/login', 'ClientController@login');
 Route::post('client/login/authorize', 'ClientController@loginAuthorize');
 Route::get('client/logout', 'ClientController@logout');
 Route::get('client/register', 'ClientController@register');
+Route::post('client/register/save', 'ClientController@save');
 
 /*
  * Auth routes

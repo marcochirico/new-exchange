@@ -5,13 +5,34 @@ class ClientController extends BaseController {
     protected $layout = 'master';
 
     public function login() {
-        $data = new stdClass();
+        $data = new stdClass();        
         $this->layout->content = View::make('client.login')->with('data', $data);
     }
 
     public function register() {
         $data = new stdClass();
         $this->layout->content = View::make('client.register')->with('data', $data);
+    }
+
+    public function save() {
+        $input = Input::all();
+
+        $clientObj = Model\Client::make();
+
+        if ($clientObj->validate($input)) {
+//            $clientObj->fill($input);
+//            $clientObj->sessionid = Session::getId();
+//            $clientObj->country_id = Country::whereCode(Session::get('locale'))->first()->id;
+//            $clientObj->save();
+//            Session::put('pid', $player->id);
+            die('good saving');
+            return Response::json(['status' => true, 'redirect' => action('GameController@play')]);
+        } else {
+            $failed = $clientObj->errors->messages()->all();
+
+            Session::flash('client_register_errors', $failed);
+            return Redirect::to('client/register');
+        }
     }
 
     public function dashboard() {
@@ -21,6 +42,7 @@ class ClientController extends BaseController {
 
     public function loginAuthorize() {
         $input = Input::all();
+
         if (Session::has('_token') && isset($input['_token'])) {
             //check token
             if ($input['_token'] == Session::get('_token')) {
@@ -44,6 +66,11 @@ class ClientController extends BaseController {
 
         $data = new stdClass();
         $this->layout->content = View::make('client.login')->with('data', $data);
+    }
+
+    public function logout() {
+        Session::forget('client_id');
+        return Redirect::to('client/login');
     }
 
     public function searchContractors() {
@@ -89,14 +116,14 @@ class ClientController extends BaseController {
         $data->contractor = $contractorObj;
         $this->layout->content = View::make('client.actions.contractorInvitationForm')->with('data', $data);
     }
-    
+
     public function interviews($interviewType) {
         $data = new stdClass();
-        
-        switch($interviewType) {
+
+        switch ($interviewType) {
             case 'required':
                 $data->title = 'Required';
-                
+
                 break;
             case 'replaced':
                 $data->title = 'Replaced';

@@ -26,7 +26,7 @@
         <div class="panel panel-default">
             <div class="panel-body text-center">
                 <span>if you are not registered please click the button below.</span><br /><br />
-                <button class="btn btn-primary">Register</button>
+                <button class="btn btn-primary btn-register" data-url="/client/register">Register</button>
                 <!--<a href="/client/register">Register</a>-->
             </div>
         </div>
