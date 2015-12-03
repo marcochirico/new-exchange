@@ -23,9 +23,9 @@ class ClientController extends BaseController {
         $input = Input::all();
 
         $clientObj = Model\Client::make();
-
+        
         if ($clientObj->validate($input)) {
-
+            
             $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
 
             $clientObj->company_name = $input['company_name'];
