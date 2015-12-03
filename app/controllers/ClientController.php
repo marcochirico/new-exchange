@@ -86,9 +86,7 @@ class ClientController extends BaseController {
                 }
             }
         }
-
-        $data = new stdClass();
-        $this->layout->content = View::make('client.login')->with('data', $data);
+        return Redirect::to('client/login');
     }
 
     public function logout() {
