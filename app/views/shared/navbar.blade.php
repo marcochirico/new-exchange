@@ -9,26 +9,24 @@
     <ul class="nav navbar-nav navbar-right">
         <?php if (Session::has('client_id')): ?>
             <li class="dropdown">
-                <a href="/client/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> M. Chirico (Client)<span class="caret"></span></a>
+                <a href="/client/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> <?php echo Model\Client::getNavbarName(Session::get('client_id')); ?> (Client)<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="/client/dashboard">Dashboard</a></li>
+                    <li><a href="#">Edit Profile</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li><a href="/client/logout">Logout</a></li>
                 </ul>
             </li>
         <?php endif; ?>
 
         <?php if (Session::has('contractor_id')): ?>
             <li class="dropdown">
-                <a href="/contractor/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> M. Chirico (Contractor)<span class="caret"></span></a>
+                <a href="/contractor/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> <?php echo Model\Contractor::getNavbarName(Session::get('client_id')); ?> (Contractor)<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="/contractor/dashboard">Dashboard</a></li>
+                    <li><a href="#">Edit Profile</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li><a href="/contractor/logout">Logout</a></li>
                 </ul>
             </li>
         <?php endif; ?>

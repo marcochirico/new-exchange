@@ -11,6 +11,7 @@ class CreateNeContractors extends Migration {
      * @return void
      */
     public function up() {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::create('ne_contractors', function($t) {
             $t->increments('contractor_id');
             $t->string('first_name');
@@ -21,6 +22,7 @@ class CreateNeContractors extends Migration {
             $t->boolean('status');
             $t->timestamps();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 
     /**
@@ -29,6 +31,7 @@ class CreateNeContractors extends Migration {
      * @return void
      */
     public function down() {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::drop('ne_contractors');
     }
 

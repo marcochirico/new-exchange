@@ -6,7 +6,7 @@ class ClientTableSeeder extends Seeder {
         DB::table('ne_clients')->delete();
 
         Model\Client::create(array(
-            'name' => 'Microtech Engineering S.r.l.',
+            'company_name' => 'Microtech Engineering S.r.l.',
             'industry_id' => 1,
             'requirement_id' => 1,
             'first_name' => 'Marco',
@@ -27,7 +27,7 @@ class ClientTableSeeder extends Seeder {
         ));
 
         Model\Client::create(array(
-            'name' => 'NewLink Asia Ltd',
+            'company_name' => 'NewLink Asia Ltd',
             'industry_id' => 1,
             'requirement_id' => 1,
             'first_name' => 'Andrea',

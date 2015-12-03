@@ -5,12 +5,13 @@ namespace Model;
 class Client extends \Eloquent {
 
     protected $table = 'ne_clients';
+    protected $primaryKey = 'client_id';
     
     protected $rules = array(
         'first_name' => 'required|min:2|max:255',
         'last_name' => 'required|min:2|max:255',
-        'email' => 'required|email|unique:client',
-        'email_confirm' => 'required|email|equal:email',
+        'email' => 'required|email|unique:ne_clients|confirmed',
+        'email_confirmation' => 'required|email',
 //        'birthday' => 'required|date|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2}/',
 //        'address' => 'required|min:2|max:255',
 //        'city' => 'required|min:2|max:255',
@@ -37,6 +38,11 @@ class Client extends \Eloquent {
         }
         
         return true;
+    }
+    
+    public static function  getNavbarName($index) {
+        $obj = Client::find($index);
+        return $obj->username;
     }
 
 }

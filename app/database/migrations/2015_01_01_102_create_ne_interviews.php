@@ -11,16 +11,25 @@ class CreateNeInterviews extends Migration {
      * @return void
      */
     public function up() {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::create('ne_interviews', function($t) {
             $t->increments('interview_id');
             $t->integer('client_id')->unsigned();
             $t->integer('contractor_id')->unsigned();
+            $t->integer('parent_interview_id')->unsigned();
+            $t->integer('timezone_id')->unsigned();
+            $t->datetime('date');
+            $t->string('location');
+            $t->float('rate');
+            $t->text('reference');
             $t->char('status');
             $t->timestamps();
             //foreign keys
             $t->foreign('client_id')->references('client_id')->on('ne_clients')->onDelete('cascade')->onUpdate('cascade');
             $t->foreign('contractor_id')->references('contractor_id')->on('ne_contractors')->onDelete('cascade')->onUpdate('cascade');
+            $t->foreign('timezone_id')->references('timezone_id')->on('ne_timezones')->onDelete('cascade')->onUpdate('cascade');
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
     
     /**
@@ -29,6 +38,7 @@ class CreateNeInterviews extends Migration {
      * @return void
      */
     public function down() {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::drop('ne_interviews');
     }
 

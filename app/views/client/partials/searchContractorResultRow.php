@@ -6,7 +6,7 @@
                 <table class="table internal-block">
                     <thead>
                         <tr>
-                            <th colspan="2" class="project-name">Future World Software Development</th>
+                            <th colspan="2" class="project-name"><?php echo $result->first_name . ' ' . $result->last_name; ?></th>
                         </tr>
                     </thead>
                     <tbody>
