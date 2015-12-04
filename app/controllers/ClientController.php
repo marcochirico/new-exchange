@@ -23,9 +23,9 @@ class ClientController extends BaseController {
         $input = Input::all();
 
         $clientObj = Model\Client::make();
-        
+
         if ($clientObj->validate($input)) {
-            
+
             $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
 
             $clientObj->company_name = $input['company_name'];
@@ -66,26 +66,22 @@ class ClientController extends BaseController {
     public function loginAuthorize() {
         $input = Input::all();
 
-        if (Session::has('_token') && isset($input['_token'])) {
-            //check token
-            if ($input['_token'] == Session::get('_token')) {
-                //parse input
-                $username = $input['username'];
-                $password = $input['password'];
+        //parse input
+        $username = $input['username'];
+        $password = $input['password'];
 
-                $clientObj = Model\Client::where('username', $username)
-                        ->where('password', sha1($password))
-                        ->first();
+        $clientObj = Model\Client::where('username', $username)
+                ->where('password', sha1($password))
+                ->first();
 
-                if (isset($clientObj->client_id)) {
-                    Session::set('client_id', $clientObj->client_id);
-                    return Redirect::to('client/dashboard');
-                } else {
-                    Session::flash('client_credential', '1');
-                    return Redirect::to('client/login');
-                }
-            }
+        if (isset($clientObj->client_id)) {
+            Session::set('client_id', $clientObj->client_id);
+            return Redirect::to('client/dashboard');
+        } else {
+            Session::flash('client_credential', '1');
+            return Redirect::to('client/login');
         }
+
         return Redirect::to('client/login');
     }
 
@@ -161,6 +157,7 @@ class ClientController extends BaseController {
 
     public function forgotPasswordProcess() {
         $input = Input::all();
+
         print_r($input);
         die;
     }

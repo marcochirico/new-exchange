@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/marco/Sites/new-exchange-2016/app/views/client/searchContractorResults.blade.php</file>
-            <file>file:/Users/marco/Sites/new-exchange-2016/app/views/client/forgot.blade.php</file>
-            <file>file:/Users/marco/Sites/new-exchange-2016/app/routes.php</file>
+            <file>file:/Users/marco/Sites/new-exchange-2016/app/controllers/ContractorController.php</file>
+            <file>file:/Users/marco/Sites/new-exchange-2016/app/database/migrations/2015_12_03_202654_create_ne_experience_levels.php</file>
+            <file>file:/Users/marco/Sites/new-exchange-2016/app/database/migrations/2015_01_01_005_create_ne_consulting_markets.php</file>
+            <file>file:/Users/marco/Sites/new-exchange-2016/app/database/migrations/2015_12_03_202638_create_ne_consulting_roles.php</file>
             <file>file:/Users/marco/Sites/new-exchange-2016/app/controllers/ClientController.php</file>
         </group>
     </open-files>
