@@ -3,18 +3,15 @@ $(document).ready(function () {
     $('.btn-action-control').on('click', function () {
         var actionType = $(this).data('action');
         var actionId = $(this).data('id');
-        $('#modal-interview-invitation').modal();
-        /*
-         switch (actionType) {
-         case 'invite_contractor_for_interview':
-         window.location = '/client/contractor/action/invite/' + actionId;
-         break;
-         default:
-         alert('no action identified.');
-         break;
-         }
-         */
+        $.post('/client/interview/request', {'actionId': actionId}, function (data) {
+            $('#client_interview_request').html(data);
+        });
+        $('#client_interview_request').modal();
     });
+
+
+
+
 
     $('.btn-register').on('click', function () {
         var url = $(this).data('url');
@@ -26,5 +23,4 @@ $(document).ready(function () {
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy'
     });
-
 });

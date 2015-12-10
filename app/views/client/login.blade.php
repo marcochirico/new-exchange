@@ -14,9 +14,9 @@
             {{ Form::password('password', ['placeholder' => 'password', 'class' => 'form-control']) }}
 
         </div>
-        <div >
+        <div>
             {{ Form::submit('Login', ['class' => 'btn btn-primary']) }}
-            <span class="text-right"><a href="/client/forgot">Forgot password?</a></span>
+            <span class="pull-right"><a href="/client/forgot">Forgot password?</a></span>
         </div>
 
         {{ Form::close() }}

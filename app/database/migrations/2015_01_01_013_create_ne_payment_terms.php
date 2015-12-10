@@ -28,7 +28,7 @@ class CreateNePaymentTerms extends Migration {
      */
     public function down() {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('payment_term');
+        Schema::drop('payment_terms');
     }
 
 }

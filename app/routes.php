@@ -64,6 +64,11 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/contractors/search/results/{token}', 'ClientController@searchContractorsResults');
     Route::any('client/contractor/action/{action_type}/{contractor_id}', 'ClientController@actions');
     Route::any('client/interviews/{interview_type}', 'ClientController@interviews');
+    
+    //Ajax
+    Route::any('client/interview/request', 'AjaxController@interviewRequest');
+    Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
+       
 });
 
 /*

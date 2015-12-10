@@ -22,6 +22,7 @@ class CreateNeInterviews extends Migration {
             $t->string('location');
             $t->float('rate');
             $t->text('reference');
+            $t->longtext('preview');
             $t->char('status');
             $t->timestamps();
             //foreign keys

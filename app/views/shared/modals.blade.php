@@ -1,2 +1,1 @@
-<div class="modal fade" id="edit_folder_dialog" tabindex="-1" role="dialog" aria-hidden="true"></div>
-<div class="modal fade" id="edit_file_dialog" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal fade" id="client_interview_request" tabindex="-1" role="dialog" aria-hidden="true"></div>

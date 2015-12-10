@@ -60,6 +60,8 @@ class ClientController extends BaseController {
 
     public function dashboard() {
         $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+
         $this->layout->content = View::make('client.dashboard')->with('data', $data);
     }
 
@@ -92,6 +94,7 @@ class ClientController extends BaseController {
 
     public function searchContractors() {
         $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
 
         $input = Input::all();
         $arrParams = array(
@@ -110,6 +113,7 @@ class ClientController extends BaseController {
 
     public function searchContractorsResults($hashTokenSession) {
         $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
         $paramsSession = Session::get($hashTokenSession);
 
         $resultsObj = new Model\Contractor();
@@ -136,16 +140,32 @@ class ClientController extends BaseController {
 
     public function interviews($interviewType) {
         $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
 
         switch ($interviewType) {
             case 'required':
                 $data->title = 'Required';
+                $data->status = 'Required';
+                $data->label = 'info';
+                $data->interviews = Model\Client::getInterviewRequired();
                 break;
             case 'replaced':
                 $data->title = 'Replaced';
+                $data->status = 'Replaced';
+                $data->label = 'warning';
+                $data->interviews = Model\Client::getInterviewReplaced();
                 break;
             case 'accepted':
                 $data->title = 'Accepted';
+                $data->status = 'Accepted';
+                $data->label = 'success';
+                $data->interviews = Model\Client::getInterviewAccepted();
+                break;
+            case 'refused':
+                $data->title = 'Refused';
+                $data->status = 'Refused';
+                $data->label = 'danger';
+                $data->interviews = Model\Client::getInterviewRefused();
                 break;
         }
         $this->layout->content = View::make('client.interview')->with('data', $data);

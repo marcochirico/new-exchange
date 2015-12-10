@@ -4,6 +4,16 @@ namespace Utils;
 
 Class Helper {
 
+    public static function dateToDb($date) {
+        list($dd, $mm, $yyyy) = explode('/', $date);
+        return $yyyy . '-' . $mm . '-' . $dd;
+    }
+
+    public static function dateFromDb($date) {
+        list($yyyy, $mm, $dd ) = explode('-', $date);
+        return $dd . '/' . $mm . '/' . $yyyy;
+    }
+
     public static function showValidatorErrorsListed($errors) {
         $messages = array();
         foreach ($errors as $e) {
@@ -18,6 +28,13 @@ Class Helper {
             $aggregatedValues[$d->$key] = $d->$col;
         }
         return $aggregatedValues;
+    }
+
+    public static function noResultsFound($message = null) {
+        if (is_null($message)) {
+            $message = 'No results found';
+        }
+        return '<div class="alert alert-info">' . $message . '</div>';
     }
 
 }
