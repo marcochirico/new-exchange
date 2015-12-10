@@ -6,7 +6,7 @@ Event::listen('sendMail.*', function($params) {
             Mail::send('emails.notifications.interviewRequired', $params, function($message) {
                 $message->from('us@example.com', 'Laravel');
                 
-                $message->to('info@microtech-cr.com')->cc('bar@example.com');
+                $message->to('info@microtech-cr.com')->cc('marco@mutado.com');
 
 //                $message->attach($pathToFile);
             });
