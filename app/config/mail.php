@@ -14,7 +14,7 @@ return array(
       |
      */
 
-    'driver' => 'mail',
+    'driver' => 'sendmail',
     /*
       |--------------------------------------------------------------------------
       | SMTP Host Address
