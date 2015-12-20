@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ContractorTableSeeder');
         $this->call('IndustryTypeTableSeeder');
         $this->call('TimezoneTableSeeder');
+        $this->call('CountryTableSeeder');
         $this->call('JobTableSeeder');
         $this->call('NewsTableSeeder');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');

@@ -11,14 +11,12 @@ class Client extends \Eloquent {
         'last_name' => 'required|min:2|max:255',
         'email' => 'required|email|unique:ne_clients|confirmed',
         'email_confirmation' => 'required|email',
-//        'birthday' => 'required|date|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2}/',
-//        'address' => 'required|min:2|max:255',
-//        'city' => 'required|min:2|max:255',
-//        'zipcode' => 'required|min:3|max:16',
-//        'sex' => 'required|in:m,f',
-//        'privacy' => 'required|accepted',
-//        'terms' => 'required|accepted',
-//        'safilo' => 'in:0,1'
+        'address' => 'required|min:2|max:255',
+//        'country' => 'required|min:2|max:255',
+        'city' => 'required|min:2|max:255',
+        'postal_code' => 'required|min:3|max:16',
+        'province' => 'required|min:2|max:255',
+//        'terms' => 'accepted',
     );
     var $errors;
 

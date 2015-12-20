@@ -9,7 +9,7 @@ class AjaxController extends BaseController {
         $data->contractor_id = $input['actionId'];
         $data->client_id = Session::get('client_id');
         $data->timezones = Model\Timezone::all();
-        
+
         return View::make('client.modals.sendInvitation')->with('data', $data);
     }
 
@@ -27,6 +27,46 @@ class AjaxController extends BaseController {
             $objInterview->reference = $input['interview_request']['job_reference'];
             $objInterview->preview = $input['interview_request']['job_preview'];
             $objInterview->status = 1;
+            $objInterview->save();
+            return Response\Helper::ajaxDone('Invitation Sent.');
+        } catch (Exception $e) {
+            return Response\Helper::ajaxError($e->getMessage());
+        }
+    }
+
+    /*
+     * Contractors Ajax Resposes
+     */
+
+    public function contractorInterviewReceivedAccept() {
+        $input = Input::all();
+        try {
+            $objInterview = Model\Interview::find($input['actionId']);
+            $objInterview->status = 2; //accepted
+            $objInterview->save();
+            return Response\Helper::ajaxDone('Invitation Sent.');
+        } catch (Exception $e) {
+            return Response\Helper::ajaxError($e->getMessage());
+        }
+    }
+
+    public function contractorInterviewReceivedReplace() {
+        $input = Input::all();
+        try {
+//            $objInterview = Model\Interview::find($input['actionId']);
+//            $objInterview->status = 1; //accepted
+//            $objInterview->save();
+            return Response\Helper::ajaxDone('Invitation Sent.');
+        } catch (Exception $e) {
+            return Response\Helper::ajaxError($e->getMessage());
+        }
+    }
+
+    public function contractorInterviewReceivedRefuse() {
+        $input = Input::all();
+        try {
+            $objInterview = Model\Interview::find($input['actionId']);
+            $objInterview->status = 0; //accepted
             $objInterview->save();
             return Response\Helper::ajaxDone('Invitation Sent.');
         } catch (Exception $e) {

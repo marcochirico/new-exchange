@@ -55,6 +55,11 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/projects/applied', 'ContractorController@projectApplied');
     Route::any('contractor/projects/active', 'ContractorController@projectActive');
     Route::any('contractor/projects/closed', 'ContractorController@projectClosed');
+
+    //Ajax
+    Route::any('contractor/ajax/interview/received/accept', 'AjaxController@contractorInterviewReceivedAccept');
+    Route::any('contractor/ajax/interview/received/replace', 'AjaxController@contractorInterviewReceivedReplace');
+    Route::any('contractor/ajax/interview/received/refuse', 'AjaxController@contractorInterviewReceivedRefuse');
 });
 
 Route::group(array('before' => 'authClient'), function() {
@@ -64,11 +69,10 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/contractors/search/results/{token}', 'ClientController@searchContractorsResults');
     Route::any('client/contractor/action/{action_type}/{contractor_id}', 'ClientController@actions');
     Route::any('client/interviews/{interview_type}', 'ClientController@interviews');
-    
+
     //Ajax
     Route::any('client/interview/request', 'AjaxController@interviewRequest');
     Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
-       
 });
 
 /*

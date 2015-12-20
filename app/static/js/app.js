@@ -10,6 +10,17 @@ $(document).ready(function () {
     });
 
 
+    $('.btn-action-response-interview').on('click', function () {
+        var actionResponse = $(this).data('action');
+        var actionId = $(this).data('interview-id');
+
+        //ajax call to update status
+        $.post('/contractor/ajax/interview/received/' + actionResponse, {'actionId': actionId}, function (data) {
+            location.reload();
+        });
+    });
+
+
 
 
 

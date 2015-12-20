@@ -4,8 +4,8 @@
 <h4>Login Contractor</h4>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        @if (Session::has('client_credential')) {{ '<div class="alert alert-danger" role="alert">Login Failure.</div>' }} @endif
-        {{ Form::open(array('action' => 'ClientController@loginAuthorize')) }}
+        @if (Session::has('contractor_credential')) {{ '<div class="alert alert-danger" role="alert">Login Failure.</div>' }} @endif
+        {{ Form::open(array('action' => 'ContractorController@loginAuthorize')) }}
         <div class="form-group">
             {{ Form::text('username', null, ['placeholder' => 'username', 'class' => 'form-control']) }}
 
@@ -16,7 +16,7 @@
         </div>
         <div >
             {{ Form::submit('Login', ['class' => 'btn btn-primary']) }}
-            <span class="pull-right"><a href="/client/forgot">Forgot password?</a></span>
+            <span class="pull-right"><a href="/contractor/forgot">Forgot password?</a></span>
         </div>
 
         {{ Form::close() }}
