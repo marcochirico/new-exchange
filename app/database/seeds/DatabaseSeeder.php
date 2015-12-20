@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder {
         $this->call('ClientTableSeeder');
         $this->call('ContractorTableSeeder');
         $this->call('IndustryTypeTableSeeder');
-        $this->call('TimezoneTableSeeder');
         $this->call('CountryTableSeeder');
         $this->call('JobTableSeeder');
         $this->call('NewsTableSeeder');
+        $this->call('TimezoneTableSeeder');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 
