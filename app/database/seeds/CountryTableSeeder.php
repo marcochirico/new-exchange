@@ -3,8 +3,8 @@
 class CountryTableSeeder extends Seeder {
 
     public function run() {
-        DB::table('ne_countries')->delete();
-
+        DB::table('ne_countries')->truncate();
+        
         Model\Country::create(array('country' => 'Afghanistan', 'code' => 'AF'));
         Model\Country::create(array('country' => 'Aland Islands', 'code' => 'AX'));
         Model\Country::create(array('country' => 'Albania', 'code' => 'AL'));
@@ -146,7 +146,7 @@ class CountryTableSeeder extends Seeder {
         Model\Country::create(array('country' => 'Mauritania', 'code' => 'MR'));
         Model\Country::create(array('country' => 'Mauritius', 'code' => 'MU'));
         Model\Country::create(array('country' => 'Mayotte', 'code' => 'YT'));
-        Model\Country::create(array('country' => 'Mexico', 'code' => 'MX', 'United Mexican States'));
+        Model\Country::create(array('country' => 'Mexico', 'code' => 'MX United Mexican States'));
         Model\Country::create(array('country' => 'Micronesia, Federated States of', 'code' => 'FM'));
         Model\Country::create(array('country' => 'Moldova', 'code' => 'MD'));
         Model\Country::create(array('country' => 'Monaco', 'code' => 'MC'));
@@ -257,6 +257,7 @@ class CountryTableSeeder extends Seeder {
         Model\Country::create(array('country' => 'Yemen', 'code' => 'YE'));
         Model\Country::create(array('country' => 'Zambia', 'code' => 'ZM'));
         Model\Country::create(array('country' => 'Zimbabwe', 'code' => 'ZW'));
+        
     }
 
 }
