@@ -3,7 +3,7 @@
 class IndustryTypeTableSeeder extends Seeder {
 
     public function run() {
-        DB::table('ne_industry_types')->delete();
+        DB::table('ne_industry_types')->truncate();
 
         Model\IndustryType::create(array(
             'name' => 'Engineering',
