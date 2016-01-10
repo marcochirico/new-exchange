@@ -51,6 +51,14 @@ class Client extends \Eloquent {
 
         return $data;
     }
+    
+    public static function projectStatus() {
+        $data = new \stdClass();
+        $clientId = \Session::get('client_id');
+        $data->projectActive = 1;//\Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->count();
+        
+        return $data;
+    }
 
     public static function getInterviewRequired() {
         $clientId = \Session::get('client_id');
@@ -70,6 +78,13 @@ class Client extends \Eloquent {
     public static function getInterviewRefused() {
         $clientId = \Session::get('client_id');
         return \Model\Interview::where('client_id', $clientId)->where('status', 0)->paginate(5);
+    }
+    
+    
+    
+    public static function getProjectActive() {
+        $clientId = \Session::get('client_id');
+        return \Model\Project::where('client_id', $clientId)->where('status', 1)->paginate(5);
     }
 
 }

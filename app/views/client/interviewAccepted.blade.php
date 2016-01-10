@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        @include('contractor.adminNavbar')
+        @include('client.adminNavbar')
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
         <!-- panel - start -->
@@ -13,7 +13,7 @@
         if (count($data->interviews) > 0) :
             foreach ($data->interviews as $interview):
                 ?>
-                @include('contractor.partials.interviewAcceptedRow')
+                @include('client.partials.interviewAcceptedRow')
                 <?php
             endforeach;
         else :

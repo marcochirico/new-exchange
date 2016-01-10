@@ -68,11 +68,21 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/contractors/search', 'ClientController@searchContractors');
     Route::any('client/contractors/search/results/{token}', 'ClientController@searchContractorsResults');
     Route::any('client/contractor/action/{action_type}/{contractor_id}', 'ClientController@actions');
-    Route::any('client/interviews/{interview_type}', 'ClientController@interviews');
+//    Route::any('client/interviews/{interview_type}', 'ClientController@interviews');
 
+    Route::any('client/interviews/required', 'ClientController@interviewsRequired');
+    Route::any('client/interviews/replaced', 'ClientController@interviewsReplaced');
+    Route::any('client/interviews/accepted', 'ClientController@interviewsAccepted');
+    Route::any('client/interviews/refused', 'ClientController@interviewsRefused');
+    
+    Route::any('client/projects/active', 'ClientController@projectsActive');
+    
     //Ajax
     Route::any('client/interview/request', 'AjaxController@interviewRequest');
     Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
+    
+    Route::any('client/interview/feedback', 'AjaxController@interviewFeedback');
+    Route::any('client/interview/feedback/save', 'AjaxController@saveInterviewFeedback');
 });
 
 /*

@@ -20,12 +20,67 @@
                     {{ Form::text('last_name', null, ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
                 </div>
             </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Citizenship Country</label>
+                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Residence Country</label>
+                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                </div>
+            </div>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>City</label>
+                    {{ Form::text('city', null, ['placeholder' => 'City', 'class' => 'form-control']) }}
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Work Situation</label>
+                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                </div>
+            </div>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Consulting Market</label>
+                    {{ Form::select('requirement_id', $data->consultingMarkets, null,['class' => 'form-control']) }}
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Consulting Role</label>
+                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                </div>
+            </div>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Experience</label>
+                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Expertise Area</label>
+                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Modules</label>
+                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                </div>
+            </div>
+
+
+
             <div class="text-center">
                 {{ Form::submit('Search contractors', ['class' => 'btn btn-primary']) }}
                 {{ Form::button('View last search', ['class' => 'btn btn-primary']) }}
             </div>
+
             {{ Form::close() }}
         </div>
+
     </div>
 </div>
 @stop

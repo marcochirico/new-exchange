@@ -11,12 +11,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="title">Contractor Name</td>
-                            <td><?php echo $result->first_name; ?></td>
+                            <td class="title">Country</td>
+                            <td>United States</td>
                         </tr>
                         <tr>
-                            <td class="title">Reference</td>
-                            <td>Mario Rossi</td>
+                            <td class="title">Currency</td>
+                            <td><?php echo $result->currency['currency']; ?></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Rate</td>
+                            <td><?php echo $result->rate; ?></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Rate Type</td>
+                            <td><?php echo $result->rateType['rate_type']; ?></td>
                         </tr>
                     </tbody>
                 </table>

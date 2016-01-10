@@ -24,6 +24,14 @@ class Contractor extends \Eloquent {
         return new Contractor();
     }
 
+    public function currency() {
+        return $this->belongsTo('Model\Currency');
+    }
+
+    public function rateType() {
+        return $this->belongsTo('Model\RateType');
+    }
+
     public function validate($data) {
 
         $validator = \Validator::make($data, $this->rules);

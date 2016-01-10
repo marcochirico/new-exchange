@@ -2,12 +2,13 @@
 
 namespace Model;
 
-class BillingCycle extends \Eloquent {
+class RateType extends \Eloquent {
 
-    protected $table = 'ne_billing_cycles';
+    protected $table = 'ne_rate_types';
+    protected $primaryKey = 'rate_type_id';
 
     public static function make() {
-        return new BillingCycle();
+        return new RateType();
     }
 
 }

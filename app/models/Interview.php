@@ -11,4 +11,16 @@ class Interview extends \Eloquent {
         return new Interview();
     }
 
+    public function feedback() {
+        return $this->hasOne('Model\InterviewFeedback');
+    }
+
+    public function contractor() {
+        return $this->belongsTo('Model\Contractor');
+    }
+
+    public function client() {
+        return $this->belongsTo('Model\Client');
+    }
+
 }

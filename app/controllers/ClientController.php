@@ -61,6 +61,7 @@ class ClientController extends BaseController {
     public function dashboard() {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
 
         $this->layout->content = View::make('client.dashboard')->with('data', $data);
     }
@@ -95,6 +96,10 @@ class ClientController extends BaseController {
     public function searchContractors() {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
+        $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
+        
 
         $input = Input::all();
         $arrParams = array(
@@ -114,6 +119,7 @@ class ClientController extends BaseController {
     public function searchContractorsResults($hashTokenSession) {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
         $paramsSession = Session::get($hashTokenSession);
 
         $resultsObj = new Model\Contractor();
@@ -137,40 +143,47 @@ class ClientController extends BaseController {
         $data->contractor = $contractorObj;
         $this->layout->content = View::make('client.actions.contractorInvitationForm')->with('data', $data);
     }
-
-    public function interviews($interviewType) {
+    
+    public function interviewsRequired() {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
-
-        switch ($interviewType) {
-            case 'required':
-                $data->title = 'Required';
-                $data->status = 'Required';
-                $data->label = 'info';
-                $data->interviews = Model\Client::getInterviewRequired();
-                break;
-            case 'replaced':
-                $data->title = 'Replaced';
-                $data->status = 'Replaced';
-                $data->label = 'warning';
-                $data->interviews = Model\Client::getInterviewReplaced();
-                break;
-            case 'accepted':
-                $data->title = 'Accepted';
-                $data->status = 'Accepted';
-                $data->label = 'success';
-                $data->interviews = Model\Client::getInterviewAccepted();
-                break;
-            case 'refused':
-                $data->title = 'Refused';
-                $data->status = 'Refused';
-                $data->label = 'danger';
-                $data->interviews = Model\Client::getInterviewRefused();
-                break;
-        }
-        $this->layout->content = View::make('client.interview')->with('data', $data);
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewRequired();
+        $this->layout->content = View::make('client.interviewRequired')->with('data', $data);
     }
 
+    public function interviewsReplaced() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewReplaced();
+        $this->layout->content = View::make('client.interviewReplaced')->with('data', $data);
+    }
+
+    public function interviewsAccepted() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewAccepted();
+        $this->layout->content = View::make('client.interviewAccepted')->with('data', $data);
+    }
+
+    public function interviewsRefused() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewRefused();
+        $this->layout->content = View::make('client.interviewRefused')->with('data', $data);
+    }
+
+    public function projectsActive() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->projects = Model\Client::getProjectActive();
+        $this->layout->content = View::make('client.projectActive')->with('data', $data);
+    }
+    
     public function forgotPassword() {
         $this->layout->content = View::make('client.forgot');
     }

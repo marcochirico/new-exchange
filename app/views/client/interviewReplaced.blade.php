@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<h3 class="text-center">Interviews {{$data->title}}</h3>
+<h3 class="text-center">Interviews Replaced</h3>
 
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -22,7 +22,7 @@
                                         <tr>
                                             <th colspan="2" class="project-name">
                                                 Future World Software Development
-                                    <div class="pull-right label label-{{$data->label}}">{{$data->status}}</div>
+                                    <div class="pull-right label label-warning">Received</div>
                                     </th>
                                     </tr>
                                     </thead>
@@ -37,9 +37,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="button" class="btn btn-primary btn-sm">Fill Timesheet</button>&nbsp;
-                                <button type="button" class="btn btn-primary btn-sm">Send Report</button>&nbsp;
-                                <button type="button" class="btn btn-primary btn-sm">Close Project</button>
+                                <button type="button" class="btn btn-primary btn-sm">Accept</button>&nbsp;
+                                <button type="button" class="btn btn-primary btn-sm">Replace</button>&nbsp;
+                                <button type="button" class="btn btn-primary btn-sm">Refuse</button>
                             </div>
                         </div>
                     </div>
@@ -55,25 +55,7 @@
         <!-- panel - end -->
 
         <?php echo $data->interviews->links(); ?>
-        <!--        <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>-->
+
     </div>
 </div>
 @stop

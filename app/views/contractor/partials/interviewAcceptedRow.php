@@ -8,7 +8,7 @@
                         <tr>
                             <th colspan="2" class="project-name">
                                 <?php echo $interview->contractor->first_name.' '.$interview->contractor->last_name; ?>
-                                <span class="label label-warning pull-right">Received</span>
+                                <span class="label label-success pull-right">Accepted</span>
                             </th>
                         </tr>
                     </thead>
@@ -27,9 +27,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="accept">Accept</button>&nbsp;
-                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="replace">Replace</button>&nbsp;
-                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Refuse</button>
+                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
             </div>
         </div>
     </div>

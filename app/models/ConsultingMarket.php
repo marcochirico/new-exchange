@@ -2,12 +2,12 @@
 
 namespace Model;
 
-class ConsultingMarkets extends \Eloquent {
+class ConsultingMarket extends \Eloquent {
 
     protected $table = 'ne_consulting_markets';
 
     public static function make() {
-        return new ConsultingMarkets();
+        return new ConsultingMarket();
     }
 
 }
