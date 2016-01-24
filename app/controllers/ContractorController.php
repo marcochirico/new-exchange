@@ -133,5 +133,33 @@ class ContractorController extends BaseController {
         $data->interviews = Model\Contractor::getInterviewRefused();
         $this->layout->content = View::make('contractor.interviewRefused')->with('data', $data);
     }
+    
+    public function interviewsFeedback() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->interviews = Model\Contractor::getInterviewFeedback();
+        $this->layout->content = View::make('contractor.interviewFeedback')->with('data', $data);
+    }
+    
+    public function projectsActive() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->interviews = Model\Contractor::getProjectActive();
+        $this->layout->content = View::make('contractor.projectActive')->with('data', $data);
+    }
+    
+    public function projectsClosed() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->interviews = Model\Contractor::getProjectClose();
+        $this->layout->content = View::make('contractor.projectClosed')->with('data', $data);
+    }
+    
+    public function jobsApplied() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->interviews = Model\Job::getJobApplied();
+        $this->layout->content = View::make('contractor.jobApplied')->with('data', $data);
+    }
 
 }

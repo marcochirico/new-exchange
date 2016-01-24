@@ -52,32 +52,56 @@ class Contractor extends \Eloquent {
     public static function interviewStatus() {
         $data = new \stdClass();
         $contractorId = \Session::get('contractor_id');
-        $data->interviewsReceived = \Model\Interview::where('contractor_id', $contractorId)->where('status', 1)->where('parent_interview_id', 0)->count();
-        $data->interviewsReplaced = \Model\Interview::where('contractor_id', $contractorId)->where('status', 1)->where('parent_interview_id', '>', 0)->count();
-        $data->interviewsAccepted = \Model\Interview::where('contractor_id', $contractorId)->where('status', '>', 1)->count();
+        $data->interviewsReceived = \Model\Interview::where('contractor_id', $contractorId)->where('status', 10)->where('parent_interview_id', 0)->count();
+        $data->interviewsReplaced = \Model\Interview::where('contractor_id', $contractorId)->where('status', 10)->where('parent_interview_id', '>', 0)->count();
+        $data->interviewsAccepted = \Model\Interview::where('contractor_id', $contractorId)->where('status', 20)->count();
         $data->interviewsRefused = \Model\Interview::where('contractor_id', $contractorId)->where('status', 0)->count();
+        $data->interviewsFeedback = \Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
 
+        $data->projectsActive = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
+        $data->projectsClosed = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
+        $data->jobsApplied = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
         return $data;
     }
 
     public static function getInterviewReceived() {
         $contractorId = \Session::get('contractor_id');
-        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 1)->where('parent_interview_id', 0)->paginate(5);
+        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 10)->where('parent_interview_id', 0)->paginate(5);
     }
 
     public static function getInterviewReplaced() {
         $contractorId = \Session::get('contractor_id');
-        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 1)->where('parent_interview_id', '>', 0)->paginate(5);
+        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 10)->where('parent_interview_id', '>', 0)->paginate(5);
     }
 
     public static function getInterviewAccepted() {
         $contractorId = \Session::get('contractor_id');
-        return \Model\Interview::where('contractor_id', $contractorId)->where('status', '>', 1)->paginate(5);
+        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 20)->paginate(5);
     }
 
     public static function getInterviewRefused() {
         $contractorId = \Session::get('contractor_id');
         return \Model\Interview::where('contractor_id', $contractorId)->where('status', 0)->paginate(5);
+    }
+
+    public static function getInterviewFeedback() {
+        $contractorId = \Session::get('contractor_id');
+        return \Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->paginate(5);
+    }
+
+    public static function getProjectActive() {
+        $contractorId = \Session::get('contractor_id');
+        return \Model\Project::where('contractor_id', $contractorId)->where('status', 1)->paginate(5);
+    }
+
+    public static function getProjectClose() {
+        $contractorId = \Session::get('contractor_id');
+        return \Model\Project::where('contractor_id', $contractorId)->where('status', 0)->paginate(5);
+    }
+
+    public static function getJobApplied() {
+        $contractorId = \Session::get('contractor_id');
+        return \Model\Project::where('contractor_id', $contractorId)->where('status', 0)->paginate(5);
     }
 
 }

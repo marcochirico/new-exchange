@@ -5,9 +5,9 @@
     <a href="/contractor/interviews/replaced" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsReplaced}}</span>Interviews Replaced</a>
     <a href="/contractor/interviews/accepted" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsAccepted}}</span>Interviews Accepted</a>
     <a href="/contractor/interviews/refused" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsRefused}}</span>Interviews Refused</a>
-    <a href="/contractor/interviews/feedback" class="list-group-item"><span class="badge">14</span>Interviews Feedback</a>
-    <a href="/contractor/projects/applied" class="list-group-item"><span class="badge">14</span>Projects Applied</a>
-    <a href="/contractor/projects/active" class="list-group-item"><span class="badge">14</span>Projects Active</a>
-    <a href="/contractor/projects/closed" class="list-group-item"><span class="badge">14</span>Projects Closed</a>
+    <a href="/contractor/interviews/feedback" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsFeedback}}</span>Interviews Feedback</a>
+    <a href="/contractor/projects/active" class="list-group-item"><span class="badge">{{$data->interviewStatus->projectsActive}}</span>Projects Active</a>
+    <a href="/contractor/projects/closed" class="list-group-item"><span class="badge">{{$data->interviewStatus->projectsClosed}}</span>Projects Closed</a>
+    <a href="/contractor/jobs/applied" class="list-group-item"><span class="badge">{{$data->interviewStatus->jobsApplied}}</span>Jobs Applied</a>
     <a href="/contractor/logout" class="list-group-item">Logout</a>
 </div>

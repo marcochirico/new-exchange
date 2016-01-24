@@ -52,9 +52,9 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/interviews/refused', 'ContractorController@interviewsRefused');
     Route::any('contractor/interviews/feedback', 'ContractorController@interviewsFeedback');
     //contractor projects
-    Route::any('contractor/projects/applied', 'ContractorController@projectApplied');
-    Route::any('contractor/projects/active', 'ContractorController@projectActive');
-    Route::any('contractor/projects/closed', 'ContractorController@projectClosed');
+    Route::any('contractor/jobs/applied', 'ContractorController@jobsApplied');
+    Route::any('contractor/projects/active', 'ContractorController@projectsActive');
+    Route::any('contractor/projects/closed', 'ContractorController@projectsClosed');
 
     //Ajax
     Route::any('contractor/ajax/interview/received/accept', 'AjaxController@contractorInterviewReceivedAccept');
