@@ -13,10 +13,16 @@ class ClientController extends BaseController {
         $data = new stdClass();
 
         //industry types
-        $industryTypes = Model\IndustryType::where('status', 1)->get();
-        $data->industryTypes = Utils\Helper::aggregateForSelect($industryTypes, 'industry_id', 'name');
+        $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
+        $data->industryTypes = Utils\Helper::aggregateForSelect(Model\IndustryType::where('status', 1)->get(), 'industry_id', 'name');
 
         $this->layout->content = View::make('client.register')->with('data', $data);
+    }
+
+    public function registrationConfirm() {
+        $data = new stdClass();
+
+        $this->layout->content = View::make('client.registrationConfirm')->with('data', $data);
     }
 
     public function save() {
@@ -26,7 +32,7 @@ class ClientController extends BaseController {
 
         if ($clientObj->validate($input)) {
 
-            $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
+//            $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
 
             $clientObj->company_name = $input['company_name'];
             $clientObj->first_name = $input['first_name'];
@@ -37,24 +43,23 @@ class ClientController extends BaseController {
             $clientObj->mobile = $input['mobile'];
             $clientObj->fax = $input['fax'];
             $clientObj->address = $input['address'];
-            $clientObj->country = $input['country'];
+            $clientObj->country_id = $input['country_id'];
             $clientObj->city = $input['city'];
             $clientObj->postal_code = $input['postal_code'];
             $clientObj->province = $input['province'];
-            $clientObj->requirement_id = $input['requirement_id'];
+//            $clientObj->requirement_id = $input['requirement_id'];
             $clientObj->terms = $input['terms'] == 'on' ? true : false;
             $clientObj->status = true;
-            $clientObj->username = Security\Helper::generateUsername($input['first_name'], $input['last_name']);
-            $clientObj->password = sha1($password);
+            $clientObj->username = $input['email']; //Security\Helper::generateUsername($input['first_name'], $input['last_name']);
+            $clientObj->password = sha1($input['password']);
             $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
             $clientObj->save();
 
-            return Redirect::to('client/login');
+            return Redirect::to('client/registration/confirm');
         } else {
-            $failed = $clientObj->errors->messages()->all();
-
+            $failed = $clientObj->errors->messages(); //->all();
             Session::flash('client_register_errors', $failed);
-            return Redirect::to('client/register');
+            return Redirect::to('client/register')->withInput(Input::except('password'));
         }
     }
 
@@ -99,7 +104,7 @@ class ClientController extends BaseController {
         $data->projectStatus = Model\Client::projectStatus();
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
         $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
-        
+
 
         $input = Input::all();
         $arrParams = array(
@@ -143,7 +148,7 @@ class ClientController extends BaseController {
         $data->contractor = $contractorObj;
         $this->layout->content = View::make('client.actions.contractorInvitationForm')->with('data', $data);
     }
-    
+
     public function interviewsRequired() {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
@@ -183,7 +188,7 @@ class ClientController extends BaseController {
         $data->projects = Model\Client::getProjectActive();
         $this->layout->content = View::make('client.projectActive')->with('data', $data);
     }
-    
+
     public function forgotPassword() {
         $this->layout->content = View::make('client.forgot');
     }

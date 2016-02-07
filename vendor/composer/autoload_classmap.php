@@ -37,6 +37,7 @@ return array(
     'CreateSessionTable' => $baseDir . '/app/database/migrations/2015_12_03_163248_create_session_table.php',
     'CurrencyTableSeeder' => $baseDir . '/app/database/seeds/CurrencyTableSeeder.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
+    'Feed\\Oracle' => $baseDir . '/app/libs/Feed.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'IndustryTypeTableSeeder' => $baseDir . '/app/database/seeds/IndustryTypeTableSeeder.php',

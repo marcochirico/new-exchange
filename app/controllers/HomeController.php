@@ -8,6 +8,8 @@ class HomeController extends BaseController {
 //        $user = array('pippo' => 'pluto');
 //        Event::fire('sendMail.interviewRequest', array($user));
 
+        
+        
         $data = new stdClass();
         $this->layout->content = View::make('index')->with('data', $data);
     }

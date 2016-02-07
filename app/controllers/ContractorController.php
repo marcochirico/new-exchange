@@ -31,6 +31,12 @@ class ContractorController extends BaseController {
         
         $this->layout->content = View::make('contractor.register')->with('data', $data);
     }
+    
+    public function registrationConfirm() {
+        $data = new stdClass();
+        
+        $this->layout->content = View::make('contractor.registrationConfirm')->with('data', $data);
+    }
 
     public function save() {
         $input = Input::all();
@@ -62,12 +68,12 @@ class ContractorController extends BaseController {
 //            $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
 //            $clientObj->save();
 
-            return Redirect::to('client/login');
+            return Redirect::to('client/registration/confirm');
         } else {
-            $failed = $contractorObj->errors->messages()->all();
+            $failed = $contractorObj->errors->messages();//->all();
 
             Session::flash('contractor_register_errors', $failed);
-            return Redirect::to('contractor/register');
+            return Redirect::to('contractor/register')->withInput(Input::except('password'));;
         }
     }
 

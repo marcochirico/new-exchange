@@ -9,14 +9,17 @@ class Client extends \Eloquent {
     protected $rules = array(
         'first_name' => 'required|min:2|max:255',
         'last_name' => 'required|min:2|max:255',
+        'company_name' => 'required|min:2|max:255',
         'email' => 'required|email|unique:ne_clients|confirmed',
         'email_confirmation' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+        'password_confirmation' => 'required|min:8',
         'address' => 'required|min:2|max:255',
-//        'country' => 'required|min:2|max:255',
+        'country_id' => 'required|min:2|max:255',
         'city' => 'required|min:2|max:255',
         'postal_code' => 'required|min:3|max:16',
         'province' => 'required|min:2|max:255',
-//        'terms' => 'accepted',
+        'terms' => 'accepted',
     );
     var $errors;
 

@@ -21,7 +21,7 @@ class CreateNeClients extends Migration {
             $t->string('last_name');
             $t->longText('address');
             $t->string('city');
-            $t->string('country');
+            $t->string('country_id');
             $t->string('province');
             $t->string('postal_code');
             $t->string('email');
@@ -36,6 +36,7 @@ class CreateNeClients extends Migration {
             $t->timestamps();
             //foreign keys
             $t->foreign('industry_id')->references('industry_id')->on('ne_industry_types')->onDelete('cascade')->onUpdate('cascade');
+//            $t->foreign('country_id')->references('country_id')->on('ne_countries')->onDelete('cascade')->onUpdate('cascade');
 //            $t->foreign('requirement_id')->references('requirement_id')->on('ne_requirements')->onDelete('cascade')->onUpdate('cascade');
         });
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');

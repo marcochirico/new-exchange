@@ -4,7 +4,7 @@ class CountryTableSeeder extends Seeder {
 
     public function run() {
         DB::table('ne_countries')->truncate();
-        
+
         Model\Country::create(array('country' => 'Afghanistan', 'code' => 'AF'));
         Model\Country::create(array('country' => 'Aland Islands', 'code' => 'AX'));
         Model\Country::create(array('country' => 'Albania', 'code' => 'AL'));
@@ -257,7 +257,9 @@ class CountryTableSeeder extends Seeder {
         Model\Country::create(array('country' => 'Yemen', 'code' => 'YE'));
         Model\Country::create(array('country' => 'Zambia', 'code' => 'ZM'));
         Model\Country::create(array('country' => 'Zimbabwe', 'code' => 'ZW'));
-        
+
+        //update all status
+        Model\Country::where('status', 0)->update(array('status' => 1));
     }
 
 }
