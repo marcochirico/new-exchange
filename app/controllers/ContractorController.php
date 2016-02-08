@@ -15,65 +15,84 @@ class ContractorController extends BaseController {
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
         $data->workSituations = Utils\Helper::aggregateForSelect(Model\WorkSituation::where('status', 1)->get(), 'work_situation_id', 'work_situation');
         $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
-        //$data->consultingRoles = Utils\Helper::aggregateForSelect(Model\ConsultingRole::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
-        $data->experience = Utils\Helper::aggregateForSelect(Model\Experience::where('status', 1)->get(), 'experience_level_id', 'experience_level');
-        $data->expertiseArea = Utils\Helper::aggregateForSelect(Model\ExpertiseArea::where('status', 1)->get(), 'expertise_area_id', 'expertise_area');
+        $data->consultingRoles = Utils\Helper::aggregateForSelect(Model\ConsultingRole::where('status', 1)->get(), 'consulting_role_id', 'consulting_role');
+        $data->experienceLevels = Utils\Helper::aggregateForSelect(Model\Experience::where('status', 1)->get(), 'experience_level_id', 'experience_level');
+        $data->expertiseAreas = Utils\Helper::aggregateForSelect(Model\ExpertiseArea::where('status', 1)->get(), 'expertise_area_id', 'expertise_area');
         $data->modules = Utils\Helper::aggregateForSelect(Model\Module::where('status', 1)->get(), 'module_id', 'module');
-        $data->rateType = Utils\Helper::aggregateForSelect(Model\RateType::where('status', 1)->get(), 'rate_type_id', 'rate_type');
-        $data->currency = Utils\Helper::aggregateForSelect(Model\Currency::where('status', 1)->get(), 'currency_id', 'currency');
-        $data->paymentMethod = Utils\Helper::aggregateForSelect(Model\PaymentMethod::where('status', 1)->get(), 'payment_method_id', 'payment_method');
-        $data->paymentTerm = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
-        $data->billingCycle = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
-        
-        
+        $data->rateTypes = Utils\Helper::aggregateForSelect(Model\RateType::where('status', 1)->get(), 'rate_type_id', 'rate_type');
+        $data->currencies = Utils\Helper::aggregateForSelect(Model\Currency::where('status', 1)->get(), 'currency_id', 'currency');
+        $data->paymentMethods = Utils\Helper::aggregateForSelect(Model\PaymentMethod::where('status', 1)->get(), 'payment_method_id', 'payment_method');
+        $data->paymentTerms = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
+        $data->billingCycles = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
+
+
 //        print_r($data);die;
-        
-        
+
+
         $this->layout->content = View::make('contractor.register')->with('data', $data);
     }
-    
+
     public function registrationConfirm() {
         $data = new stdClass();
-        
+
         $this->layout->content = View::make('contractor.registrationConfirm')->with('data', $data);
     }
 
     public function save() {
         $input = Input::all();
-
+//        echo '<pre>';
+//        print_r($input);
+//        die;
         $contractorObj = Model\Contractor::make();
 
         if ($contractorObj->validate($input)) {
-//
-//            $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
-//
-//            $clientObj->company_name = $input['company_name'];
-//            $clientObj->first_name = $input['first_name'];
-//            $clientObj->last_name = $input['last_name'];
-//            $clientObj->industry_id = $input['industry_id'];
-//            $clientObj->email = $input['email'];
-//            $clientObj->phone = $input['phone'];
-//            $clientObj->mobile = $input['mobile'];
-//            $clientObj->fax = $input['fax'];
-//            $clientObj->address = $input['address'];
-//            $clientObj->country = $input['country'];
-//            $clientObj->city = $input['city'];
-//            $clientObj->postal_code = $input['postal_code'];
-//            $clientObj->province = $input['province'];
-//            $clientObj->requirement_id = $input['requirement_id'];
-//            $clientObj->terms = $input['terms'] == 'on' ? true : false;
-//            $clientObj->status = true;
-//            $clientObj->username = Security\Helper::generateUsername($input['first_name'], $input['last_name']);
-//            $clientObj->password = sha1($password);
-//            $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
-//            $clientObj->save();
 
-            return Redirect::to('client/registration/confirm');
+            $contractorObj->first_name = $input['first_name'];
+            $contractorObj->middle_name = $input['middle_name'];
+            $contractorObj->last_name = $input['last_name'];
+            $contractorObj->address = $input['address'];
+            $contractorObj->citizenship_country_id = $input['citizenship_country_id'];
+            $contractorObj->residence_country_id = $input['residence_country_id'];
+            $contractorObj->city = $input['city'];
+            $contractorObj->province = $input['province'];
+            $contractorObj->postal_code = $input['postal_code'];
+            $contractorObj->linkedin = $input['linkedin'];
+            $contractorObj->email = $input['email'];
+            $contractorObj->phone = $input['phone'];
+            $contractorObj->mobile = $input['mobile'];
+            $contractorObj->fax = $input['fax'];
+            $contractorObj->work_situation_id = $input['work_situation_id'];
+            $contractorObj->consulting_market_id = $input['consulting_market_id'];
+            $contractorObj->consulting_role_id = $input['consulting_role_id'];
+            $contractorObj->experience_level_id = $input['experience_level_id'];
+            $contractorObj->expertise_area_id = $input['expertise_area_id'];
+            $contractorObj->module_id = $input['module_id'];
+            $contractorObj->rate_type_id = $input['rate_type_id'];
+            $contractorObj->currency_id = $input['currency_id'];
+            $contractorObj->rate = $input['rate'];
+            $contractorObj->payment_method_id = $input['payment_method_id'];
+            $contractorObj->payment_term_id = $input['payment_term_id'];
+            $contractorObj->billing_cycle_id = $input['billing_cycle_id'];
+            $contractorObj->business_name = $input['business_name'];
+            $contractorObj->business_registration_number = $input['business_registration_number'];
+            $contractorObj->business_tax_number = $input['business_tax_number'];
+            $contractorObj->business_address = $input['business_address'];
+            $contractorObj->business_country_id = $input['business_country_id'];
+            $contractorObj->business_city = $input['business_city'];
+            $contractorObj->business_province = $input['business_province'];
+            $contractorObj->business_postal_code = $input['business_postal_code'];
+            $contractorObj->username = $input['email'];
+            $contractorObj->password = sha1($input['password']);
+            $contractorObj->status = true;
+            $contractorObj->save();
+            
+            return Redirect::to('contractor/registration/confirm');
         } else {
-            $failed = $contractorObj->errors->messages();//->all();
+            $failed = $contractorObj->errors->messages(); //->all();
 
             Session::flash('contractor_register_errors', $failed);
-            return Redirect::to('contractor/register')->withInput(Input::except('password'));;
+            return Redirect::to('contractor/register')->withInput(Input::except('password'));
+            ;
         }
     }
 
@@ -139,28 +158,28 @@ class ContractorController extends BaseController {
         $data->interviews = Model\Contractor::getInterviewRefused();
         $this->layout->content = View::make('contractor.interviewRefused')->with('data', $data);
     }
-    
+
     public function interviewsFeedback() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->interviews = Model\Contractor::getInterviewFeedback();
         $this->layout->content = View::make('contractor.interviewFeedback')->with('data', $data);
     }
-    
+
     public function projectsActive() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->interviews = Model\Contractor::getProjectActive();
         $this->layout->content = View::make('contractor.projectActive')->with('data', $data);
     }
-    
+
     public function projectsClosed() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->interviews = Model\Contractor::getProjectClose();
         $this->layout->content = View::make('contractor.projectClosed')->with('data', $data);
     }
-    
+
     public function jobsApplied() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();

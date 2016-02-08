@@ -7,7 +7,7 @@
         foreach ($news as $n):
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 news-box">
-                <div class="content">
+                <div class="content <?php if($i!=4) echo 'border-separator'; ?>">
                     <?php echo $n['title']; ?>
                 </div>
                 <a href="<?php echo $n['link']; ?>" target="_blank">Read more &nbsp;<span class=" glyphicon glyphicon-circle-arrow-right"></span></a>

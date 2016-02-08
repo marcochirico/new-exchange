@@ -20,10 +20,23 @@
   text-align: right;
 }
 .title-bar {
-  background: #ddd;
+  /*    background: #ddd;*/
+  /*background: #ff9933;*/
   padding: 15px;
   font-size: 15px;
   /*text-transform: uppercase;*/
+}
+.title-bar.jobs {
+  background: #669933;
+  color: #fff;
+}
+.title-bar.services {
+  background: #669933;
+  color: #fff;
+}
+.title-bar.news {
+  background: #669933;
+  color: #fff;
 }
 .title-bar i {
   padding-right: 10px;
@@ -71,15 +84,17 @@ h4 {
 }
 .news-box .content {
   height: 100%;
-  border-right: 2px solid #eee;
-  padding: 5px;
+  padding: 10px;
+}
+.news-box .border-separator {
+  border-right: 1px solid #669933;
 }
 .news-box a {
   position: absolute;
-  right: 35px;
+  left: 20px;
   bottom: 10px;
   text-decoration: none;
-  color: #666;
+  color: #669933;
 }
 .service-box {
   /*height:125px;*/

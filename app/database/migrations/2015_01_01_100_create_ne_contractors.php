@@ -34,11 +34,12 @@ class CreateNeContractors extends Migration {
             $t->integer('consulting_role_id')->unsigned();
             $t->integer('experience_level_id')->unsigned();
             $t->integer('expertise_area_id')->unsigned();
+            $t->integer('module_id')->unsigned();
             $t->integer('rate_type_id')->unsigned();
             $t->integer('currency_id')->unsigned();
             $t->float('rate');
             $t->integer('payment_method_id')->unsigned();
-            $t->integer('payment_terms_id')->unsigned();
+            $t->integer('payment_term_id')->unsigned();
             $t->integer('billing_cycle_id')->unsigned();
             $t->string('business_name');
             $t->string('business_registration_number');
