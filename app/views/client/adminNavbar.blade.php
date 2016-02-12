@@ -6,6 +6,7 @@
     <a href="/client/interviews/replaced" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsReplaced}}</span>Interviews Replaced</a>
     <a href="/client/interviews/accepted" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsAccepted}}</span>Interviews Accepted</a>
     <a href="/client/interviews/refused" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsRefused}}</span>Interviews Refused</a>
+    <a href="/client/interviews/feedback" class="list-group-item"><span class="badge">{{$data->interviewStatus->interviewsFeedback}}</span>Interviews Feedback</a>
     <a href="/client/projects/active" class="list-group-item"><span class="badge">{{$data->projectStatus->projectActive}}</span>Project Active</a>
     <a href="/client/logout" class="list-group-item">Logout</a>
 </div>

@@ -47,6 +47,15 @@ class ContractorController extends BaseController {
 
         if ($contractorObj->validate($input)) {
 
+            //curriculum upload
+            $fileName = '';
+            if (Input::hasFile('cv_document')) {
+                $extension = Input::file('cv_document')->getClientOriginalExtension();
+                $fileName = md5('cv' . time() . rand(0, 1000)) . '.' . $extension;
+                $destinationPath = Config::get('attachment.documents.paths.cv');
+                Input::file('cv_document')->move($destinationPath, $fileName);
+            }
+
             $contractorObj->first_name = $input['first_name'];
             $contractorObj->middle_name = $input['middle_name'];
             $contractorObj->last_name = $input['last_name'];
@@ -81,11 +90,12 @@ class ContractorController extends BaseController {
             $contractorObj->business_city = $input['business_city'];
             $contractorObj->business_province = $input['business_province'];
             $contractorObj->business_postal_code = $input['business_postal_code'];
+            $contractorObj->cv = $fileName;
             $contractorObj->username = $input['email'];
             $contractorObj->password = sha1($input['password']);
             $contractorObj->status = true;
             $contractorObj->save();
-            
+
             return Redirect::to('contractor/registration/confirm');
         } else {
             $failed = $contractorObj->errors->messages(); //->all();
@@ -100,6 +110,8 @@ class ContractorController extends BaseController {
         $data = new stdClass();
 
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
 
         $this->layout->content = View::make('contractor.dashboard')->with('data', $data);
     }
@@ -134,6 +146,8 @@ class ContractorController extends BaseController {
     public function interviewsReceived() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getInterviewReceived();
         $this->layout->content = View::make('contractor.interviewReceived')->with('data', $data);
     }
@@ -141,6 +155,8 @@ class ContractorController extends BaseController {
     public function interviewsReplaced() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getInterviewReplaced();
         $this->layout->content = View::make('contractor.interviewReplaced')->with('data', $data);
     }
@@ -148,6 +164,8 @@ class ContractorController extends BaseController {
     public function interviewsAccepted() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getInterviewAccepted();
         $this->layout->content = View::make('contractor.interviewAccepted')->with('data', $data);
     }
@@ -155,6 +173,8 @@ class ContractorController extends BaseController {
     public function interviewsRefused() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getInterviewRefused();
         $this->layout->content = View::make('contractor.interviewRefused')->with('data', $data);
     }
@@ -162,6 +182,8 @@ class ContractorController extends BaseController {
     public function interviewsFeedback() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getInterviewFeedback();
         $this->layout->content = View::make('contractor.interviewFeedback')->with('data', $data);
     }
@@ -169,13 +191,17 @@ class ContractorController extends BaseController {
     public function projectsActive() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
-        $data->interviews = Model\Contractor::getProjectActive();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
+        $data->projects = Model\Contractor::getProjectActive();
         $this->layout->content = View::make('contractor.projectActive')->with('data', $data);
     }
 
     public function projectsClosed() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Contractor::getProjectClose();
         $this->layout->content = View::make('contractor.projectClosed')->with('data', $data);
     }
@@ -183,6 +209,8 @@ class ContractorController extends BaseController {
     public function jobsApplied() {
         $data = new stdClass();
         $data->interviewStatus = Model\Contractor::interviewStatus();
+        $data->projectStatus = Model\Contractor::projectStatus();
+        $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Job::getJobApplied();
         $this->layout->content = View::make('contractor.jobApplied')->with('data', $data);
     }

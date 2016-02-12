@@ -18,12 +18,39 @@
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Feedback</label>
                         <select class="form-control" name="interview_feedback[feedback_outcome]">
-                            <option value="1">Positive</option>
                             <option value="0">Negative</option>
+                            <option value="1">Positive</option>
                         </select>
                     </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Project Date Start</label>
+                        <input type="text" class="form-control datepicker" name="interview_feedback[project_start_date]" />
+                    </div>
                 </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Project Duration</label>
+                        <input type="text" class="form-control datepicker" name="interview_feedback[project_duration]" />
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Rate</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="interview_feedback[project_rate]" />
+                            <span class="input-group-addon">.00</span>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Payment Method</label>
+                        {{ Form::select('interview_feedback[project_billing_method]', $data->paymentMethods, null,['class' => 'form-control']) }}
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Billing Cycle</label>
+                        {{ Form::select('interview_feedback[project_billing_cycle]', $data->billingCycles, null,['class' => 'form-control']) }}
+                    </div>
+                </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label>Feedback Description</label>
@@ -54,6 +81,9 @@
                     $('.outcome-message').fadeIn();
                 }
             }
+        });
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy'
         });
     });
 </script>

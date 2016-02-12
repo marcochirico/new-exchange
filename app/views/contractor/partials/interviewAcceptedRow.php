@@ -7,7 +7,7 @@
                     <thead>
                         <tr>
                             <th colspan="2" class="project-name">
-                                <?php echo $interview->contractor->first_name.' '.$interview->contractor->last_name; ?>
+                                <?php echo $interview->contractor->first_name . ' ' . $interview->contractor->last_name; ?>
                                 <span class="label label-success pull-right">Accepted</span>
                             </th>
                         </tr>
@@ -15,11 +15,11 @@
                     <tbody>
                         <tr>
                             <td class="title">Location and Date</td>
-                            <td><?php echo $interview->location.' - '.$interview->date; ?></td>
+                            <td><?php echo $interview->location . ' on ' . Utils\Helper::dateTimeFromDb($interview->date); ?></td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
-                            <td><?php echo $interview->rate ?></td>
+                            <td><?php echo Utils\Helper::moneyFormat($interview->rate) . ' ' . $interview->currency['currency']; ?></td>
                         </tr>
                         <tr>
                             <td class="title">Reference</td>
@@ -27,7 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                <div class="text-right">
+                    <button type="button" class="btn btn-success btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                </div>
             </div>
         </div>
     </div>

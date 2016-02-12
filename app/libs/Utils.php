@@ -14,6 +14,16 @@ Class Helper {
         return $dd . '/' . $mm . '/' . $yyyy;
     }
 
+    public static function dateTimeFromDb($date) {
+        $split = explode(' ', $date);
+        list($yyyy, $mm, $dd ) = explode('-', $split[0]);
+        return $dd . '/' . $mm . '/' . $yyyy . ' ' . $split[1];
+    }
+
+    public static function moneyFormat($value) {
+        return number_format($value, 2, ',', '.');
+    }
+
     public static function showValidatorErrorsListed($errors) {
         $messages = array();
         foreach ($errors as $e) {
@@ -34,7 +44,7 @@ Class Helper {
         if (is_null($message)) {
             $message = 'No results found';
         }
-        return '<div class="alert alert-info">' . $message . '</div>';
+        return '<div class="alert alert-warning">' . $message . '</div>';
     }
 
 }

@@ -135,10 +135,11 @@
                 </div>
             </div>
             <div class="text-center">
-                {{ Form::submit('Register', ['class' => 'btn btn-primary']) }}
+                {{ Form::submit('Register', ['class' => 'btn btn-primary btn-padding-long']) }}
             </div>
             {{ Form::close() }}
         </div>
     </div>
 </div>
+<br /><br />
 @stop

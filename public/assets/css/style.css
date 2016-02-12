@@ -129,6 +129,15 @@ footer .row {
 .form_field_error {
   color: #a94442;
 }
+.btn-padding-long {
+  width: 150px;
+}
+.panel_list .panel:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.more-info-btn {
+  cursor: pointer;
+}
 @media only screen and (min-width: 1000px) {
   .container-fluid {
     width: 1000px;

@@ -47,43 +47,47 @@ class Client extends \Eloquent {
     public static function interviewStatus() {
         $data = new \stdClass();
         $clientId = \Session::get('client_id');
-        $data->interviewsRequired = \Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->count();
-        $data->interviewsReplaced = \Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', '>', 0)->count();
-        $data->interviewsAccepted = \Model\Interview::where('client_id', $clientId)->where('status', '>', 1)->count();
+        $data->interviewsRequired = \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', 0)->count();
+        $data->interviewsReplaced = \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', '>', 0)->count();
+        $data->interviewsAccepted = \Model\Interview::where('client_id', $clientId)->where('status', '=', 20)->count();
+        $data->interviewsFeedback = \Model\Interview::where('client_id', $clientId)->where('status', 30)->count();
         $data->interviewsRefused = \Model\Interview::where('client_id', $clientId)->where('status', 0)->count();
 
         return $data;
     }
-    
+
     public static function projectStatus() {
         $data = new \stdClass();
         $clientId = \Session::get('client_id');
-        $data->projectActive = 1;//\Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->count();
-        
+        $data->projectActive = 1; //\Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->count();
+
         return $data;
     }
 
     public static function getInterviewRequired() {
         $clientId = \Session::get('client_id');
-        return \Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->paginate(5);
+        return \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', 0)->paginate(5);
     }
 
     public static function getInterviewReplaced() {
         $clientId = \Session::get('client_id');
-        return \Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', '>', 0)->paginate(5);
+        return \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', '>', 0)->paginate(5);
     }
 
     public static function getInterviewAccepted() {
         $clientId = \Session::get('client_id');
-        return \Model\Interview::where('client_id', $clientId)->where('status', '>', 1)->paginate(5);
+        return \Model\Interview::where('client_id', $clientId)->where('status', '=', 20)->paginate(5);
+    }
+
+    public static function getInterviewFeedback() {
+        $clientId = \Session::get('client_id');
+        return \Model\Interview::where('client_id', $clientId)->where('status', '=', 30)->paginate(5);
     }
 
     public static function getInterviewRefused() {
         $clientId = \Session::get('client_id');
         return \Model\Interview::where('client_id', $clientId)->where('status', 0)->paginate(5);
     }
-    
-    
     
     public static function getProjectActive() {
         $clientId = \Session::get('client_id');

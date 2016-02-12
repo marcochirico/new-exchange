@@ -3,7 +3,7 @@
 @section('content')
 <h3 class="text-center">Interviews Replaced</h3>
 
-<div class="row">
+<div class="row panel_list">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         @include('contractor.adminNavbar')
     </div>

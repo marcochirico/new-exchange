@@ -58,10 +58,16 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/projects/active', 'ContractorController@projectsActive');
     Route::any('contractor/projects/closed', 'ContractorController@projectsClosed');
 
+
+
     //Ajax
     Route::any('contractor/ajax/interview/received/accept', 'AjaxController@contractorInterviewReceivedAccept');
     Route::any('contractor/ajax/interview/received/replace', 'AjaxController@contractorInterviewReceivedReplace');
     Route::any('contractor/ajax/interview/received/refuse', 'AjaxController@contractorInterviewReceivedRefuse');
+    Route::any('contractor/ajax/interview/feedback/confirm', 'AjaxController@contractorInterviewFeedbackConfirm');
+    Route::any('contractor/ajax/interview/feedback/refuse', 'AjaxController@contractorInterviewFeedbackRefuse');
+    Route::any('contractor/ajax/project/timesheet', 'AjaxController@contractorProjectTimesheet');
+    
 });
 
 Route::group(array('before' => 'authClient'), function() {
@@ -75,14 +81,15 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/interviews/required', 'ClientController@interviewsRequired');
     Route::any('client/interviews/replaced', 'ClientController@interviewsReplaced');
     Route::any('client/interviews/accepted', 'ClientController@interviewsAccepted');
+    Route::any('client/interviews/feedback', 'ClientController@interviewsFeedback');
     Route::any('client/interviews/refused', 'ClientController@interviewsRefused');
-    
+
     Route::any('client/projects/active', 'ClientController@projectsActive');
-    
+
     //Ajax
     Route::any('client/interview/request', 'AjaxController@interviewRequest');
     Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
-    
+
     Route::any('client/interview/feedback', 'AjaxController@interviewFeedback');
     Route::any('client/interview/feedback/save', 'AjaxController@saveInterviewFeedback');
 });

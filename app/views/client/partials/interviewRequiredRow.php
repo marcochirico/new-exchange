@@ -15,11 +15,11 @@
                     <tbody>
                         <tr>
                             <td class="title">Location and Date</td>
-                            <td><?php echo $interview->location.' - '.$interview->date; ?></td>
+                            <td><?php echo $interview->location.' on '.  Utils\Helper::dateTimeFromDb($interview->date); ?></td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
-                            <td><?php echo $interview->rate ?></td>
+                            <td><?php echo Utils\Helper::moneyFormat($interview->rate) . ' ' . $interview->currency['currency']; ?></td>
                         </tr>
                         <tr>
                             <td class="title">Reference</td>
@@ -27,8 +27,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="revoke_invitation_to_interview" data-id="<?php echo $interview->interview_id; ?>">Revoke Invitation</button>
-            </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-success btn-sm btn-action-control" data-action="revoke_invitation_to_interview" data-id="<?php echo $interview->interview_id; ?>">Revoke Invitation</button>
+                </div>
+                </div>
         </div>
     </div>
 </div>

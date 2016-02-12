@@ -6,29 +6,63 @@
                 <table class="table internal-block">
                     <thead>
                         <tr>
-                            <th colspan="2" class="project-name"><?php echo $result->first_name . ' ' . $result->last_name; ?></th>
+                            <th colspan="2" class="project-name">
+                                <?php echo $result->first_name . ' ' . $result->last_name; ?>&nbsp;
+                                <?php
+                                if ($result->cv != ''):
+                                    $cvFolderUrl = Config::get('attachment.documents.urls.cv');
+                                    $url = $cvFolderUrl . '/' . $result->cv;
+                                    ?>
+                                    <a href="<?php echo $url; ?>" target="blank"><span class="glyphicon glyphicon-paperclip"></span></a>
+                                <?php endif; ?>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="title">Country</td>
-                            <td>United States</td>
-                        </tr>
-                        <tr>
-                            <td class="title">Currency</td>
-                            <td><?php echo $result->currency['currency']; ?></td>
+                            <td class="title" style="width:50%;">Country</td>
+                            <td style="width:50%;"><?php echo $result->countryResidence['country'] . ' - ' . $result->countryResidence['code']; ?></td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
-                            <td><?php echo $result->rate; ?></td>
+                            <td><?php echo Utils\Helper::moneyFormat($result->rate) . ' ' . $result->currency['currency'] . ' - ' . $result->rateType['rate_type']; ?></td>
                         </tr>
                         <tr>
-                            <td class="title">Rate Type</td>
-                            <td><?php echo $result->rateType['rate_type']; ?></td>
+                            <td class="title">Work Situation</td>
+                            <td><?php echo $result->workSituation['work_situation']; ?></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="invite_contractor_for_interview" data-id="<?php echo $result->contractor_id; ?>">Send Invitation</button>
+                <div class="collapse" id="toggleContent_<?php echo $result->contractor_id; ?>">
+                    <!--<h5 class="text-center">More informations</h5>-->
+                    <table class="table internal-block">
+                        <tbody>
+                            <tr>
+                                <td class="title" style="width:50%;">Consulting Market</td>
+                                <td style="width:50%;"><?php echo $result->consultingMarket['consulting_market']; ?></td>
+                            </tr>
+                            <tr>
+                                <td class="title">Consulting Role</td>
+                                <td><?php echo $result->consultingRole['consulting_role']; ?></td>
+                            </tr>
+                            <tr>
+                                <td class="title">Experience Level</td>
+                                <td><?php echo $result->experienceLevel['experience_level']; ?></td>
+                            </tr>
+                            <tr>
+                                <td class="title">Expertise Area</td>
+                                <td><?php echo $result->expertiseArea['expertise_area']; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-right">
+                    <a class="pull-left more-info-btn" type="button" data-toggle="collapse" data-target="#toggleContent_<?php echo $result->contractor_id; ?>" aria-expanded="false" aria-controls="collapseExample">More info</a>
+                    <button type="button" class="btn btn-success btn-sm btn-action-control" data-action="invite_contractor_for_interview" data-id="<?php echo $result->contractor_id; ?>">Interview Request</button>
+                </div>
+
+
+
             </div>
         </div>
     </div>

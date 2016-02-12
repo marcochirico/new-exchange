@@ -6,9 +6,7 @@ class HomeController extends BaseController {
 
     public function index() {
 //        $user = array('pippo' => 'pluto');
-//        Event::fire('sendMail.interviewRequest', array($user));
-
-        
+//        Event::fire('sendMail.clientInterviewRequired', array($user));
         
         $data = new stdClass();
         $this->layout->content = View::make('index')->with('data', $data);

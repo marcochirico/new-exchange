@@ -10,5 +10,13 @@ class Project extends \Eloquent {
     public static function make() {
         return new Project();
     }
+    
+    public function contractor() {
+        return $this->belongsTo('Model\Contractor');
+    }
+
+    public function client() {
+        return $this->belongsTo('Model\Client');
+    }
 
 }

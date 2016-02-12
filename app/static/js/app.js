@@ -16,6 +16,22 @@ $(document).ready(function () {
                 });
                 $('#client_interview_feedback').modal();
                 break;
+            case'project_confirm':
+                $.post('/contractor/ajax/interview/feedback/confirm', {'actionId': actionId}, function (data) {
+                    location.reload();
+                });
+                break;
+            case'project_refuse':
+                $.post('/contractor/ajax/interview/feedback/refuse', {'actionId': actionId}, function (data) {
+                    location.reload();
+                });
+                break;
+            case'project_fill_timesheet':
+                $.post('/contractor/ajax/project/timesheet', {'actionId': actionId}, function (data) {
+                    $('#project_fill_timesheet').html(data);
+                });
+                $('#project_fill_timesheet').modal();
+                break;
         }
 
     });
@@ -30,9 +46,6 @@ $(document).ready(function () {
             location.reload();
         });
     });
-
-
-
 
 
     $('.btn-register').on('click', function () {

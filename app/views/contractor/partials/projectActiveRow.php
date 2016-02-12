@@ -7,28 +7,29 @@
                     <thead>
                         <tr>
                             <th colspan="2" class="project-name">
-                                <?php // echo $interview->contractor->first_name.' '.$interview->contractor->last_name; ?>
+                                <?php echo $project->client->company_name; ?>
                                 <span class="label label-success pull-right">Active</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="title">Location and Date</td>
-                            <td><?php // echo $interview->location.' - '.$interview->date; ?></td>
+                            <td class="title">Start Date</td>
+                            <td><?php echo Utils\Helper::dateFromDb($project->date_start); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Duration</td>
+                            <td><?php echo $project->days; ?></td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
-                            <td><?php // echo $interview->rate ?></td>
-                        </tr>
-                        <tr>
-                            <td class="title">Reference</td>
-                            <td><?php // echo $interview->reference; ?></td>
+                            <td><?php echo Utils\Helper::moneyFormat($project->rate); ?></td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php // echo $interview->interview_id; ?>" data-action="accept">Send Report</button>&nbsp;
-                
+                <div class="text-right">
+                    <button type = "button" class = "btn btn-success btn-sm btn-action-control" data-action = "project_fill_timesheet" data-id = "<?php echo $project->project_id; ?>">Timesheet</button>
+                </div>
             </div>
         </div>
     </div>

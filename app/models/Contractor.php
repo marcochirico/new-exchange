@@ -27,12 +27,40 @@ class Contractor extends \Eloquent {
         return new Contractor();
     }
 
+    public function countryResidence() {
+        return $this->belongsTo('Model\Country', 'residence_country_id', 'country_id');
+    }
+
+    public function countryCitizenship() {
+        return $this->belongsTo('Model\Country', 'citizenship_country_id', 'country_id');
+    }
+
     public function currency() {
         return $this->belongsTo('Model\Currency');
     }
 
     public function rateType() {
         return $this->belongsTo('Model\RateType');
+    }
+
+    public function workSituation() {
+        return $this->belongsTo('Model\WorkSituation', 'work_situation_id', 'work_situation_id');
+    }
+
+    public function consultingMarket() {
+        return $this->belongsTo('Model\ConsultingMarket', 'consulting_market_id', 'consulting_market_id');
+    }
+
+    public function consultingRole() {
+        return $this->belongsTo('Model\ConsultingRole', 'consulting_role_id', 'consulting_role_id');
+    }
+
+    public function experienceLevel() {
+        return $this->belongsTo('Model\Experience', 'experience_level_id', 'experience_level_id');
+    }
+
+    public function expertiseArea() {
+        return $this->belongsTo('Model\ExpertiseArea', 'expertise_area_id', 'expertise_area_id');
     }
 
     public function validate($data) {
@@ -60,10 +88,21 @@ class Contractor extends \Eloquent {
         $data->interviewsAccepted = \Model\Interview::where('contractor_id', $contractorId)->where('status', 20)->count();
         $data->interviewsRefused = \Model\Interview::where('contractor_id', $contractorId)->where('status', 0)->count();
         $data->interviewsFeedback = \Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
+        return $data;
+    }
 
-        $data->projectsActive = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
-        $data->projectsClosed = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
-        $data->jobsApplied = 2; //\Model\Interview::where('contractor_id', $contractorId)->where('status', 30)->count();
+    public static function projectStatus() {
+        $data = new \stdClass();
+        $contractorId = \Session::get('contractor_id');
+        $data->projectsActive = \Model\Project::where('contractor_id', $contractorId)->where('status', 1)->count();
+        $data->projectsClosed = \Model\Project::where('contractor_id', $contractorId)->where('status', 0)->count();
+        return $data;
+    }
+    
+    public static function jobStatus() {
+        $data = new \stdClass();
+        $contractorId = \Session::get('contractor_id');
+        $data->jobsApplied = 2; //\Model\Job::where('contractor_id', $contractorId)->count();
         return $data;
     }
 

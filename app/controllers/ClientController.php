@@ -102,9 +102,20 @@ class ClientController extends BaseController {
         $data = new stdClass();
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
+        
+        
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
+        $data->workSituations = Utils\Helper::aggregateForSelect(Model\WorkSituation::where('status', 1)->get(), 'work_situation_id', 'work_situation');
         $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
-
+        $data->consultingRoles = Utils\Helper::aggregateForSelect(Model\ConsultingRole::where('status', 1)->get(), 'consulting_role_id', 'consulting_role');
+        $data->experienceLevels = Utils\Helper::aggregateForSelect(Model\Experience::where('status', 1)->get(), 'experience_level_id', 'experience_level');
+        $data->expertiseAreas = Utils\Helper::aggregateForSelect(Model\ExpertiseArea::where('status', 1)->get(), 'expertise_area_id', 'expertise_area');
+        $data->modules = Utils\Helper::aggregateForSelect(Model\Module::where('status', 1)->get(), 'module_id', 'module');
+        $data->rateTypes = Utils\Helper::aggregateForSelect(Model\RateType::where('status', 1)->get(), 'rate_type_id', 'rate_type');
+        $data->currencies = Utils\Helper::aggregateForSelect(Model\Currency::where('status', 1)->get(), 'currency_id', 'currency');
+        $data->paymentMethods = Utils\Helper::aggregateForSelect(Model\PaymentMethod::where('status', 1)->get(), 'payment_method_id', 'payment_method');
+        $data->paymentTerms = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
+        $data->billingCycles = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
 
         $input = Input::all();
         $arrParams = array(
@@ -171,6 +182,14 @@ class ClientController extends BaseController {
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewAccepted();
         $this->layout->content = View::make('client.interviewAccepted')->with('data', $data);
+    }
+    
+    public function interviewsFeedback() {
+        $data = new stdClass();
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewFeedback();
+        $this->layout->content = View::make('client.interviewFeedback')->with('data', $data);
     }
 
     public function interviewsRefused() {

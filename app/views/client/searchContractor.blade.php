@@ -24,14 +24,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Citizenship Country</label>
-                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                    {{ Form::select('citizenship_country_id', $data->countries, null,['class' => 'form-control']) }}
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Residence Country</label>
-                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                    {{ Form::select('residence_country_id', $data->countries, null,['class' => 'form-control']) }}
                 </div>
             </div>
-            
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>City</label>
@@ -39,35 +39,35 @@
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Work Situation</label>
-                    {{ Form::select('requirement_id', $data->countries, null,['class' => 'form-control']) }}
+                    {{ Form::select('work_situation_id', $data->workSituations, null,['class' => 'form-control']) }}
                 </div>
             </div>
-            
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Consulting Market</label>
-                    {{ Form::select('requirement_id', $data->consultingMarkets, null,['class' => 'form-control']) }}
+                    {{ Form::select('consulting_market_id', $data->consultingMarkets, null,['class' => 'form-control']) }}
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Consulting Role</label>
-                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                    {{ Form::select('consulting_role_id', $data->consultingRoles, null,['class' => 'form-control']) }}
                 </div>
             </div>
-            
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Experience</label>
-                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                    {{ Form::select('experience_level_id', $data->experienceLevels, null,['class' => 'form-control']) }}
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Expertise Area</label>
-                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                    {{ Form::select('expertise_area_id', $data->expertiseAreas, null,['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Modules</label>
-                    {{ Form::select('requirement_id', array('L'=>'Large','M'=>'Medium'), 'm',['class' => 'form-control']) }}
+                    {{ Form::select('module_id', $data->modules, null,['class' => 'form-control']) }}
                 </div>
             </div>
 
@@ -75,7 +75,6 @@
 
             <div class="text-center">
                 {{ Form::submit('Search contractors', ['class' => 'btn btn-primary']) }}
-                {{ Form::button('View last search', ['class' => 'btn btn-primary']) }}
             </div>
 
             {{ Form::close() }}

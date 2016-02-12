@@ -49,6 +49,7 @@ class CreateNeContractors extends Migration {
             $t->string('business_city');
             $t->string('business_province');
             $t->string('business_postal_code');
+            $t->string('cv');
             $t->string('username');
             $t->string('password');
             $t->string('reminder_token');

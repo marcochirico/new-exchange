@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class NeInterviewFeedback extends Migration {
+class CreateNeProjectTimesheets extends Migration {
 
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class NeInterviewFeedback extends Migration {
      */
     public function up() {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::create('ne_interview_feedback', function($t) {
-            $t->increments('feedback_id');
-            $t->integer('interview_id')->unsigned();
-            $t->longtext('feedback');
-            $t->boolean('status');
+        Schema::create('ne_project_timesheets', function($t) {
+            $t->increments('timesheet_id');
+            $t->integer('project_id')->unsigned();
+            $t->date('date');
+            $t->integer('hours');
             $t->timestamps();
-            //foreign key
-            $t->foreign('interview_id')->references('interview_id')->on('ne_interviews')->onDelete('cascade')->onUpdate('cascade');
         });
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
@@ -31,7 +29,7 @@ class NeInterviewFeedback extends Migration {
      */
     public function down() {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('ne_interview_feedback');
+        Schema::drop('ne_project_timesheets');
     }
 
 }

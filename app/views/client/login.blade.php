@@ -16,7 +16,7 @@
         </div>
         <div>
             {{ Form::submit('Login', ['class' => 'btn btn-primary']) }}
-            <span class="pull-right"><a href="/client/forgot">Forgot password?</a></span>
+            <span class="pull-right"><a href="/client/forgot-password">Forgot password?</a></span>
         </div>
 
         {{ Form::close() }}

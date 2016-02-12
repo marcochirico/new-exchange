@@ -23,6 +23,13 @@ class CreateNeInterviews extends Migration {
             $t->float('rate');
             $t->text('reference');
             $t->longtext('preview');
+            $t->char('feedback');
+            $t->longtext('feedback_description');
+            $t->date('project_start_date');
+            $t->integer('project_duration');
+            $t->float('project_rate');
+            $t->integer('project_payment_method_id')->unsigned();
+            $t->integer('project_billing_cycle_id')->unsigned();
             $t->char('status');
             $t->timestamps();
             //foreign keys
@@ -32,7 +39,7 @@ class CreateNeInterviews extends Migration {
         });
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
-    
+
     /**
      * Reverse the migrations.
      *

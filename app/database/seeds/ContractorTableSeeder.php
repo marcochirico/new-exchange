@@ -8,6 +8,9 @@ class ContractorTableSeeder extends Seeder {
         Model\Contractor::create(array(
             'first_name' => 'Marco',
             'last_name' => 'Chirico',
+            'citizenship_country_id' => 1,
+            'residence_country_id' => 1,
+            'currency_id' => 1,
             'username' => 'microtech',
             'password' => sha1('microtech'),
             'reminder_token' => md5('microtech' . time()),
@@ -22,7 +25,7 @@ class ContractorTableSeeder extends Seeder {
             'reminder_token' => md5('newlinkasia' . time()),
             'status' => true,
         ));
-        
+
         Model\Contractor::create(array(
             'first_name' => 'Michael',
             'last_name' => 'Torst',
@@ -31,7 +34,7 @@ class ContractorTableSeeder extends Seeder {
             'reminder_token' => md5('newlinkasia' . time()),
             'status' => true,
         ));
-        
+
         Model\Contractor::create(array(
             'first_name' => 'Joseph',
             'last_name' => 'Cruger',

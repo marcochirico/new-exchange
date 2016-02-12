@@ -14,7 +14,7 @@
         endif;
         ?>
         <div class="row">
-            {{ Form::open(array('action' => 'ContractorController@save')) }}
+            {{ Form::open(array('action' => 'ContractorController@save', 'enctype' => 'multipart/form-data')) }}
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <label>First Name</label>
@@ -271,10 +271,11 @@
                 </div>
             </div>
             <div class="text-center">
-                {{ Form::submit('Register', ['class' => 'btn btn-primary']) }}
+                {{ Form::submit('Register', ['class' => 'btn btn-primary btn-padding-long']) }}
             </div>
             {{ Form::close() }}
         </div>
     </div>
 </div>
+<br /><br />
 @stop

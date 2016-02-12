@@ -13,7 +13,7 @@
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsReceived}}</span>
                 <br />
-                Interview Received
+                Interviews Received
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsReplaced}}</span>
                 <br />
-                Interview Replaced
+                Interviews Replaced
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsAccepted}}</span>
                 <br />
-                Interview Accepted
+                Interviews Accepted
             </div>
         </div>
     </div>
@@ -40,43 +40,43 @@
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsRefused}}</span>
                 <br />
-                Interview Refused
+                Interviews Refused
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dashboard-counter">
-                <span style="">10</span>
+                <span style="">{{$data->interviewStatus->interviewsFeedback}}</span>
                 <br />
-                Interview Feedback
+                Interviews Feedback
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dashboard-counter">
-                <span style="">10</span>
+                <span style="">{{$data->projectStatus->projectsActive}}</span>
                 <br />
-                Project Active
+                Projects Active
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dashboard-counter">
-                <span style="">10</span>
+                <span style="">{{$data->projectStatus->projectsClosed}}</span>
                 <br />
-                Project Closed
+                Projects Closed
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dashboard-counter">
-                <span style="">10</span>
+                <span style="">{{$data->jobStatus->jobsApplied}}</span>
                 <br />
-                Project Applied
+                Job Positions Applied
             </div>
         </div>
     </div>

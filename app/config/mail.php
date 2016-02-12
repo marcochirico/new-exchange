@@ -14,7 +14,7 @@ return array(
       |
      */
 
-    'driver' => 'sendmail',
+    'driver' => 'smtp',
     /*
       |--------------------------------------------------------------------------
       | SMTP Host Address
@@ -25,7 +25,7 @@ return array(
       | the Mailgun mail service which will provide reliable deliveries.
       |
      */
-    'host' => 'smtp.mailgun.org',
+    'host' => 'smtp.gmail.com',
     /*
       |--------------------------------------------------------------------------
       | SMTP Host Port
@@ -47,7 +47,7 @@ return array(
       | used globally for all e-mails that are sent by your application.
       |
      */
-    'from' => array('address' => null, 'name' => null),
+    'from' => array('address' => 'noreply@new-exchange.com', 'name' => 'Noreply New Exchange'),
     /*
       |--------------------------------------------------------------------------
       | E-Mail Encryption Protocol
@@ -69,7 +69,7 @@ return array(
       | connection. You may also set the "password" value below this one.
       |
      */
-    'username' => null,
+    'username' => 'marcochirico1986@gmail.com',
     /*
       |--------------------------------------------------------------------------
       | SMTP Server Password
@@ -80,7 +80,7 @@ return array(
       | connection so that the application will be able to send messages.
       |
      */
-    'password' => null,
+    'password' => 'rygrermwjvrvrfvu',
     /*
       |--------------------------------------------------------------------------
       | Sendmail System Path
