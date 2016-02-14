@@ -18,4 +18,14 @@ Class Helper {
         return md5($username . time());
     }
 
+    public static function getLoggedType() {
+        if (\Session::has('contractor_id')) {
+            return 'contractor';
+        }
+        if (\Session::has('client_id')) {
+            return 'client';
+        }
+        return false;
+    }
+
 }

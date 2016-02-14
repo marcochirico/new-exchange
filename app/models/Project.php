@@ -18,5 +18,13 @@ class Project extends \Eloquent {
     public function client() {
         return $this->belongsTo('Model\Client');
     }
+    
+    public function timezone() {
+        return $this->belongsTo('Model\Timezone');
+    }
+    
+    public function currency() {
+        return $this->belongsTo('Model\Currency');
+    }
 
 }

@@ -8,7 +8,7 @@
                         <tr>
                             <th colspan="2" class="project-name">
                                 <?php echo $interview->client->company_name; ?>
-                                <span class="label label-success pull-right">Accepted on <?php echo Utils\Helper::dateTimeFromDb($interview->updated_at); ?></span>
+                                <span class="label label-info pull-right">Replaced on <?php echo Utils\Helper::dateTimeFromDb($interview->updated_at); ?></span>
                             </th>
                         </tr>
                     </thead>
@@ -16,7 +16,7 @@
                         <tr>
                             <td style="width:30%;" class="title">Location and Date</td>
                             <td style="width:70%;">
-                                <?php echo $interview->location.' on '.  Utils\Helper::dateTimeFromDb($interview->date); ?><br />
+                                <?php echo $interview->location . ' on ' . Utils\Helper::dateTimeFromDb($interview->date); ?><br />
                                 <small>Timezone: <?php echo $interview->timezone->timezone; ?></small>
                             </td>
                         </tr>
@@ -38,7 +38,13 @@
                     </tbody>
                 </table>
                 <div class="text-left">
-                    <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                    <?php if ($interview->status == 14): ?>
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_accept_interview">Accept</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="replace_contractor_for_interview">Replace</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Refuse</button>
+                    <?php else: ?>
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

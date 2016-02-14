@@ -43,6 +43,12 @@ Route::filter('authContractor', function() {
     }
 });
 
+Route::filter('authCombined', function() {
+    if (!Session::has('contractor_id') && !Session::has('client_id')) {
+        die('AJAX - Unautorized');
+    }
+});
+
 Route::filter('auth.basic', function() {
     return Auth::basic();
 });

@@ -65,6 +65,7 @@ class ClientController extends BaseController {
 
     public function dashboard() {
         $data = new stdClass();
+        $data->select = 'dashboard';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
 
@@ -100,6 +101,7 @@ class ClientController extends BaseController {
 
     public function searchContractors() {
         $data = new stdClass();
+        $data->select = 'search';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         
@@ -134,6 +136,7 @@ class ClientController extends BaseController {
 
     public function searchContractorsResults($hashTokenSession) {
         $data = new stdClass();
+        $data->select = 'search';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $paramsSession = Session::get($hashTokenSession);
@@ -162,6 +165,7 @@ class ClientController extends BaseController {
 
     public function interviewsRequired() {
         $data = new stdClass();
+        $data->select = 'required';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewRequired();
@@ -170,6 +174,7 @@ class ClientController extends BaseController {
 
     public function interviewsReplaced() {
         $data = new stdClass();
+        $data->select = 'replaced';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewReplaced();
@@ -178,6 +183,7 @@ class ClientController extends BaseController {
 
     public function interviewsAccepted() {
         $data = new stdClass();
+        $data->select = 'accepted';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewAccepted();
@@ -186,6 +192,7 @@ class ClientController extends BaseController {
     
     public function interviewsFeedback() {
         $data = new stdClass();
+        $data->select = 'feedback';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewFeedback();
@@ -194,6 +201,7 @@ class ClientController extends BaseController {
 
     public function interviewsRefused() {
         $data = new stdClass();
+        $data->select = 'refused';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewRefused();
@@ -202,6 +210,7 @@ class ClientController extends BaseController {
 
     public function projectsActive() {
         $data = new stdClass();
+        $data->select = 'active';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->projects = Model\Client::getProjectActive();

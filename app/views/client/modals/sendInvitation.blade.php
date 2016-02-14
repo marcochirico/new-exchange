@@ -1,13 +1,33 @@
+<?php
+$proposedDate = isset($data->interview['date']) ? $data->interview['date'] : '';
+$timezoneId = isset($data->interview['timezone_id']) ? $data->interview['timezone_id'] : '';
+$location = isset($data->interview['location']) ? $data->interview['location'] : '';
+$rate = isset($data->interview['rate']) ? $data->interview['rate'] : '';
+$reference = isset($data->interview['reference']) ? $data->interview['reference'] : '';
+$preview = isset($data->interview['preview']) ? $data->interview['preview'] : '';
+$interviewId = isset($data->interview['interview_id']) ? $data->interview['interview_id'] : '';
+
+$date = $proposedDate != '' ? Utils\Helper::dateFromDb(date('Y-m-d', strtotime($proposedDate))) : '';
+$time = $proposedDate != '' ? date('H:i', strtotime($proposedDate)) : '';
+
+$disabled = '';
+$change = '';
+if ($data->interview['interview_id']) {
+    $disabled = 'readonly';
+    $change = 'Change';
+}
+?>
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Interview Request</h4>
+            <h4 class="modal-title">Interview Request <?php echo $change; ?></h4>
         </div>
 
         {{ Form::open(array('action' => 'ClientController@searchContractors', 'id'=>'form_interview_request')) }}
         <input type="hidden" name="client_id" value="{{$data->client_id}}" />
         <input type="hidden" name="contractor_id" value="{{$data->contractor_id}}" />
+        <input type="hidden" name="interview_id" value="{{$interviewId}}" />
         <div class="modal-body">
             <div class="row outcome-message" style="display:none;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 message">
@@ -18,69 +38,55 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed date</label>
-                        <input type="text" class="form-control datepicker" name="interview_request[proposed_date]" />
+                        <input type="text" class="form-control datepicker" name="interview_request[proposed_date]" value="{{$date}}" />
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed time</label>
                         <select class="form-control" name="interview_request[proposed_time]">
-                            <option value="00:00">00:00</option>
-                            <option value="01:00">01:00</option>
-                            <option value="02:00">02:00</option>
-                            <option value="03:00">03:00</option>
-                            <option value="04:00">04:00</option>
-                            <option value="05:00">05:00</option>
-                            <option value="06:00">06:00</option>
-                            <option value="07:00">07:00</option>
-                            <option value="08:00">08:00</option>
-                            <option value="09:00">09:00</option>
-                            <option value="10:00">10:00</option>
-                            <option value="11:00">11:00</option>
-                            <option value="12:00">12:00</option>
-                            <option value="13:00">13:00</option>
-                            <option value="14:00">14:00</option>
-                            <option value="15:00">15:00</option>
-                            <option value="16:00">16:00</option>
-                            <option value="17:00">17:00</option>
-                            <option value="18:00">18:00</option>
-                            <option value="19:00">19:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="21:00">21:00</option>
-                            <option value="22:00">22:00</option>
-                            <option value="23:00">23:00</option>
+                            <?php
+                            for ($i = 0; $i <= 23; $i++) :
+                                $inc = str_pad($i, 2, 0, STR_PAD_LEFT);
+                                $select = $time == $inc . ':00' ? 'selected' : '';
+                                ?>
+                                <option value="<?php echo $inc; ?>:00" <?php echo $select; ?>><?php echo $inc; ?>:00</option>
+                            <?php endfor; ?>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Timezone</label>
-                        <select class="form-control" name="interview_request[timezone_id]">
-                            <?php foreach ($data->timezones as $timezone): ?>
-                                <option value="{{$timezone->timezone_id}}">{{$timezone->timezone}}</option>
+                        <select class="form-control" name="interview_request[timezone_id]" <?php echo $disabled; ?> >
+                            <?php
+                            foreach ($data->timezones as $timezone):
+                                $select = $timezoneId == $timezone->timezone_id ? 'selected' : '';
+                                ?>
+                                <option value="{{$timezone->timezone_id}}" <?php echo $select; ?>>{{$timezone->timezone}}</option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed location</label>
-                        <input type="text" class="form-control" name="interview_request[proposed_location]" />
+                        <input type="text" class="form-control" name="interview_request[proposed_location]" value="{{$location}}" <?php echo $disabled; ?> />
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed rate</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="interview_request[proposed_rate]" />
+                            <input type="text" class="form-control" name="interview_request[proposed_rate]" value="{{$rate}}" <?php echo $disabled; ?> />
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Job reference</label>
-                        <input type="text" class="form-control" name="interview_request[job_reference]" />
+                        <input type="text" class="form-control" name="interview_request[job_reference]" value="{{$reference}}" <?php echo $disabled; ?> />
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label>Job preview</label>
-                        {{ Form::textarea('first_name', null, ['placeholder' => 'First Name', 'class' => 'form-control', 'name'=>'interview_request[job_preview]']) }}
+                        {{ Form::textarea('first_name', $preview, ['placeholder' => 'First Name', 'class' => 'form-control', 'name'=>'interview_request[job_preview]', 'readonly'=> $disabled]) }}
                     </div>
                 </div>
             </div>

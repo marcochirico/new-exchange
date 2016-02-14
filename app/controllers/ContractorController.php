@@ -108,7 +108,7 @@ class ContractorController extends BaseController {
 
     public function dashboard() {
         $data = new stdClass();
-
+        $data->select = 'dashboard';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -145,6 +145,7 @@ class ContractorController extends BaseController {
 
     public function interviewsReceived() {
         $data = new stdClass();
+        $data->select = 'received';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -154,6 +155,7 @@ class ContractorController extends BaseController {
 
     public function interviewsReplaced() {
         $data = new stdClass();
+        $data->select = 'replaced';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -163,6 +165,7 @@ class ContractorController extends BaseController {
 
     public function interviewsAccepted() {
         $data = new stdClass();
+        $data->select = 'accepted';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -172,6 +175,7 @@ class ContractorController extends BaseController {
 
     public function interviewsRefused() {
         $data = new stdClass();
+        $data->select = 'refused';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -181,6 +185,7 @@ class ContractorController extends BaseController {
 
     public function interviewsFeedback() {
         $data = new stdClass();
+        $data->select = 'feedback';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -190,6 +195,7 @@ class ContractorController extends BaseController {
 
     public function projectsActive() {
         $data = new stdClass();
+        $data->select = 'active';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -199,6 +205,7 @@ class ContractorController extends BaseController {
 
     public function projectsClosed() {
         $data = new stdClass();
+        $data->select = 'closed';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
@@ -208,11 +215,35 @@ class ContractorController extends BaseController {
 
     public function jobsApplied() {
         $data = new stdClass();
+        $data->select = 'applied';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
         $data->interviews = Model\Job::getJobApplied();
         $this->layout->content = View::make('contractor.jobApplied')->with('data', $data);
+    }
+
+    public function forgotPassword() {
+        $this->layout->content = View::make('contractor.forgot');
+    }
+
+    public function forgotPasswordProcess() {
+        $input = Input::all();
+
+        $contractorObj = Model\Contractor::where('email', $input['email'])->first();
+
+        $reminderToken = $contractorObj->reminder_token;
+
+        $link = 'http://local.newexchange2016/contractor/forgot-password/recover/' . $reminderToken;
+        die($link);
+    }
+    
+    public function forgotPasswordRecover($token) {
+        $data = new stdClass();
+        $contractorObj = Model\Contractor::where('reminder_token', $token)->first();
+        
+        $this->layout->content = View::make('contractor.recover')->with('data', $data);
+
     }
 
 }

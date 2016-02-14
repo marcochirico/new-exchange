@@ -17,6 +17,9 @@ Route::get('how-to', 'StaticPageController@howTo');
 Route::get('our-services', 'StaticPageController@ourServices');
 Route::get('payments', 'StaticPageController@payments');
 Route::get('legal', 'StaticPageController@legal');
+Route::get('about-us', 'StaticPageController@aboutUs');
+Route::get('contact-us', 'StaticPageController@contactUs');
+Route::get('help-faq', 'StaticPageController@helpFaq');
 
 
 //clients
@@ -28,6 +31,7 @@ Route::get('contractor/registration/confirm', 'ContractorController@registration
 Route::post('contractor/register/save', 'ContractorController@save');
 Route::get('contractor/forgot-password', 'ContractorController@forgotPassword');
 Route::post('contractor/forgot-password/process', 'ContractorController@forgotPasswordProcess');
+Route::get('contractor/forgot-password/recover/{token}', 'ContractorController@forgotPasswordRecover');
 
 //contractors
 Route::get('client/login', 'ClientController@login');
@@ -38,6 +42,7 @@ Route::get('client/registration/confirm', 'ClientController@registrationConfirm'
 Route::post('client/register/save', 'ClientController@save');
 Route::get('client/forgot-password', 'ClientController@forgotPassword');
 Route::post('client/forgot-password/process', 'ClientController@forgotPasswordProcess');
+Route::get('client/forgot-password/recover/{token}', 'ClientController@forgotPasswordRecover');
 
 
 /*
@@ -53,6 +58,8 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/interviews/accepted', 'ContractorController@interviewsAccepted');
     Route::any('contractor/interviews/refused', 'ContractorController@interviewsRefused');
     Route::any('contractor/interviews/feedback', 'ContractorController@interviewsFeedback');
+
+
     //contractor projects
     Route::any('contractor/jobs/applied', 'ContractorController@jobsApplied');
     Route::any('contractor/projects/active', 'ContractorController@projectsActive');
@@ -67,7 +74,6 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/ajax/interview/feedback/confirm', 'AjaxController@contractorInterviewFeedbackConfirm');
     Route::any('contractor/ajax/interview/feedback/refuse', 'AjaxController@contractorInterviewFeedbackRefuse');
     Route::any('contractor/ajax/project/timesheet', 'AjaxController@contractorProjectTimesheet');
-    
 });
 
 Route::group(array('before' => 'authClient'), function() {
@@ -88,10 +94,18 @@ Route::group(array('before' => 'authClient'), function() {
 
     //Ajax
     Route::any('client/interview/request', 'AjaxController@interviewRequest');
-    Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
+    Route::any('client/interview/request/replace', 'AjaxController@clientInterviewReceivedReplace');
+    Route::any('client/interview/replace', 'AjaxController@interviewReplace');
+
 
     Route::any('client/interview/feedback', 'AjaxController@interviewFeedback');
     Route::any('client/interview/feedback/save', 'AjaxController@saveInterviewFeedback');
+});
+
+
+Route::group(array('before' => 'authCombined'), function() {
+    //exception to skip session redirect login
+    Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
 });
 
 /*

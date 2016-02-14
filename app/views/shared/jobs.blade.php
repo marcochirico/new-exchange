@@ -18,7 +18,7 @@
                     <td><?php echo $job->name; ?></td>
                     <td><?php echo $job->reference; ?></td>
                     <td><?php echo $job->location; ?></td>
-                    <td class="text-right"><?php echo $job->created_at; ?></td>
+                    <td class="text-right"><?php echo Utils\Helper::dateTimeFromDb($job->created_at); ?></td>
                 </tr>
                 <?php
             endforeach;

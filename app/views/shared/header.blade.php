@@ -10,7 +10,7 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>New Exchange Website</title>
+        <title>New Exchange Trading Consulting</title>
 
         <!-- Bootstrap core CSS -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +25,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 logo"><a href="/"><img src="/assets/images/logo.jpg" /></a></div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 short-header-menu">
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help / FAQ</a></li>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
+                        <li><a href="/help-faq">Help / FAQ</a></li>
                     </ul>
                 </div>
             </div>

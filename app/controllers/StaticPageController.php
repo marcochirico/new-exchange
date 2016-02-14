@@ -23,5 +23,23 @@ class StaticPageController extends BaseController {
         $data = new stdClass();
         $this->layout->content = View::make('static.legal')->with('data', $data);
     }
+    
+    public function aboutUs() {
+        $data = new stdClass();
+        $this->layout->content = View::make('static.about-us')->with('data', $data);
+    }
+
+    
+    public function contactUs() {
+        $data = new stdClass();
+        $this->layout->content = View::make('static.contact-us')->with('data', $data);
+    }
+
+    
+    public function helpFaq() {
+        $data = new stdClass();
+        $this->layout->content = View::make('static.help-faq')->with('data', $data);
+    }
+
 
 }

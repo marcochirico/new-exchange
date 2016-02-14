@@ -13,7 +13,7 @@ class ContractorTableSeeder extends Seeder {
             'currency_id' => 1,
             'username' => 'microtech',
             'password' => sha1('microtech'),
-            'reminder_token' => md5('microtech' . time()),
+            'reminder_token' => md5('microtech' . time() . rand(0, 1000)),
             'status' => true,
         ));
 
@@ -22,7 +22,7 @@ class ContractorTableSeeder extends Seeder {
             'last_name' => 'Boccaccio',
             'username' => 'newlinkasia',
             'password' => sha1('newlinkasia'),
-            'reminder_token' => md5('newlinkasia' . time()),
+            'reminder_token' => md5('newlinkasia' . time() . rand(0, 1000)),
             'status' => true,
         ));
 
@@ -31,7 +31,7 @@ class ContractorTableSeeder extends Seeder {
             'last_name' => 'Torst',
             'username' => 'michael',
             'password' => sha1('michael'),
-            'reminder_token' => md5('newlinkasia' . time()),
+            'reminder_token' => md5('newlinkasia' . time() . rand(0, 1000)),
             'status' => true,
         ));
 
@@ -40,7 +40,7 @@ class ContractorTableSeeder extends Seeder {
             'last_name' => 'Cruger',
             'username' => 'joseph',
             'password' => sha1('joseph'),
-            'reminder_token' => md5('newlinkasia' . time()),
+            'reminder_token' => md5('newlinkasia' . time() . rand(0, 1000)),
             'status' => true,
         ));
     }

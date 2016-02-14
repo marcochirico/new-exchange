@@ -138,6 +138,9 @@ footer .row {
 .more-info-btn {
   cursor: pointer;
 }
+.internal-block small {
+  color: #999;
+}
 @media only screen and (min-width: 1000px) {
   .container-fluid {
     width: 1000px;

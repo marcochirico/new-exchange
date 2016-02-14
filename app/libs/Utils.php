@@ -46,5 +46,13 @@ Class Helper {
         }
         return '<div class="alert alert-warning">' . $message . '</div>';
     }
+    
+    public static function feedbackOutcome($status) {
+        if($status==0) {
+            return '<span class="label label-danger">Negative</span>';
+        } else {
+            return '<span class="label label-success">Positive</span>';
+        }
+    }
 
 }

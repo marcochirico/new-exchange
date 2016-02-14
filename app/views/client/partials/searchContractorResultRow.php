@@ -55,10 +55,13 @@
                             </tr>
                         </tbody>
                     </table>
+                    
                 </div>
-                <div class="text-right">
-                    <a class="pull-left more-info-btn" type="button" data-toggle="collapse" data-target="#toggleContent_<?php echo $result->contractor_id; ?>" aria-expanded="false" aria-controls="collapseExample">More info</a>
-                    <button type="button" class="btn btn-success btn-sm btn-action-control" data-action="invite_contractor_for_interview" data-id="<?php echo $result->contractor_id; ?>">Interview Request</button>
+                <a class="more-info-btn" type="button" data-toggle="collapse" data-target="#toggleContent_<?php echo $result->contractor_id; ?>" aria-expanded="false" aria-controls="collapseExample">More info</a>
+                <br /><br />
+                <div class="text-left">
+                    
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="invite_contractor_for_interview" data-id="<?php echo $result->contractor_id; ?>">Interview Request</button>
                 </div>
 
 

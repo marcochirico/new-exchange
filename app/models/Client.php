@@ -48,8 +48,8 @@ class Client extends \Eloquent {
         $data = new \stdClass();
         $clientId = \Session::get('client_id');
         $data->interviewsRequired = \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', 0)->count();
-        $data->interviewsReplaced = \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', '>', 0)->count();
-        $data->interviewsAccepted = \Model\Interview::where('client_id', $clientId)->where('status', '=', 20)->count();
+        $data->interviewsReplaced = \Model\Interview::where('client_id', $clientId)->where('status', '>', 10)->where('parent_interview_id', '>', 0)->groupBy('parent_interview_id')->count();
+        $data->interviewsAccepted = \Model\Interview::where('client_id', $clientId)->where('status', 20)->count();
         $data->interviewsFeedback = \Model\Interview::where('client_id', $clientId)->where('status', 30)->count();
         $data->interviewsRefused = \Model\Interview::where('client_id', $clientId)->where('status', 0)->count();
 
@@ -71,7 +71,10 @@ class Client extends \Eloquent {
 
     public static function getInterviewReplaced() {
         $clientId = \Session::get('client_id');
-        return \Model\Interview::where('client_id', $clientId)->where('status', 10)->where('parent_interview_id', '>', 0)->paginate(5);
+        return \Model\Interview::where('client_id', $clientId)->where('status', '>', 10)->where('parent_interview_id', '>', 0)->orderby('created_at', 'desc')->paginate(5);
+//        $sql = "select * from (select * from ne_interviews where client_id = " . $clientId . " and status > 10 and parent_interview_id > 0 order by created_at desc ) a group by a.parent_interview_id ";
+////        \Paginator::make($iscrizioni, $iscrizioniCountResults, 20);
+//        return \DB::select(\DB::raw($sql));
     }
 
     public static function getInterviewAccepted() {
@@ -88,7 +91,7 @@ class Client extends \Eloquent {
         $clientId = \Session::get('client_id');
         return \Model\Interview::where('client_id', $clientId)->where('status', 0)->paginate(5);
     }
-    
+
     public static function getProjectActive() {
         $clientId = \Session::get('client_id');
         return \Model\Project::where('client_id', $clientId)->where('status', 1)->paginate(5);

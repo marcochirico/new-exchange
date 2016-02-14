@@ -18,6 +18,7 @@ class CreateNeProjects extends Migration {
             $t->integer('client_id')->unsigned();
             $t->integer('contractor_id')->unsigned();
             $t->integer('billing_cycle_id')->unsigned();
+            $t->integer('payment_method_id')->unsigned();
             $t->date('date_start');
             $t->string('days');
             $t->float('rate');

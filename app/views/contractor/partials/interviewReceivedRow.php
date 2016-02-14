@@ -7,30 +7,40 @@
                     <thead>
                         <tr>
                             <th colspan="2" class="project-name">
-                                <?php echo $interview->contractor->first_name . ' ' . $interview->contractor->last_name; ?>
-                                <span class="label label-warning pull-right">Received</span>
+                                <?php echo $interview->client->company_name; ?>
+                                <span class="label label-warning pull-right">Received on <?php echo Utils\Helper::dateTimeFromDb($interview->updated_at); ?></span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="title">Location and Date</td>
-                            <td><?php echo $interview->location.' on '.  Utils\Helper::dateTimeFromDb($interview->date); ?></td>
+                            <td style="width:30%;" class="title">Location and Date</td>
+                            <td style="width:70%;">
+                                <?php echo $interview->location.' on '.  Utils\Helper::dateTimeFromDb($interview->date); ?><br />
+                                <small>Timezone: <?php echo $interview->timezone->timezone; ?></small>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
-                            <td><?php echo Utils\Helper::moneyFormat($interview->rate) . ' ' . $interview->currency['currency']; ?></td>
+                            <td>
+                                <?php echo Utils\Helper::moneyFormat($interview->rate) . ' ' . $interview->currency['currency']; ?><br />
+                                <small>Contractor currency: <?php echo $interview->contractor->currency->currency; ?></small>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">Reference</td>
                             <td><?php echo $interview->reference; ?></td>
                         </tr>
+                        <tr>
+                            <td class="title">Job Description</td>
+                            <td><?php echo $interview->preview; ?></td>
+                        </tr>
                     </tbody>
                 </table>
-                <div class="text-right">
-                    <button type="button" class="btn btn-success btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="accept">Accept</button>&nbsp;
-                    <button type="button" class="btn btn-success btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="replace">Replace</button>&nbsp;
-                    <button type="button" class="btn btn-success btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Refuse</button>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_accept_interview">Accept</button>&nbsp;
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="replace_contractor_for_interview">Replace</button>&nbsp;
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Refuse</button>
                 </div>
             </div>
         </div>
