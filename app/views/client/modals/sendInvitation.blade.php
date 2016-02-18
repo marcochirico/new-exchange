@@ -92,7 +92,7 @@ if ($data->interview['interview_id']) {
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default btn-sm btn-close-reload" data-dismiss="modal">Close</button>
             {{ Form::button('Send invitation', ['class' => 'btn btn-primary btn-sm submit_interview_request']) }}
         </div>
         {{ Form::close() }}

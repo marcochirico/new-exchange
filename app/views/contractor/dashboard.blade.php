@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<!--    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->jobStatus->jobsApplied}}</span>
@@ -79,6 +79,6 @@
                 Job Positions Applied
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 @stop

@@ -33,7 +33,7 @@
                     </tbody>
                 </table>
                 <div class="text-left">
-                    <button type = "button" class = "btn btn-primary btn-sm btn-action-control" data-action = "submit_feedback_interview_to_contractor" data-id = "<?php echo $project->project_id; ?>">Close</button>
+                    <button type = "button" class = "btn btn-primary btn-sm btn-action-control" data-action = "" data-id = "<?php echo $project->project_id; ?>">Close</button>
                 </div>
             </div>
         </div>

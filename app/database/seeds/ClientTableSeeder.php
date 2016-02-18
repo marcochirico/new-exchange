@@ -26,26 +26,26 @@ class ClientTableSeeder extends Seeder {
             'status' => true,
         ));
 
-        Model\Client::create(array(
-            'company_name' => 'NewLink Asia Ltd',
-            'industry_id' => 1,
-            'requirement_id' => 1,
-            'first_name' => 'Andrea',
-            'last_name' => 'Boccaccio',
-            'address' => 'Via Roma 3',
-            'city' => 'Milano',
-            'country_id' => 1,
-            'province' => 'MI',
-            'postal_code' => '20124',
-            'email' => 'andrea.boccaccio@me.com',
-            'phone' => '',
-            'mobile' => '',
-            'fax' => '',
-            'username' => 'newlinkasia',
-            'password' => sha1('newlinkasia'),
-            'reminder_token' => md5('newlinkasia' . time()),
-            'status' => true,
-        ));
+//        Model\Client::create(array(
+//            'company_name' => 'NewLink Asia Ltd',
+//            'industry_id' => 1,
+//            'requirement_id' => 1,
+//            'first_name' => 'Andrea',
+//            'last_name' => 'Boccaccio',
+//            'address' => 'Via Roma 3',
+//            'city' => 'Milano',
+//            'country_id' => 1,
+//            'province' => 'MI',
+//            'postal_code' => '20124',
+//            'email' => 'andrea.boccaccio@me.com',
+//            'phone' => '',
+//            'mobile' => '',
+//            'fax' => '',
+//            'username' => 'newlinkasia',
+//            'password' => sha1('newlinkasia'),
+//            'reminder_token' => md5('newlinkasia' . time()),
+//            'status' => true,
+//        ));
     }
 
 }

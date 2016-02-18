@@ -88,6 +88,12 @@ $(document).ready(function () {
         window.location = url;
     });
 
+    //reload page on modal close
+    $('.modal').on('hidden', function () {
+        alert('refresh');
+        location.reload();
+    });
+
     $('.dropdown-toggle').dropdown();
 
     $('.datepicker').datepicker({

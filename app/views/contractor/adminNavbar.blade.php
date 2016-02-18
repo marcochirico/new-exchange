@@ -8,6 +8,6 @@
     <a href="/contractor/interviews/feedback" class="<?php echo $data->select == 'feedback' ? 'active' : ''; ?> list-group-item"><span class="badge">{{$data->interviewStatus->interviewsFeedback}}</span>Interviews Feedback</a>
     <a href="/contractor/projects/active" class="<?php echo $data->select == 'active' ? 'active' : ''; ?> list-group-item"><span class="badge">{{$data->projectStatus->projectsActive}}</span>Projects Active</a>
     <a href="/contractor/projects/closed" class="<?php echo $data->select == 'closed' ? 'active' : ''; ?> list-group-item"><span class="badge">{{$data->projectStatus->projectsClosed}}</span>Projects Closed</a>
-    <a href="/contractor/jobs/applied" class="<?php echo $data->select == 'applied' ? 'active' : ''; ?> list-group-item"><span class="badge">{{$data->jobStatus->jobsApplied}}</span>Job Positions Applied</a>
+    <!--<a href="/contractor/jobs/applied" class="<?php echo $data->select == 'applied' ? 'active' : ''; ?> list-group-item"><span class="badge">{{$data->jobStatus->jobsApplied}}</span>Job Positions Applied</a>-->
     <a href="/contractor/logout" class="list-group-item">Logout</a>
 </div>

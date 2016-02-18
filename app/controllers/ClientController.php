@@ -24,6 +24,19 @@ class ClientController extends BaseController {
 
         $this->layout->content = View::make('client.registrationConfirm')->with('data', $data);
     }
+    
+    public function edit() {
+        $data = new stdClass();
+        $data->select = 'edit';
+        $data->interviewStatus = Model\Client::interviewStatus();
+        $data->projectStatus = Model\Client::projectStatus();
+        $data->interviews = Model\Client::getInterviewRequired();
+        //industry types
+        $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
+        $data->industryTypes = Utils\Helper::aggregateForSelect(Model\IndustryType::where('status', 1)->get(), 'industry_id', 'name');
+
+        $this->layout->content = View::make('client.edit')->with('data', $data);
+    }
 
     public function save() {
         $input = Input::all();
