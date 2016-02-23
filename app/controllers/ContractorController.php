@@ -25,10 +25,6 @@ class ContractorController extends BaseController {
         $data->paymentTerms = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
         $data->billingCycles = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
 
-
-//        print_r($data);die;
-
-
         $this->layout->content = View::make('contractor.register')->with('data', $data);
     }
 
@@ -58,18 +54,12 @@ class ContractorController extends BaseController {
         $data->paymentTerms = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
         $data->billingCycles = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
 
-
-//        print_r($data);die;
-
-
         $this->layout->content = View::make('contractor.edit')->with('data', $data);
     }
 
     public function save() {
         $input = Input::all();
-//        echo '<pre>';
-//        print_r($input);
-//        die;
+
         $contractorObj = Model\Contractor::make();
 
         if ($contractorObj->validate($input)) {
@@ -268,6 +258,19 @@ class ContractorController extends BaseController {
     public function forgotPasswordRecover($token) {
         $data = new stdClass();
         $contractorObj = Model\Contractor::where('reminder_token', $token)->first();
+        $data->contractorObj = $contractorObj;
+//        print_r($contractorObj);die;
+        $this->layout->content = View::make('contractor.recover')->with('data', $data);
+
+    }
+    
+    public function forgotPasswordRecoverProcess() {
+        $data = new stdClass();
+        
+        $input = Input::all();
+        print_r($input);die;
+        
+        //contractor/forgot-password/recover/process
         
         $this->layout->content = View::make('contractor.recover')->with('data', $data);
 

@@ -31,7 +31,7 @@ $(document).ready(function () {
                 $('#client_interview_feedback').modal();
                 break;
 
-
+                
             case'contractor_accept_interview':
                 $('#confirm_modal').modal();
 
