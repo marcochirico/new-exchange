@@ -35,24 +35,44 @@ class AjaxController extends BaseController {
 
         try {
             $objInterview = Model\Interview::make();
-            $objInterview->client_id = $input['client_id'];
-            $objInterview->contractor_id = $input['contractor_id'];
-            $objInterview->timezone_id = $input['interview_request']['timezone_id'];
-            $objInterview->date = Utils\Helper::dateToDb($input['interview_request']['proposed_date']) . ' ' . $input['interview_request']['proposed_time'] . ':00';
-            $objInterview->location = $input['interview_request']['proposed_location'];
-            $objInterview->rate = $input['interview_request']['proposed_rate'];
-            $objInterview->reference = $input['interview_request']['job_reference'];
-            $objInterview->preview = $input['interview_request']['job_preview'];
-            $objInterview->status = $status;
-            //replace
-            if ($input['interview_id'] != '') {
-                $objInterview->parent_interview_id = $interviewId;
+
+            if ($objInterview->validate($input)) {
+
+                $objInterview->client_id = $input['client_id'];
+                $objInterview->contractor_id = $input['contractor_id'];
+                $objInterview->timezone_id = $input['interview_request']['timezone_id'];
+                $objInterview->date = Utils\Helper::dateToDb($input['interview_request']['proposed_date']) . ' ' . $input['interview_request']['proposed_time'] . ':00';
+                $objInterview->location = $input['interview_request']['proposed_location'];
+                $objInterview->rate = $input['interview_request']['proposed_rate'];
+                $objInterview->reference = $input['interview_request']['job_reference'];
+                $objInterview->preview = $input['interview_request']['job_preview'];
+                $objInterview->status = $status;
+                //replace
+                if ($input['interview_id'] != '') {
+                    $objInterview->parent_interview_id = $interviewId;
+                }
+                $objInterview->save();
+                return Response\Helper::ajaxDone('Invitation Sent.');
+            } else {
+                $failed = $objInterview->errors->messages()->all();
+                return Response\Helper::ajaxErrorListed($failed);
             }
-            $objInterview->save();
-            return Response\Helper::ajaxDone('Invitation Sent.');
         } catch (Exception $e) {
             return Response\Helper::ajaxError($e->getMessage());
         }
+    }
+
+    public static function interviewRevoke() {
+        $input = Input::all();
+        
+        $updated = Model\Interview::find($input['interview_id']);
+        $updated->status = 0;
+        $updated->save();
+        
+        if($updated) {
+            return Response\Helper::ajaxDone('Invitation Revoke.');
+        }
+        return Response\Helper::ajaxError('Something wrong.');
     }
 
     public static function interviewFeedback() {

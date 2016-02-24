@@ -29,6 +29,7 @@ Route::get('contractor/register', 'ContractorController@register');
 Route::get('contractor/edit', 'ContractorController@edit');
 Route::get('contractor/registration/confirm', 'ContractorController@registrationConfirm');
 Route::post('contractor/register/save', 'ContractorController@save');
+Route::post('contractor/register/update', 'ContractorController@update');
 Route::get('contractor/forgot-password', 'ContractorController@forgotPassword');
 Route::post('contractor/forgot-password/process', 'ContractorController@forgotPasswordProcess');
 Route::get('contractor/forgot-password/recover/{token}', 'ContractorController@forgotPasswordRecover');
@@ -42,6 +43,7 @@ Route::get('client/register', 'ClientController@register');
 Route::get('client/edit', 'ClientController@edit');
 Route::get('client/registration/confirm', 'ClientController@registrationConfirm');
 Route::post('client/register/save', 'ClientController@save');
+Route::post('client/register/update', 'ClientController@update');
 Route::get('client/forgot-password', 'ClientController@forgotPassword');
 Route::post('client/forgot-password/process', 'ClientController@forgotPasswordProcess');
 Route::get('client/forgot-password/recover/{token}', 'ClientController@forgotPasswordRecover');
@@ -70,6 +72,7 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/ajax/interview/received/accept', 'AjaxController@contractorInterviewReceivedAccept');
     Route::any('contractor/ajax/interview/received/replace', 'AjaxController@contractorInterviewReceivedReplace');
     Route::any('contractor/ajax/interview/received/refuse', 'AjaxController@contractorInterviewReceivedRefuse');
+    Route::any('contractor/ajax/interview/revoke', 'AjaxController@interviewRevoke');
     Route::any('contractor/ajax/interview/feedback/confirm', 'AjaxController@contractorInterviewFeedbackConfirm');
     Route::any('contractor/ajax/interview/feedback/refuse', 'AjaxController@contractorInterviewFeedbackRefuse');
     Route::any('contractor/ajax/project/timesheet', 'AjaxController@contractorProjectTimesheet');
@@ -94,7 +97,7 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/interview/request', 'AjaxController@interviewRequest');
     Route::any('client/interview/request/replace', 'AjaxController@clientInterviewReceivedReplace');
     Route::any('client/interview/replace', 'AjaxController@interviewReplace');
-
+    Route::any('client/ajax/interview/revoke', 'AjaxController@interviewRevoke');
     
     Route::any('client/interview/feedback', 'AjaxController@interviewFeedback');
     Route::any('client/interview/feedback/save', 'AjaxController@saveInterviewFeedback');

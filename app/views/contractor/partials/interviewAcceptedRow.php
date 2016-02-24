@@ -38,7 +38,7 @@
                     </tbody>
                 </table>
                 <div class="text-left">
-                    <button type="button" class="btn btn-primary btn-sm btn-action-response-interview" data-interview-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Revoke</button>
                 </div>
             </div>
         </div>

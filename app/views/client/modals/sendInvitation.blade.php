@@ -39,6 +39,7 @@ if ($data->interview['interview_id']) {
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed date</label>
                         <input type="text" class="form-control datepicker" name="interview_request[proposed_date]" value="{{$date}}" />
+                        <span class="form_field_error"><?php echo $errors->first('first_name'); ?></span>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Proposed time</label>
@@ -86,7 +87,7 @@ if ($data->interview['interview_id']) {
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label>Job preview</label>
-                        {{ Form::textarea('first_name', $preview, ['placeholder' => 'First Name', 'class' => 'form-control', 'name'=>'interview_request[job_preview]', 'readonly'=> $disabled]) }}
+                        {{ Form::textarea('first_name', $preview, ['class' => 'form-control', 'name'=>'interview_request[job_preview]']) }}
                     </div>
                 </div>
             </div>

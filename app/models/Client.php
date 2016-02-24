@@ -15,7 +15,7 @@ class Client extends \Eloquent {
         'password' => 'required|min:8|confirmed',
         'password_confirmation' => 'required|min:8',
         'address' => 'required|min:2|max:255',
-        'country_id' => 'required|min:2|max:255',
+        'country_id' => 'required',
         'city' => 'required|min:2|max:255',
         'postal_code' => 'required|min:3|max:16',
         'province' => 'required|min:2|max:255',

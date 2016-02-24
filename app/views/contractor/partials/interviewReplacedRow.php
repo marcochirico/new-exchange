@@ -41,9 +41,9 @@
                     <?php if ($interview->status == 14): ?>
                         <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_accept_interview">Accept</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="replace_contractor_for_interview">Replace</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Refuse</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Refuse</button>
                     <?php else: ?>
-                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="refuse">Revoke</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Revoke</button>
                     <?php endif; ?>
                 </div>
             </div>

@@ -12,6 +12,15 @@ Class Helper {
         );
         return json_encode($data);
     }
+    
+    public static function ajaxErrorListed($message) {
+        $data = array(
+            'error' => true,
+            'message' => $message,
+            'html' => \Message\Helper::showErrorMessageListed($message)
+        );
+        return json_encode($data);
+    }
 
     public static function ajaxDone($message) {
         $data = array(

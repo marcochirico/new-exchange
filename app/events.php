@@ -3,6 +3,7 @@
 Event::listen('sendMail.*', function($params) {
     switch (Event::firing()) {
         case 'sendMail.clientInterviewRequired':
+            
             Mail::send('emails.notifications.clientInterviewRequired', $params, function($message) {
                 $message->from('us@example.com', 'Laravel');
                 

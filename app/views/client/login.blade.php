@@ -4,7 +4,7 @@
 <h4>Login Client</h4>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        @if (Session::has('client_credential')) {{ '<div class="alert alert-danger" role="alert">Login Failure.</div>' }} @endif
+        @if (Session::has('client_credential')) {{ '<div class="alert alert-danger" role="alert"><strong>Error! </strong>Login Failure.</div>' }} @endif
         {{ Form::open(array('action' => 'ClientController@loginAuthorize')) }}
         <div class="form-group">
             {{ Form::text('username', null, ['placeholder' => 'username', 'class' => 'form-control']) }}

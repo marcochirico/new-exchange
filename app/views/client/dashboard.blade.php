@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/required">
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsRequired}}</span>
                 <br />
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/replaced">
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsReplaced}}</span>
                 <br />
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/accepted">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsAccepted}}</span>
                 <br />
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/feedback">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsFeedback}}</span>
                 <br />
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/refused">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsRefused}}</span>
                 <br />

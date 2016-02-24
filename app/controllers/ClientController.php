@@ -24,25 +24,31 @@ class ClientController extends BaseController {
 
         $this->layout->content = View::make('client.registrationConfirm')->with('data', $data);
     }
-    
+
     public function edit() {
         $data = new stdClass();
         $data->select = 'edit';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
         $data->interviews = Model\Client::getInterviewRequired();
-        //industry types
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
         $data->industryTypes = Utils\Helper::aggregateForSelect(Model\IndustryType::where('status', 1)->get(), 'industry_id', 'name');
 
+        $clientId = \Session::get('client_id');
+        $data->details = Model\Client::find($clientId);
+//        echo '<pre>';
+//        print_r($data->details);die;
         $this->layout->content = View::make('client.edit')->with('data', $data);
     }
 
     public function save() {
         $input = Input::all();
 
-        $clientObj = Model\Client::make();
-
+        if (isset($input['client_id'])) {
+            $clientObj = Model\Client::find($input['client_id']);
+        } else {
+            $clientObj = Model\Client::make();
+        }
         if ($clientObj->validate($input)) {
 
 //            $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
@@ -71,8 +77,45 @@ class ClientController extends BaseController {
             return Redirect::to('client/registration/confirm');
         } else {
             $failed = $clientObj->errors->messages(); //->all();
-            Session::flash('client_register_errors', $failed);
-            return Redirect::to('client/register')->withInput(Input::except('password'));
+            if (isset($input['client_id'])) {
+                Session::flash('client_update_errors', $failed);
+                return Redirect::to('client/edit')->withInput(Input::except('password'));
+            } else {
+                Session::flash('client_register_errors', $failed);
+                return Redirect::to('client/register')->withInput(Input::except('password'));
+            }
+        }
+    }
+
+    public function update() {
+        $input = Input::all();
+
+        if (isset($input['client_id'])) {
+            $clientObj = Model\Client::find($input['client_id']);
+
+            if ($clientObj->validate($input)) {
+                
+                $clientObj->company_name = $input['company_name'];
+                $clientObj->first_name = $input['first_name'];
+                $clientObj->last_name = $input['last_name'];
+                $clientObj->industry_id = $input['industry_id'];
+                $clientObj->phone = $input['phone'];
+                $clientObj->mobile = $input['mobile'];
+                $clientObj->fax = $input['fax'];
+                $clientObj->address = $input['address'];
+                $clientObj->country_id = $input['country_id'];
+                $clientObj->city = $input['city'];
+                $clientObj->postal_code = $input['postal_code'];
+                $clientObj->province = $input['province'];
+                $clientObj->save();
+                
+                Session::flash('client_update_confirm', true);
+                return Redirect::to('client/edit');
+            } else {
+                $failed = $clientObj->errors->messages(); //->all();
+                Session::flash('client_update_errors', $failed);
+                return Redirect::to('client/edit')->withInput(Input::except('password'));
+            }
         }
     }
 
@@ -117,8 +160,8 @@ class ClientController extends BaseController {
         $data->select = 'search';
         $data->interviewStatus = Model\Client::interviewStatus();
         $data->projectStatus = Model\Client::projectStatus();
-        
-        
+
+
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
         $data->workSituations = Utils\Helper::aggregateForSelect(Model\WorkSituation::where('status', 1)->get(), 'work_situation_id', 'work_situation');
         $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
@@ -202,7 +245,7 @@ class ClientController extends BaseController {
         $data->interviews = Model\Client::getInterviewAccepted();
         $this->layout->content = View::make('client.interviewAccepted')->with('data', $data);
     }
-    
+
     public function interviewsFeedback() {
         $data = new stdClass();
         $data->select = 'feedback';
