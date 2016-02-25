@@ -8,7 +8,7 @@
                         <tr>
                             <th colspan="2" class="project-name">
                                 <?php echo $project->client['company_name']; ?>
-                                <span class="label label-success pull-right">Active</span>
+                                <span class="label label-success pull-right">Activated on <?php echo Utils\Helper::dateTimeFromDb($project->created_at); ?></span>
                             </th>
                         </tr>
                     </thead>
@@ -33,7 +33,7 @@
                     </tbody>
                 </table>
                 <div class="text-left">
-                    <button type = "button" class = "btn btn-primary btn-sm btn-action-control" data-action = "" data-id = "<?php echo $project->project_id; ?>">Close</button>
+                    <button type = "button" class = "btn btn-primary btn-sm btn-action-control" data-action = "" data-id = "<?php echo $project->project_id; ?>">Terminate</button>
                 </div>
             </div>
         </div>

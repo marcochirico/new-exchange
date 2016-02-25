@@ -61,7 +61,7 @@
                 <br /><br />
                 <div class="text-left">
                     
-                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="invite_contractor_for_interview" data-id="<?php echo $result->contractor_id; ?>">Interview Request</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="client_ContractorInterviewRequest" data-id="<?php echo $result->contractor_id; ?>">Interview Request</button>
                 </div>
 
 

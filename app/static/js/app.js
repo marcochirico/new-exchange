@@ -4,19 +4,14 @@ $(document).ready(function () {
         var url = $(this).data('url');
         window.location = url;
     });
-    
-    $('.btn-action-control').on('click', function () {
+
+    //actions with confirm box
+    $('.btn-action-control.confirm').on('click', function () {
         var actionType = $(this).data('action');
         var actionId = $(this).data('id');
         bootbox.confirm("Are you sure?", function (result) {
             if (result) {
                 switch (actionType) {
-                    case'invite_contractor_for_interview':
-                        $.post('/client/interview/request', {'actionId': actionId}, function (data) {
-                            $('#client_interview_request').html(data);
-                        });
-                        $('#client_interview_request').modal();
-                        break;
                     case'replace_contractor_for_interview':
                         $.post('/contractor/ajax/interview/received/replace', {'actionId': actionId}, function (data) {
                             $('#client_interview_request').html(data);
@@ -35,15 +30,6 @@ $(document).ready(function () {
                         });
                         $('#client_interview_request').modal();
                         break;
-
-                    case'submit_feedback_interview_to_contractor':
-                        $.post('/client/interview/feedback', {'actionId': actionId}, function (data) {
-                            $('#client_interview_feedback').html(data);
-                        });
-                        $('#client_interview_feedback').modal();
-                        break;
-
-
                     case'contractor_accept_interview':
                         $('#confirm_modal').modal();
                         $.post('/contractor/ajax/interview/received/accept', {'actionId': actionId}, function (data) {
@@ -67,15 +53,36 @@ $(document).ready(function () {
                             location.reload();
                         });
                         break;
-                    case'project_fill_timesheet':
-                        $.post('/contractor/ajax/project/timesheet', {'actionId': actionId}, function (data) {
-                            $('#project_fill_timesheet').html(data);
-                        });
-                        $('#project_fill_timesheet').modal();
-                        break;
+
                 }
             }
         });
+    });
+
+    //actions without confirm box
+    $('.btn-action-control').on('click', function () {
+        var actionType = $(this).data('action');
+        var actionId = $(this).data('id');
+        switch (actionType) {
+            case'client_ContractorInterviewRequest':
+                $.post('/client/interview/request', {'actionId': actionId}, function (data) {
+                    $('#client_interview_request').html(data);
+                });
+                $('#client_interview_request').modal();
+                break;
+            case'client_ContractorInterviewFeedback':
+                $.post('/client/interview/feedback', {'actionId': actionId}, function (data) {
+                    $('#client_interview_feedback').html(data);
+                });
+                $('#client_interview_feedback').modal();
+                break;
+            case'project_fill_timesheet':
+                $.post('/contractor/ajax/project/timesheet', {'actionId': actionId}, function (data) {
+                    $('#project_fill_timesheet').html(data);
+                });
+                $('#project_fill_timesheet').modal();
+                break;
+        }
     });
 
 

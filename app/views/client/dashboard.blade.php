@@ -36,15 +36,6 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/feedback">
-            <div class="panel-body dashboard-counter">
-                <span style="">{{$data->interviewStatus->interviewsFeedback}}</span>
-                <br />
-                Interview Feedback
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/refused">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsRefused}}</span>
@@ -53,6 +44,16 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-default dashboard-box-link" data-url="/client/interviews/feedback">
+            <div class="panel-body dashboard-counter">
+                <span style="">{{$data->interviewStatus->interviewsFeedback}}</span>
+                <br />
+                Interview Feedback
+            </div>
+        </div>
+    </div>
+    
 
 </div>
 @stop

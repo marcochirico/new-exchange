@@ -43,8 +43,8 @@
                 </table>
                 <?php if ($interview->feedback == 1): ?>
                     <div class="text-left">
-                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="project_confirm">Confirm - Start Project</button>&nbsp;
-                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="project_refuse">Refuse</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control confirm" data-id="<?php echo $interview->interview_id; ?>" data-action="project_confirm">Confirm - Start Project</button>&nbsp;
+                        <button type="button" class="btn btn-primary btn-sm btn-action-control confirm" data-id="<?php echo $interview->interview_id; ?>" data-action="project_refuse">Refuse</button>
                     </div>
                 <?php endif; ?>
             </div>
