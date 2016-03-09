@@ -94,7 +94,7 @@ class ClientController extends BaseController {
             $clientObj = Model\Client::find($input['client_id']);
 
             if ($clientObj->validate($input)) {
-                
+
                 $clientObj->company_name = $input['company_name'];
                 $clientObj->first_name = $input['first_name'];
                 $clientObj->last_name = $input['last_name'];
@@ -108,7 +108,7 @@ class ClientController extends BaseController {
                 $clientObj->postal_code = $input['postal_code'];
                 $clientObj->province = $input['province'];
                 $clientObj->save();
-                
+
                 Session::flash('client_update_confirm', true);
                 return Redirect::to('client/edit');
             } else {
@@ -179,6 +179,15 @@ class ClientController extends BaseController {
         $arrParams = array(
             'first_name' => isset($input['first_name']) ? $input['first_name'] : '',
             'last_name' => isset($input['last_name']) ? $input['last_name'] : '',
+            'citizenship_country_id' => isset($input['citizenship_country_id']) ? $input['citizenship_country_id'] : '',
+            'residence_country_id' => isset($input['residence_country_id']) ? $input['residence_country_id'] : '',
+            'city' => isset($input['city']) ? $input['city'] : '',
+            'work_situation_id' => isset($input['work_situation_id']) ? $input['work_situation_id'] : '',
+            'consulting_market_id' => isset($input['consulting_market_id']) ? $input['consulting_market_id'] : '',
+            'consulting_role_id' => isset($input['consulting_role_id']) ? $input['consulting_role_id'] : '',
+            'experience_level_id' => isset($input['experience_level_id']) ? $input['experience_level_id'] : '',
+            'expertise_area_id' => isset($input['expertise_area_id']) ? $input['expertise_area_id'] : '',
+            'module_id' => isset($input['module_id']) ? $input['module_id'] : '',
         );
 
         if (isset($input['_token'])) {
@@ -199,8 +208,10 @@ class ClientController extends BaseController {
 
         $resultsObj = new Model\Contractor();
         if (is_array($paramsSession) && count($paramsSession) > 0) {
+//            echo '<pre>';
+//            print_r($paramsSession);die;
             foreach ($paramsSession as $key => $value) {
-                if ($value == '') {
+                if ($value == '' || $value == '-1') {
                     continue;
                 }
                 $resultsObj = $resultsObj->where($key, $value);
