@@ -42,6 +42,7 @@ return array(
     'CurrencyTableSeeder' => $baseDir . '/app/database/seeds/CurrencyTableSeeder.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
+    'Email\\Sender' => $baseDir . '/app/libs/Email.php',
     'ExperienceLevelTableSeeder' => $baseDir . '/app/database/seeds/ExperienceLevelTableSeeder.php',
     'ExpertiseAreaTableSeeder' => $baseDir . '/app/database/seeds/ExpertiseAreaTableSeeder.php',
     'Feed\\Oracle' => $baseDir . '/app/libs/Feed.php',

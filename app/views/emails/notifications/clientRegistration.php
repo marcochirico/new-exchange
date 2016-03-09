@@ -1,8 +1,8 @@
 <html>
     <head>
-        <title>Interview Required</title>
+        <title>Client Registration</title>
     </head>
     <body>
-        Interview Required
+        Welcome Client: <?php echo $data->entity->company_name; ?> (<?php echo $data->entity->first_name . ' ' . $data->entity->last_name; ?>)
     </body>
 </html>

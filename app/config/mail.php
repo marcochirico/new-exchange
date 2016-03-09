@@ -14,7 +14,7 @@ return array(
       |
      */
 
-    'driver' => 'smtp',
+    'driver' => 'log',
     /*
       |--------------------------------------------------------------------------
       | SMTP Host Address
@@ -80,7 +80,7 @@ return array(
       | connection so that the application will be able to send messages.
       |
      */
-    'password' => 'rygrermwjvrvrfvu',
+    'password' => 'eeeeeeeee',
     /*
       |--------------------------------------------------------------------------
       | Sendmail System Path

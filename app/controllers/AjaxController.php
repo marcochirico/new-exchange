@@ -64,12 +64,12 @@ class AjaxController extends BaseController {
 
     public static function interviewRevoke() {
         $input = Input::all();
-        
+
         $updated = Model\Interview::find($input['interview_id']);
         $updated->status = 0;
         $updated->save();
-        
-        if($updated) {
+
+        if ($updated) {
             return Response\Helper::ajaxDone('Invitation Revoke.');
         }
         return Response\Helper::ajaxError('Something wrong.');
@@ -97,11 +97,13 @@ class AjaxController extends BaseController {
             $objInterview->status = 30;
             $objInterview->feedback = $input['interview_feedback']['feedback_outcome'];
             $objInterview->feedback_description = $input['interview_feedback']['feedback_description'];
-            $objInterview->project_start_date = Utils\Helper::dateToDb($input['interview_feedback']['project_start_date']);
-            $objInterview->project_duration = $input['interview_feedback']['project_duration'];
-            $objInterview->project_rate = $input['interview_feedback']['project_rate'];
-            $objInterview->project_payment_method_id = $input['interview_feedback']['project_billing_method'];
-            $objInterview->project_billing_cycle_id = $input['interview_feedback']['project_billing_cycle'];
+            if ($objInterview->feedback == 1) {
+                $objInterview->project_start_date = Utils\Helper::dateToDb($input['interview_feedback']['project_start_date']);
+                $objInterview->project_duration = $input['interview_feedback']['project_duration'];
+                $objInterview->project_rate = $input['interview_feedback']['project_rate'];
+                $objInterview->project_payment_method_id = $input['interview_feedback']['project_billing_method'];
+                $objInterview->project_billing_cycle_id = $input['interview_feedback']['project_billing_cycle'];
+            }
             $objInterview->save();
 
             return Response\Helper::ajaxDone('Feedback Sent.');

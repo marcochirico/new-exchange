@@ -13,6 +13,8 @@
 
 Route::any('/', 'HomeController@index');
 
+Route::any('test-email', 'HomeController@testEmail');
+
 Route::get('how-to', 'StaticPageController@howTo');
 Route::get('our-services', 'StaticPageController@ourServices');
 Route::get('payments', 'StaticPageController@payments');
@@ -98,23 +100,19 @@ Route::group(array('before' => 'authClient'), function() {
     Route::any('client/interview/request/replace', 'AjaxController@clientInterviewReceivedReplace');
     Route::any('client/interview/replace', 'AjaxController@interviewReplace');
     Route::any('client/ajax/interview/revoke', 'AjaxController@interviewRevoke');
-    
+
     Route::any('client/interview/feedback', 'AjaxController@interviewFeedback');
     Route::any('client/interview/feedback/save', 'AjaxController@saveInterviewFeedback');
-    
-    
-    
 });
 
 
 Route::group(array('before' => 'authCombined'), function() {
     //exception to skip session redirect login
     Route::any('client/interview/request/save', 'AjaxController@saveInterviewRequest');
-    
+
     Route::any('contractor/ajax/interview/received/accept', 'AjaxController@contractorInterviewReceivedAccept');
     Route::any('contractor/ajax/interview/received/replace', 'AjaxController@contractorInterviewReceivedReplace');
     Route::any('contractor/ajax/interview/received/refuse', 'AjaxController@contractorInterviewReceivedRefuse');
-    
 });
 
 /*

@@ -17,25 +17,25 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Feedback</label>
-                        <select class="form-control" name="interview_feedback[feedback_outcome]">
-                            <option value="0">Negative</option>
+                        <select class="form-control" name="interview_feedback[feedback_outcome]" id="feedback_status">
                             <option value="1">Positive</option>
+                            <option value="0">Negative</option>
                         </select>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Project Date Start</label>
-                        <input type="text" class="form-control datepicker" name="interview_feedback[project_start_date]" />
+                        <input type="text" class="form-control datepicker positive" name="interview_feedback[project_start_date]" />
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Project Duration</label>
-                        <input type="text" class="form-control datepicker" name="interview_feedback[project_duration]" />
+                        <input type="text" class="form-control datepicker positive" name="interview_feedback[project_duration]" />
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Rate</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="interview_feedback[project_rate]" />
+                            <input type="text" class="form-control positive" name="interview_feedback[project_rate]" />
                             <span class="input-group-addon">.00</span>
                         </div>
                     </div>
@@ -44,11 +44,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Payment Method</label>
-                        {{ Form::select('interview_feedback[project_billing_method]', $data->paymentMethods, null,['class' => 'form-control']) }}
+                        {{ Form::select('interview_feedback[project_billing_method]', $data->paymentMethods, null,['class' => 'form-control positive']) }}
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label>Billing Cycle</label>
-                        {{ Form::select('interview_feedback[project_billing_cycle]', $data->billingCycles, null,['class' => 'form-control']) }}
+                        {{ Form::select('interview_feedback[project_billing_cycle]', $data->billingCycles, null,['class' => 'form-control positive']) }}
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -82,8 +82,18 @@
                 }
             }
         });
-        $('.datepicker').datepicker({
+        
+        
+    });
+    $('.datepicker').datepicker({
             format: 'dd/mm/yyyy'
         });
+    $('#feedback_status').on('change', function () {
+        var valSelect = $(this).val();
+        if(valSelect == 0) {
+            $('.positive').prop('disabled', true);;
+        } else {
+            $('.positive').prop('disabled', false);;
+        }
     });
 </script>
