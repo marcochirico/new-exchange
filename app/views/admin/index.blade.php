@@ -2,94 +2,45 @@
 @section('content')
 @include('admin.shared.navbar')
 <div class="container">
-    <h4 class="head-border-bottom">Users Listview</h4>
-    <table class="table table-condensed">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Last login</th>
-                <th class="text-right">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mario</td>
-                <td>Rossi</td>
-                <td>mario.rossi@gmail.com</td>
-                <td>Yesterday at 17:02</td>
-                <td class="text-right">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-
+    <h3 class="text-center">Dashboard</h3>
+    <br />
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/received">
+                <div class="panel-body dashboard-counter">
+                    <span><?php echo $data->countContractors; ?></span>
+                    <br />
+                    Count Contractors
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/replaced">
+                <div class="panel-body dashboard-counter">
+                    <span><?php echo $data->countClients; ?></span>
+                    <br />
+                    Count Clients
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/accepted">
+                <div class="panel-body dashboard-counter">
+                    <span style=""><?php echo $data->countInterviews; ?></span>
+                    <br />
+                    Count Interviews
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/refused">
+                <div class="panel-body dashboard-counter">
+                    <span style=""><?php echo $data->countProjects; ?></span>
+                    <br />
+                    Count Projects
+                </div>
+            </div>
+        </div>
 </div> <!-- /container -->
 @stop

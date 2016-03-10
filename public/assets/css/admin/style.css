@@ -1,0 +1,32 @@
+.dashboard-counter {
+  text-align: center;
+}
+.dashboard-counter span {
+  font-size: 25px;
+  font-weight: bold;
+}
+.datepicker {
+  z-index: 2000;
+}
+.form_field_error {
+  color: #a94442;
+}
+.btn-padding-long {
+  width: 150px;
+}
+.panel_list .panel:hover,
+.dashboard-box-link:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.more-info-btn,
+.dashboard-box-link {
+  cursor: pointer;
+}
+.internal-block small {
+  color: #999;
+}
+@media only screen and (min-width: 1000px) {
+  .container-fluid {
+    width: 1000px;
+  }
+}

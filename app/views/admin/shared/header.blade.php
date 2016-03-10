@@ -12,9 +12,9 @@
         <title>New Exchange - Backoffice</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Bootstrap theme -->
-        <!--<link href="/assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">-->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/admin/style.css" rel="stylesheet">
+        
         <style>
             body {
                 padding-top: 70px;
@@ -34,4 +34,5 @@
             }
         </style>
     </head>
-    <body>header admin
+    <body>
+        <!--header admin-->

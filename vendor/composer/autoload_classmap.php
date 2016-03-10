@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AdminController' => $baseDir . '/app/controllers/AdminController.php',
+    'AdminTableSeeder' => $baseDir . '/app/database/seeds/AdminTableSeeder.php',
     'AjaxController' => $baseDir . '/app/controllers/AjaxController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'BillingCycleTableSeeder' => $baseDir . '/app/database/seeds/BillingCycleTableSeeder.php',
@@ -17,6 +18,7 @@ return array(
     'ContractorController' => $baseDir . '/app/controllers/ContractorController.php',
     'ContractorTableSeeder' => $baseDir . '/app/database/seeds/ContractorTableSeeder.php',
     'CountryTableSeeder' => $baseDir . '/app/database/seeds/CountryTableSeeder.php',
+    'CreateNeAdmin' => $baseDir . '/app/database/migrations/2015_01_01_108_create_ne_admin.php',
     'CreateNeBillingCycles' => $baseDir . '/app/database/migrations/2015_01_01_014_create_ne_billing_cycles.php',
     'CreateNeClients' => $baseDir . '/app/database/migrations/2015_01_01_101_create_ne_clients.php',
     'CreateNeConsultingMarkets' => $baseDir . '/app/database/migrations/2015_01_01_005_create_ne_consulting_markets.php',
@@ -52,7 +54,7 @@ return array(
     'JobTableSeeder' => $baseDir . '/app/database/seeds/JobTableSeeder.php',
     'Message\\Helper' => $baseDir . '/app/libs/Message.php',
     'Model\\BillingCycle' => $baseDir . '/app/models/BillingCycle.php',
-    'Model\\Client' => $baseDir . '/app/models/Client.php',
+    'Model\\Client' => $baseDir . '/app/models/Admin.php',
     'Model\\ConsultingMarket' => $baseDir . '/app/models/ConsultingMarket.php',
     'Model\\ConsultingRole' => $baseDir . '/app/models/ConsultingRole.php',
     'Model\\Contractor' => $baseDir . '/app/models/Contractor.php',

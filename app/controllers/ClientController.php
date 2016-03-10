@@ -208,8 +208,6 @@ class ClientController extends BaseController {
 
         $resultsObj = new Model\Contractor();
         if (is_array($paramsSession) && count($paramsSession) > 0) {
-//            echo '<pre>';
-//            print_r($paramsSession);die;
             foreach ($paramsSession as $key => $value) {
                 if ($value == '' || $value == '-1') {
                     continue;
