@@ -115,13 +115,10 @@ $(document).ready(function () {
         });
     });
 
-    
-
-
-
     $('.dropdown-toggle').dropdown();
 
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy'
     });
+    
 });

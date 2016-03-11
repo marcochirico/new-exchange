@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
  */
 
 $env = $app->detectEnvironment(array(
-    'local' => array('MacBook-di-ilaria.local'),
+    'local' => array('Gabrieles-MacBook-Pro.local','Gabrieles-MBP.homenet.telecomitalia.it'),
     'testing' => array('vps216825.ovh.net'),
     'production' => array('0356793.netsolvps.com')
         ));
