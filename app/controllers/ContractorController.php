@@ -113,6 +113,12 @@ class ContractorController extends BaseController {
             $contractorObj->status = true;
             $contractorObj->save();
 
+            //Send confirmation email
+            $data = new stdClass();
+            $data->contractor_id = $contractorObj->contractor_id;
+            Event::fire('sendMail.contractorRegistration', array($data));
+            
+            
             return Redirect::to('contractor/registration/confirm');
         } else {
             $failed = $contractorObj->errors->messages(); //->all();

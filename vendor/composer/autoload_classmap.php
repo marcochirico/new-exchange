@@ -54,7 +54,7 @@ return array(
     'JobTableSeeder' => $baseDir . '/app/database/seeds/JobTableSeeder.php',
     'Message\\Helper' => $baseDir . '/app/libs/Message.php',
     'Model\\BillingCycle' => $baseDir . '/app/models/BillingCycle.php',
-    'Model\\Client' => $baseDir . '/app/models/Admin.php',
+    'Model\\Client' => $baseDir . '/app/models/Client.php',
     'Model\\ConsultingMarket' => $baseDir . '/app/models/ConsultingMarket.php',
     'Model\\ConsultingRole' => $baseDir . '/app/models/ConsultingRole.php',
     'Model\\Contractor' => $baseDir . '/app/models/Contractor.php',

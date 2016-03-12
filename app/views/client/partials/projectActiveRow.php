@@ -26,8 +26,8 @@
                         <tr>
                             <td class="title">Rate</td>
                             <td>
-                                <?php echo Utils\Helper::moneyFormat($project['rate']) . ' ' . $project->contractor->currency['currency']; ?><br />
-                                <small>Contractor currency: <?php echo $project->contractor->currency['currency']; ?></small>
+                                <?php echo Utils\Helper::moneyFormat($project['rate']) . ' ' . $project->client->currency['currency']; ?><br />
+                                <small>Contractor currency: <?php echo $project->client->currency['currency']; ?></small>
                             </td>
                         </tr>
                     </tbody>

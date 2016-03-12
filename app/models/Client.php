@@ -59,8 +59,7 @@ class Client extends \Eloquent {
     public static function projectStatus() {
         $data = new \stdClass();
         $clientId = \Session::get('client_id');
-        $data->projectActive = 1; //\Model\Interview::where('client_id', $clientId)->where('status', 1)->where('parent_interview_id', 0)->count();
-
+        $data->projectActive = \Model\Project::where('client_id', $clientId)->where('status', 1)->count();
         return $data;
     }
 
@@ -72,9 +71,6 @@ class Client extends \Eloquent {
     public static function getInterviewReplaced() {
         $clientId = \Session::get('client_id');
         return \Model\Interview::where('client_id', $clientId)->where('status', '>', 10)->where('parent_interview_id', '>', 0)->orderby('created_at', 'desc')->paginate(5);
-//        $sql = "select * from (select * from ne_interviews where client_id = " . $clientId . " and status > 10 and parent_interview_id > 0 order by created_at desc ) a group by a.parent_interview_id ";
-////        \Paginator::make($iscrizioni, $iscrizioniCountResults, 20);
-//        return \DB::select(\DB::raw($sql));
     }
 
     public static function getInterviewAccepted() {

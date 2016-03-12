@@ -74,6 +74,12 @@ class ClientController extends BaseController {
             $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
             $clientObj->save();
 
+            //Send confirmation email
+            $data = new stdClass();
+            $data->client_id = $clientObj->client_id;
+            Event::fire('sendMail.clientRegistration', array($data));
+            
+            //redirect to confirmation page
             return Redirect::to('client/registration/confirm');
         } else {
             $failed = $clientObj->errors->messages(); //->all();
