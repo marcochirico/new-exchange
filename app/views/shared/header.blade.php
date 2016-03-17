@@ -11,7 +11,7 @@
         <link rel="icon" href="../../favicon.ico">
 
         <title>New Exchange Trading Consulting</title>
-
+        
         <!-- Bootstrap core CSS -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="/assets/css/datepicker.css" rel="stylesheet">
@@ -27,7 +27,7 @@
                     <ul>
                         <li><a href="/about-us">About Us</a></li>
                         <li><a href="/contact-us">Contact Us</a></li>
-                        <li><a href="/help-faq">Help / FAQ</a></li>
+                        <!--<li><a href="/help-faq">Help / FAQ</a></li>-->
                     </ul>
                 </div>
             </div>

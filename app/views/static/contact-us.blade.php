@@ -1,16 +1,53 @@
 @extends('master')
 
 @section('content')
-<p class="text-center"><strong>Welcome to the Consulting Exchange</strong></p><br />
-New Exchange will change the way customers and contractors interact.<br />
-No fee requested for registration to the New Exchange marketplace. You pay only the services you actually buy when you close a contract.<br />
-Contractors represent the offer of consulting skills and will quote their final rate to their potential clients and their rate will be inclusive of the intermediation fee.<br />
-Customers represent the demand for consulting skills and will enter the rate they are prepared to pay. The rate paid by the customers will be inclusive of fees.<br />
-New Exchange platform will match buy and sell rates together with the required skills and start the negotiation between the parties.<br />
-When a contractor and a customer reach an agreement, they will close their negotiation and start working together, while we continue our intermediation function by handling timesheets, invoices and payments.<br />
-New Exchange will collect payments from all clients and pay contractors deducting its fees.<br />
-New Exchange will take only a 5% fee on every payment. This means that if a client has agreed with the consultant a rate of $100, the client will pay $100 to New Exchange and the consultant will receive a payment of $95.<br />
-In this innovative way, information is completely clear and accessible by the two parties without any filter. Our fees are always the same percentage of the contract values.<br />
-We don’t suggest rates or increase our margin under any circumstances.<br />
-<br /><br />
+<h3 class="text-center">Contact Us</h3>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <?php
+        if (Session::has('contact_us_errors')):
+            $errors = Session::get('contact_us_errors');
+            ?>
+            <div class="alert alert-danger" role="alert"><strong>Error!</strong> Please fill correctly all mandatory fileds.</div>
+            <?php
+        endif;
+        ?>
+        <div class="row">
+            {{ Form::open(array('action' => 'StaticPageController@contactUsSend')) }}
+            <div class="col-md-offset-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>First Name</label>
+                    {{ Form::text('first_name', null, ['placeholder' => 'First Name', 'class' => 'form-control']) }}
+                    <span class="form_field_error"><?php echo $errors->first('first_name'); ?></span>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Last Name</label>
+                    {{ Form::text('last_name', null, ['placeholder' => 'Last Name', 'class' => 'form-control']) }}
+                    <span class="form_field_error"><?php echo $errors->first('last_name'); ?></span>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Email</label>
+                    {{ Form::email('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) }}
+                    <span class="form_field_error"><?php echo $errors->first('email'); ?></span>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Subject</label>
+                    {{ Form::text('subject', null, ['placeholder' => 'Confirm Email', 'class' => 'form-control']) }}
+                    <span class="form_field_error"><?php echo $errors->first('email_confirmation'); ?></span>
+                </div>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Message</label>
+                    {{ Form::textarea('message', null, ['placeholder' => 'Confirm Email', 'class' => 'form-control']) }}
+                    <span class="form_field_error"><?php echo $errors->first('email_confirmation'); ?></span>
+                </div>
+
+                <div class="text-center">
+                    {{ Form::submit('Send', ['class' => 'btn btn-primary btn-padding-long']) }}
+                </div>
+            </div>
+            {{ Form::close() }}
+        </div>
+    </div>
+</div>
 @stop

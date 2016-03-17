@@ -32,7 +32,14 @@ class StaticPageController extends BaseController {
     
     public function contactUs() {
         $data = new stdClass();
+        
         $this->layout->content = View::make('static.contact-us')->with('data', $data);
+    }
+    
+    public function contactUsSend() {
+        $input = Input::all();
+        echo '<pre>';
+        print_r($input);die;
     }
 
     
