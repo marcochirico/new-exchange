@@ -33,14 +33,14 @@ class ContractorController extends BaseController {
 
         $this->layout->content = View::make('contractor.registrationConfirm')->with('data', $data);
     }
-    
+
     public function edit() {
         $data = new stdClass();
         $data->select = 'edit';
         $data->interviewStatus = Model\Contractor::interviewStatus();
         $data->projectStatus = Model\Contractor::projectStatus();
         $data->jobStatus = Model\Contractor::jobStatus();
-        
+
         $data->countries = Utils\Helper::aggregateForSelect(Model\Country::where('status', 1)->get(), 'country_id', 'country');
         $data->workSituations = Utils\Helper::aggregateForSelect(Model\WorkSituation::where('status', 1)->get(), 'work_situation_id', 'work_situation');
         $data->consultingMarkets = Utils\Helper::aggregateForSelect(Model\ConsultingMarket::where('status', 1)->get(), 'consulting_market_id', 'consulting_market');
@@ -54,6 +54,9 @@ class ContractorController extends BaseController {
         $data->paymentTerms = Utils\Helper::aggregateForSelect(Model\PaymentTerm::where('status', 1)->get(), 'payment_term_id', 'payment_term');
         $data->billingCycles = Utils\Helper::aggregateForSelect(Model\BillingCycle::where('status', 1)->get(), 'billing_cycle_id', 'billing_cycle');
 
+        $contractorId = \Session::get('contractor_id');
+        $data->details = Model\Contractor::find($contractorId);
+
         $this->layout->content = View::make('contractor.edit')->with('data', $data);
     }
 
@@ -61,8 +64,9 @@ class ContractorController extends BaseController {
         $input = Input::all();
 
         $contractorObj = Model\Contractor::make();
+        $validate = $contractorObj->validate($input);
 
-        if ($contractorObj->validate($input)) {
+        if ($validate) {
 
             //curriculum upload
             $fileName = '';
@@ -113,19 +117,74 @@ class ContractorController extends BaseController {
             $contractorObj->status = true;
             $contractorObj->save();
 
-            //Send confirmation email
-            $data = new stdClass();
-            $data->contractor_id = $contractorObj->contractor_id;
-            Event::fire('sendMail.contractorRegistration', array($data));
-            
-            
+            if (!isset($input['contractor_id'])) {
+                //Send confirmation email
+                $data = new stdClass();
+                $data->contractor_id = $contractorObj->contractor_id;
+                Event::fire('sendMail.contractorRegistration', array($data));
+            }
+
             return Redirect::to('contractor/registration/confirm');
         } else {
             $failed = $contractorObj->errors->messages(); //->all();
 
             Session::flash('contractor_register_errors', $failed);
             return Redirect::to('contractor/register')->withInput(Input::except('password'));
-            ;
+        }
+    }
+
+    public function update() {
+        $input = Input::all();
+        
+        if (isset($input['contractor_id'])) {
+            $contractorObj = Model\Contractor::find($input['contractor_id']);
+            $validate = $contractorObj->validateEdit($input);
+            if ($validate) {
+
+                $contractorObj->first_name = $input['first_name'];
+                $contractorObj->middle_name = $input['middle_name'];
+                $contractorObj->last_name = $input['last_name'];
+                $contractorObj->address = $input['address'];
+                $contractorObj->citizenship_country_id = $input['citizenship_country_id'];
+                $contractorObj->residence_country_id = $input['residence_country_id'];
+                $contractorObj->city = $input['city'];
+                $contractorObj->province = $input['province'];
+                $contractorObj->postal_code = $input['postal_code'];
+                $contractorObj->linkedin = $input['linkedin'];
+                $contractorObj->phone = $input['phone'];
+                $contractorObj->mobile = $input['mobile'];
+                $contractorObj->fax = $input['fax'];
+                $contractorObj->work_situation_id = $input['work_situation_id'];
+                $contractorObj->consulting_market_id = $input['consulting_market_id'];
+                $contractorObj->consulting_role_id = $input['consulting_role_id'];
+                $contractorObj->experience_level_id = $input['experience_level_id'];
+                $contractorObj->expertise_area_id = $input['expertise_area_id'];
+                $contractorObj->module_id = $input['module_id'];
+                $contractorObj->rate_type_id = $input['rate_type_id'];
+                $contractorObj->currency_id = $input['currency_id'];
+                $contractorObj->rate = $input['rate'];
+                $contractorObj->payment_method_id = $input['payment_method_id'];
+                $contractorObj->payment_term_id = $input['payment_term_id'];
+                $contractorObj->billing_cycle_id = $input['billing_cycle_id'];
+                $contractorObj->business_name = $input['business_name'];
+                $contractorObj->business_registration_number = $input['business_registration_number'];
+                $contractorObj->business_tax_number = $input['business_tax_number'];
+                $contractorObj->business_address = $input['business_address'];
+                $contractorObj->business_country_id = $input['business_country_id'];
+                $contractorObj->business_city = $input['business_city'];
+                $contractorObj->business_province = $input['business_province'];
+                $contractorObj->business_postal_code = $input['business_postal_code'];
+                $contractorObj->save();
+
+
+                Session::flash('contractor_update_confirm', true);
+                return Redirect::to('contractor/edit');
+            } else {
+                $failed = $contractorObj->errorsEdit->messages(); //->all();
+
+                Session::flash('contractor_update_errors', $failed);
+                return Redirect::to('contractor/edit')->withInput(Input::except('password'));
+            }
         }
     }
 
@@ -260,26 +319,25 @@ class ContractorController extends BaseController {
         $link = 'http://local.newexchange2016/contractor/forgot-password/recover/' . $reminderToken;
         die($link);
     }
-    
+
     public function forgotPasswordRecover($token) {
         $data = new stdClass();
         $contractorObj = Model\Contractor::where('reminder_token', $token)->first();
         $data->contractorObj = $contractorObj;
 //        print_r($contractorObj);die;
         $this->layout->content = View::make('contractor.recover')->with('data', $data);
-
     }
-    
+
     public function forgotPasswordRecoverProcess() {
         $data = new stdClass();
-        
-        $input = Input::all();
-        print_r($input);die;
-        
-        //contractor/forgot-password/recover/process
-        
-        $this->layout->content = View::make('contractor.recover')->with('data', $data);
 
+        $input = Input::all();
+        print_r($input);
+        die;
+
+        //contractor/forgot-password/recover/process
+
+        $this->layout->content = View::make('contractor.recover')->with('data', $data);
     }
 
 }

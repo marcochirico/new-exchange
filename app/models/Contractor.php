@@ -21,7 +21,19 @@ class Contractor extends \Eloquent {
         'province' => 'required|min:2|max:255',
         'terms' => 'accepted',
     );
+    
+    protected $rulesEdit = array(
+        'first_name' => 'required|min:2|max:255',
+        'last_name' => 'required|min:2|max:255',
+        'address' => 'required|min:2|max:255',
+        'citizenship_country_id' => 'required',
+        'residence_country_id' => 'required',
+        'city' => 'required|min:2|max:255',
+        'postal_code' => 'required|min:3|max:16',
+        'province' => 'required|min:2|max:255',
+    );
     var $errors;
+    var $errorsEdit;
 
     public static function make() {
         return new Contractor();
@@ -75,6 +87,18 @@ class Contractor extends \Eloquent {
         return true;
     }
 
+    public function validateEdit($data) {
+
+        $validator = \Validator::make($data, $this->rulesEdit);
+
+        if ($validator->fails()) {
+            $this->errorsEdit = $validator;
+            return false;
+        }
+
+        return true;
+    }
+    
     public static function getNavbarName($index) {
         $obj = Contractor::find($index);
         return $obj->username;

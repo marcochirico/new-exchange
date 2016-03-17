@@ -44,14 +44,10 @@ class ClientController extends BaseController {
     public function save() {
         $input = Input::all();
 
-        if (isset($input['client_id'])) {
-            $clientObj = Model\Client::find($input['client_id']);
-        } else {
-            $clientObj = Model\Client::make();
-        }
-        if ($clientObj->validate($input)) {
+        $clientObj = Model\Client::make();
+        $validate = $clientObj->validate($input);
 
-//            $password = Security\Helper::generatePassword($input['first_name'], $input['last_name']);
+        if ($validate) {
 
             $clientObj->company_name = $input['company_name'];
             $clientObj->first_name = $input['first_name'];
@@ -66,7 +62,6 @@ class ClientController extends BaseController {
             $clientObj->city = $input['city'];
             $clientObj->postal_code = $input['postal_code'];
             $clientObj->province = $input['province'];
-//            $clientObj->requirement_id = $input['requirement_id'];
             $clientObj->terms = $input['terms'] == 'on' ? true : false;
             $clientObj->status = true;
             $clientObj->username = $input['email']; //Security\Helper::generateUsername($input['first_name'], $input['last_name']);
@@ -78,11 +73,13 @@ class ClientController extends BaseController {
             $data = new stdClass();
             $data->client_id = $clientObj->client_id;
             Event::fire('sendMail.clientRegistration', array($data));
-            
+
             //redirect to confirmation page
             return Redirect::to('client/registration/confirm');
         } else {
-            $failed = $clientObj->errors->messages(); //->all();
+            $failed = $clientObj->errors->messages()->all();
+            print_r($failed);
+            die;
             if (isset($input['client_id'])) {
                 Session::flash('client_update_errors', $failed);
                 return Redirect::to('client/edit')->withInput(Input::except('password'));
@@ -99,7 +96,9 @@ class ClientController extends BaseController {
         if (isset($input['client_id'])) {
             $clientObj = Model\Client::find($input['client_id']);
 
-            if ($clientObj->validate($input)) {
+            $validate = $clientObj->validateEdit($input);
+            
+            if ($validate) {
 
                 $clientObj->company_name = $input['company_name'];
                 $clientObj->first_name = $input['first_name'];
@@ -118,11 +117,12 @@ class ClientController extends BaseController {
                 Session::flash('client_update_confirm', true);
                 return Redirect::to('client/edit');
             } else {
-                $failed = $clientObj->errors->messages(); //->all();
+                $failed = $clientObj->errorsEdit->messages(); //->all();
                 Session::flash('client_update_errors', $failed);
                 return Redirect::to('client/edit')->withInput(Input::except('password'));
             }
         }
+        return Redirect::to('client/edit');
     }
 
     public function dashboard() {

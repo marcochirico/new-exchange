@@ -4,12 +4,17 @@ namespace Email;
 
 Class Sender {
 
-    public static function send($tpl, $params) {
-        \Mail::send($tpl, $params, function($message) {
-            
-            $message->to('mario@rossi.net');
+    public static function send($tpl, $params, $mailTo, $mailSubject) {
 
-            $message->subject('New exchange test mail');
+        $data = new \stdClass();
+        $data->mailTo = $mailTo;
+        $data->mailSubject = $mailSubject;
+
+        \Mail::send($tpl, $params, function($message) use ($data) {
+
+            $message->to($data->mailTo);
+
+            $message->subject($data->mailSubject);
 
 //                $message->attach($pathToFile);
         });
