@@ -259,13 +259,13 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="client_discaimer">
-                        Terms and conditions
+                        <a href="/documents/terms/Terms_Conditions_Contractor.pdf" target="blank">Read Terms and conditions</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label>Agree Terms & Conditions</label>
+                    <label>Agree Terms & Conditions</a></label>
                     {{ Form::checkbox('terms', null, ['class' => 'form-control']) }}
                     <span class="form_field_error"><?php echo $errors->first('terms'); ?></span>
                 </div>
