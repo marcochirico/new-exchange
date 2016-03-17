@@ -5,7 +5,7 @@ namespace Feed;
 Class Oracle {
 
     public static function get($url) {
-        return array();
+//        return array();
         $output = array();
         if (\Cache::has('news_feed')) {
             $output = unserialize(\Cache::get('news_feed'));

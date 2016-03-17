@@ -38,8 +38,8 @@ class HomeController extends BaseController {
 
     public function testEmail() {
         $data = new stdClass();
-        $data->contractor_id = 5;
-        Event::fire('sendMail.contractorRegistration', array($data));
+//        $data->contractor_id = 5;
+//        Event::fire('sendMail.contractorRegistration', array($data));
         
         die('test-email');
     }
