@@ -212,9 +212,34 @@ class AjaxController extends BaseController {
         $input = Input::all();
 
         $data = new stdClass();
-        $data->project_id = $input['actionId'];
-
+        $data->projectTimesheet = Model\ProjectTimesheet::where('project_id', $input['actionId'])->get();
+        $data->projectId = $input['actionId'];
         return View::make('contractor.modals.projectFillTimesheet')->with('data', $data);
+    }
+
+    public function contractorProjectTimesheetSave() {
+
+        $input = Input::all();
+
+        if (isset($input['timesheet']['date'])) {
+            try {
+                Model\ProjectTimesheet::where('project_id', $input['project_id'])->delete();
+                foreach ($input['timesheet']['date'] as $index => $date) {
+                    if ($date != '') {
+                        $prjTs = Model\ProjectTimesheet::make();
+                        $prjTs->project_id = $input['project_id'];
+                        $prjTs->date = Utils\Helper::dateToDb($date);
+                        if (isset($input['timesheet']['hours'][$index])) {
+                            $prjTs->hours = $input['timesheet']['hours'][$index];
+                        }
+                        $prjTs->save();
+                    }
+                }
+                return Response\Helper::ajaxDone('Timeshhet filled correctly.');
+            } catch (Exception $e) {
+                return Response\Helper::ajaxError($e->getMessage());
+            }
+        }
     }
 
 }

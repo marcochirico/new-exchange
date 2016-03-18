@@ -79,6 +79,7 @@ Route::group(array('before' => 'authContractor'), function() {
     Route::any('contractor/ajax/interview/feedback/confirm', 'AjaxController@contractorInterviewFeedbackConfirm');
     Route::any('contractor/ajax/interview/feedback/refuse', 'AjaxController@contractorInterviewFeedbackRefuse');
     Route::any('contractor/ajax/project/timesheet', 'AjaxController@contractorProjectTimesheet');
+    Route::any('contractor/ajax/project/timesheet/save', 'AjaxController@contractorProjectTimesheetSave');
 });
 
 Route::group(array('before' => 'authClient'), function() {

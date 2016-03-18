@@ -70,6 +70,7 @@ return array(
     'Model\\PaymentMethod' => $baseDir . '/app/models/PaymentMethod.php',
     'Model\\PaymentTerm' => $baseDir . '/app/models/PaymentTerm.php',
     'Model\\Project' => $baseDir . '/app/models/Project.php',
+    'Model\\ProjectTimesheet' => $baseDir . '/app/models/ProjectTimesheet.php',
     'Model\\RateType' => $baseDir . '/app/models/RateType.php',
     'Model\\Timezone' => $baseDir . '/app/models/Timezone.php',
     'Model\\WorkSituation' => $baseDir . '/app/models/WorkSituation.php',
