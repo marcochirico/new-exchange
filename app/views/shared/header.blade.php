@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <!--        <meta name="viewport" content="width=device-width, initial-scale=1">-->
         <meta name="viewport" content="width=device-width">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
@@ -11,13 +11,14 @@
         <link rel="icon" href="../../favicon.ico">
 
         <title>New Exchange Trading Consulting</title>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="/assets/css/datepicker.css" rel="stylesheet">
         <link href="/assets/css/style.css" rel="stylesheet">
-        <!-- Bootstrap theme -->
-        <!--<link href="/assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">-->
+
+        @include('shared.analytics')
+
     </head>
     <body class="bckg">
         <div class="container-fluid">

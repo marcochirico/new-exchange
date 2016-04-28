@@ -4,10 +4,10 @@
 <h3 class="text-center">Dashboard contractor</h3>
 
 <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-3 col-md- col-sm-3 col-xs-12">
         @include('contractor.adminNavbar')
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/received">
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsReceived}}</span>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/replaced">
             <div class="panel-body dashboard-counter">
                 <span>{{$data->interviewStatus->interviewsReplaced}}</span>
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/accepted">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsAccepted}}</span>
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/refused">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsRefused}}</span>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/interviews/feedback">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->interviewStatus->interviewsFeedback}}</span>
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/projects/active">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->projectStatus->projectsActive}}</span>
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
         <div class="panel panel-default dashboard-box-link" data-url="/contractor/projects/closed">
             <div class="panel-body dashboard-counter">
                 <span style="">{{$data->projectStatus->projectsClosed}}</span>

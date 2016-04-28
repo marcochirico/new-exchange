@@ -22,6 +22,7 @@ Route::get('legal', 'StaticPageController@legal');
 Route::get('about-us', 'StaticPageController@aboutUs');
 Route::get('contact-us', 'StaticPageController@contactUs');
 Route::post('contact-us/send', 'StaticPageController@contactUsSend');
+Route::get('contact-us/confirm', 'StaticPageController@contactUsConfirm');
 Route::get('help-faq', 'StaticPageController@helpFaq');
 
 //clients

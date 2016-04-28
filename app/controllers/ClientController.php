@@ -69,24 +69,19 @@ class ClientController extends BaseController {
             $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
             $clientObj->save();
 
-            //Send confirmation email
-            $data = new stdClass();
-            $data->client_id = $clientObj->client_id;
-            Event::fire('sendMail.clientRegistration', array($data));
-
+            if (!isset($input['contractor_id'])) {
+                //Send confirmation email
+                $data = new stdClass();
+                $data->client_id = $clientObj->client_id;
+                Event::fire('sendMail.clientRegistration', array($data));
+            }
             //redirect to confirmation page
             return Redirect::to('client/registration/confirm');
         } else {
-            $failed = $clientObj->errors->messages()->all();
-            print_r($failed);
-            die;
-            if (isset($input['client_id'])) {
-                Session::flash('client_update_errors', $failed);
-                return Redirect::to('client/edit')->withInput(Input::except('password'));
-            } else {
-                Session::flash('client_register_errors', $failed);
-                return Redirect::to('client/register')->withInput(Input::except('password'));
-            }
+            $failed = $clientObj->errors->messages();
+            
+            Session::flash('client_register_errors', $failed);
+            return Redirect::to('client/register')->withInput(Input::except('password'));
         }
     }
 
@@ -97,7 +92,7 @@ class ClientController extends BaseController {
             $clientObj = Model\Client::find($input['client_id']);
 
             $validate = $clientObj->validateEdit($input);
-            
+
             if ($validate) {
 
                 $clientObj->company_name = $input['company_name'];

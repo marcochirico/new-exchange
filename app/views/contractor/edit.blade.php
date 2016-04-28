@@ -238,7 +238,7 @@
             </div>
         </div>
         <div class="text-center">
-            {{ Form::submit('Register', ['class' => 'btn btn-primary btn-padding-long']) }}
+            {{ Form::submit('Save', ['class' => 'btn btn-primary btn-padding-long']) }}
         </div>
         {{ Form::close() }}
     </div>

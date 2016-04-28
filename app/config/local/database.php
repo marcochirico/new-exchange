@@ -23,7 +23,7 @@ return array(
             'host' => 'localhost',
             'database' => 'DEV_newexchange2016',
             'username' => 'root',
-            'password' => 'mut4do)',
+            'password' => 'root',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

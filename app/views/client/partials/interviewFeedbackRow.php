@@ -42,7 +42,7 @@
                     </tbody>
                 </table>
                 <div class="text-left">
-                    <button type="button" class="btn btn-primary btn-sm btn-action-control" data-action="revoke_invitation_to_interview" data-id="<?php echo $interview->interview_id; ?>">Revoke</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-action-control confirm" data-action="revoke_invitation_to_interview" data-id="<?php echo $interview->interview_id; ?>">Revoke</button>
                 </div>       
             </div>
         </div>

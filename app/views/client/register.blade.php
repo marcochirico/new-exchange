@@ -9,7 +9,7 @@
         if (Session::has('client_register_errors')):
             $errors = Session::get('client_register_errors');
             ?>
-        <div class="alert alert-danger" role="alert"><strong>Error!</strong> Please fill correctly all mandatory fileds.</div>
+            <div class="alert alert-danger" role="alert"><strong>Error!</strong> Please fill correctly all mandatory fileds.</div>
             <?php
         endif;
         ?>

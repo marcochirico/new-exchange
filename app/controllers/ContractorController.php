@@ -61,6 +61,7 @@ class ContractorController extends BaseController {
     }
 
     public function save() {
+
         $input = Input::all();
 
         $contractorObj = Model\Contractor::make();
@@ -135,7 +136,7 @@ class ContractorController extends BaseController {
 
     public function update() {
         $input = Input::all();
-        
+
         if (isset($input['contractor_id'])) {
             $contractorObj = Model\Contractor::find($input['contractor_id']);
             $validate = $contractorObj->validateEdit($input);
