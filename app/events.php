@@ -36,7 +36,7 @@ Event::listen('sendMail.*', function($params) {
 //            $data->entity = $contractorObj;
 
             $mailSubject = 'Interview Required';
-            $mailTo = $contractorObj->email; //'info@microtech-cr.com';
+            $mailTo = 'info@microtech-cr.com';
 
             Email\Sender::send('emails.notifications.clientInterviewRequired', array('data' => $data), $mailTo, $mailSubject);
             
