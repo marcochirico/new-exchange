@@ -3,6 +3,6 @@
         <title>Interview Required</title>
     </head>
     <body>
-        Interview Required
+        Interview Refused
     </body>
 </html>
