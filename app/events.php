@@ -48,9 +48,12 @@ Event::listen('sendMail.*', function($params) {
              * interview_id
              * Send to contractor
              */
+            
+            $contractorObj = Model\Interview::find($params->interview_id)->contractor;
+            
             $data = new stdClass();
 //            $data->entity = $contractorObj;
-
+            
             $mailSubject = 'Interview Feedback';
             $mailTo = $contractorObj->email; //'info@microtech-cr.com';
             
@@ -64,11 +67,14 @@ Event::listen('sendMail.*', function($params) {
              * interview_id
              * Send to client
              */
+            
+            $clientObj = Model\Interview::find($params->interview_id)->client; 
+            
             $data = new stdClass();
 //            $data->entity = $contractorObj;
 
             $mailSubject = 'Interview Accepted';
-            $mailTo = $contractorObj->email; //'info@microtech-cr.com';
+            $mailTo = $clientObj->email; //'info@microtech-cr.com';
             
             //if Positive or negative
             Email\Sender::send('emails.notifications.contractorInterviewAccepted', array('data' => $data), $mailTo, $mailSubject);
