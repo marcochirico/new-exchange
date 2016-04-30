@@ -32,11 +32,12 @@ Event::listen('sendMail.*', function($params) {
              * contractor_id
              * Send to contractor
              */
+            $contractorObj = Model\Contractor::find($params->contractor_id);
             $data = new stdClass();
-//            $data->entity = $contractorObj;
+            $data->entity = $contractorObj;
 
             $mailSubject = 'Interview Required';
-            $mailTo = 'info@microtech-cr.com';
+            $mailTo = $contractorObj->email;
 
             Email\Sender::send('emails.notifications.clientInterviewRequired', array('data' => $data), $mailTo, $mailSubject);
             
