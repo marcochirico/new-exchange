@@ -123,6 +123,11 @@ class ContractorController extends BaseController {
                 $data = new stdClass();
                 $data->contractor_id = $contractorObj->contractor_id;
                 Event::fire('sendMail.contractorRegistration', array($data));
+            } else {
+                //Send confirmation email
+                $data = new stdClass();
+                $data->contractor_id = $contractorObj->contractor_id;
+                Event::fire('sendMail.contractorProfileUpdate', array($data));
             }
 
             return Redirect::to('contractor/registration/confirm');

@@ -43,7 +43,7 @@
                         <button type="button" class="btn btn-primary btn-sm btn-action-control confirm" data-id="<?php echo $interview->interview_id; ?>" data-action="replace_contractor_for_interview">Replace</button>&nbsp;
                         <button type="button" class="btn btn-primary btn-sm btn-action-control confirm" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Refuse</button>
                     <?php else: ?>
-                        <button type="button" class="btn btn-primary btn-sm btn-action-control" data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Revoke</button>
+                        <button type="button" class="btn btn-primary btn-sm " data-id="<?php echo $interview->interview_id; ?>" data-action="contractor_refuse_interview">Revoke</button>
                     <?php endif; ?>
                 </div>
             </div>

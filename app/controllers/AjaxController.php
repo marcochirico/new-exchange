@@ -57,6 +57,7 @@ class AjaxController extends BaseController {
                 $data = new stdClass();
                 $data->client_id = $input['client_id'];
                 $data->contractor_id = $input['contractor_id'];
+                $data->interview_id = $objInterview->id;
 
                 Event::fire('sendMail.clientInterviewRequired', array($data));
 
@@ -111,14 +112,20 @@ class AjaxController extends BaseController {
                 $objInterview->project_rate = $input['interview_feedback']['project_rate'];
                 $objInterview->project_payment_method_id = $input['interview_feedback']['project_billing_method'];
                 $objInterview->project_billing_cycle_id = $input['interview_feedback']['project_billing_cycle'];
+                
+                //Send confirmation email
+                $data = new stdClass();
+                $data->interview_id = $input['interview_id'];
+                Event::fire('sendMail.clientInterviewFeedbackPositive', array($data));
+            } else {
+                //Send confirmation email
+                $data = new stdClass();
+                $data->interview_id = $input['interview_id'];
+                Event::fire('sendMail.clientInterviewFeedbackNegative', array($data));
             }
             $objInterview->save();
 
-            //Send confirmation email
-            $data = new stdClass();
-            $data->interview_id = $input['interview_id'];
 
-            Event::fire('sendMail.clientInterviewFeedback', array($data));
 
             return Response\Helper::ajaxDone('Feedback Sent.');
         } catch (Exception $e) {
@@ -136,13 +143,13 @@ class AjaxController extends BaseController {
             $objInterview = Model\Interview::find($input['actionId']);
             $objInterview->status = 20; //accepted
             $objInterview->save();
-            
+
             //Send confirmation email
             $data = new stdClass();
             $data->interview_id = $input['actionId'];
 
             Event::fire('sendMail.contractorInterviewReceivedAccept', array($data));
-            
+
             return Response\Helper::ajaxDone('Invitation Sent.');
         } catch (Exception $e) {
             return Response\Helper::ajaxError($e->getMessage());
@@ -183,13 +190,13 @@ class AjaxController extends BaseController {
             $objInterview = Model\Interview::find($input['actionId']);
             $objInterview->status = 0; //refuse
             $objInterview->save();
-            
+
             //Send confirmation email
             $data = new stdClass();
             $data->interview_id = $input['actionId'];
 
             Event::fire('sendMail.contractorInterviewReceivedRefuse', array($data));
-            
+
             return Response\Helper::ajaxDone('Invitation Sent.');
         } catch (Exception $e) {
             return Response\Helper::ajaxError($e->getMessage());
@@ -215,7 +222,7 @@ class AjaxController extends BaseController {
             $objProject->rate = $objInterview->project_rate;
             $objProject->status = true;
             $objProject->save();
-            
+
             //Send confirmation email
             $data = new stdClass();
             $data->interview_id = $input['actionId'];
@@ -234,7 +241,7 @@ class AjaxController extends BaseController {
             $objInterview = Model\Interview::find($input['actionId']);
             $objInterview->status = 50;
             $objInterview->save();
-            
+
             //Send confirmation email
             $data = new stdClass();
             $data->interview_id = $input['actionId'];

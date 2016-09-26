@@ -3,12 +3,14 @@
         <title>Contractor Registration</title>
     </head>
     <body>
-        Dear <?php echo $data->entity->first_name . ' ' . $data->entity->last_name; ?>, 
+        Dear <?php echo $data->entity->first_name . ' ' . $data->entity->last_name; ?>,<br /><br />
+
+        Thank you for registering at the New Exchange, where you will find a monitored and transparent marketplace to find the professionals you need.<br /><br />
+
+        We are looking forward to see you closing your first successful search and please remember that you can always email your questions at: <a href="mailto:customers@new-exchange.com">customers@new-exchange.com</a><br />
         <br />
-        Thank you for registering at the New Exchange, where you will find a monitored and transparent marketplace to find the best opportunities.<br />
-        We are looking forward to see you closing your first successful project and please remember that you can always email your questions at: customers@new-exchange.com<br />
-        <br />
-        Best Regards, <br />
+        Best Regards,<br /><br />
+
         The Customers Management Team
     </body>
 </html>

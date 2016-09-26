@@ -4,7 +4,7 @@ $(document).ready(function () {
         var url = $(this).data('url');
         window.location = url;
     });
-
+    
     //actions with confirm box
     $('.btn-action-control.confirm').on('click', function () {
         var actionType = $(this).data('action');

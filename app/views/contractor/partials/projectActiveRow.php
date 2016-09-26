@@ -25,7 +25,10 @@
                         </tr>
                         <tr>
                             <td class="title">Duration</td>
-                            <td><?php echo $project->days; ?></td>
+                            <td>
+                                <?php echo $project->days; ?><br />
+                                <small>Unit: day(s)</small>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>

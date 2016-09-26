@@ -6,7 +6,7 @@ class HomeController extends BaseController {
 
     public function index() {
 //        $user = array('pippo' => 'pluto');
-//        Event::fire('sendMail.clientInterviewRequired', array($user));
+//        Event::fire('sendMail.clientRegistration', array($user));
 
         $data = new stdClass();
 
@@ -35,11 +35,13 @@ class HomeController extends BaseController {
         $data->dashboard = $realTimeRatesDashboardArr;
         $this->layout->content = View::make('index')->with('data', $data);
     }
-
+    
     public function testEmail() {
         $data = new stdClass();
-//        $data->contractor_id = 5;
-//        Event::fire('sendMail.contractorRegistration', array($data));
+        $data->client_id = 1;
+        $data->contractor_id = 1;
+        $data->interview_id = 9;
+        Event::fire('sendMail.contractorInterviewReceivedReplaced', array($data));
         
         die('test-email');
     }

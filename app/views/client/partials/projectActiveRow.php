@@ -21,13 +21,16 @@
                         </tr>
                         <tr>
                             <td class="title">Duration</td>
-                            <td><?php echo $project->days; ?></td>
+                            <td>
+                                <?php echo $project->days; ?><br />
+                                <small>Unit: day(s)</small>
+                            </td>
                         </tr>
                         <tr>
                             <td class="title">Rate</td>
                             <td>
                                 <?php echo Utils\Helper::moneyFormat($project['rate']) . ' ' . $project->client->currency['currency']; ?><br />
-                                <small>Contractor currency: <?php echo $project->client->currency['currency']; ?></small>
+                                <small>Contractor currency: <?php echo $project->contractor->currency['currency']; ?></small>
                             </td>
                         </tr>
                     </tbody>

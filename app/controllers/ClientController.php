@@ -48,7 +48,7 @@ class ClientController extends BaseController {
         $validate = $clientObj->validate($input);
 
         if ($validate) {
-
+            
             $clientObj->company_name = $input['company_name'];
             $clientObj->first_name = $input['first_name'];
             $clientObj->last_name = $input['last_name'];
@@ -69,11 +69,16 @@ class ClientController extends BaseController {
             $clientObj->reminder_token = Security\Helper::generateReminderToken($clientObj->username);
             $clientObj->save();
 
-            if (!isset($input['contractor_id'])) {
+            if (!isset($input['client_id'])) {
                 //Send confirmation email
                 $data = new stdClass();
                 $data->client_id = $clientObj->client_id;
                 Event::fire('sendMail.clientRegistration', array($data));
+            } else {
+                //Send confirmation email
+                $data = new stdClass();
+                $data->client_id = $clientObj->client_id;
+                Event::fire('sendMail.clientProfileUpdate', array($data));
             }
             //redirect to confirmation page
             return Redirect::to('client/registration/confirm');
