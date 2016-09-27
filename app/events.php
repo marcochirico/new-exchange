@@ -182,25 +182,6 @@ Event::listen('sendMail.*', function($params) {
             
             break;
         
-//        case 'sendMail.contractorInterviewReceivedReplacedConfirm':
-//            
-//            $contractorObj = Model\Interview::find($params->interview_id)->contractor;
-//            $clientObj = Model\Interview::find($params->interview_id)->client;
-//            $interviewObj = Model\Interview::find($params->interview_id);
-//
-//            $data = new stdClass();
-//            $data->entity['contractor'] = $contractorObj;
-//            $data->entity['client'] = $clientObj;
-//            $data->entity['interview'] = $interviewObj;
-//
-//            $mailSubject = 'Interview Replaced Confirm';
-//            $mailTo = $clientObj->email;
-//
-//            //if Positive or negative
-//            Email\Sender::send('emails.notifications.contractorInterviewReplacedConfirm', array('data' => $data), $mailTo, $mailSubject);
-//            
-//            break;
-
         case'sendMail.contactUs':
             $data = new stdClass();
             $data->entity = $params->message;

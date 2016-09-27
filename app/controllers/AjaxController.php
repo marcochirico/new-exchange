@@ -166,7 +166,7 @@ class AjaxController extends BaseController {
         $data->client_id = $interviewObj->client_id;
         $data->interview = $interviewObj;
         $data->timezones = Model\Timezone::all();
-
+        
         return View::make('client.modals.sendInvitation')->with('data', $data);
     }
 
@@ -227,7 +227,7 @@ class AjaxController extends BaseController {
             $data = new stdClass();
             $data->interview_id = $input['actionId'];
 
-            Event::fire('sendMail.contractorInterviewFeedbackConfirm', array($data));
+            Event::fire('sendMail.clientInterviewFeedbackPositive', array($data));
 
             return Response\Helper::ajaxDone('Project Created.');
         } catch (Exception $e) {
@@ -246,7 +246,7 @@ class AjaxController extends BaseController {
             $data = new stdClass();
             $data->interview_id = $input['actionId'];
 
-            Event::fire('sendMail.contractorInterviewFeedbackRefuse', array($data));
+            Event::fire('sendMail.clientInterviewFeedbackNegative', array($data));
 
             return Response\Helper::ajaxDone('Project Not Created.');
         } catch (Exception $e) {
