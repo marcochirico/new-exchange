@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-<h3 class="text-center">Contact Us</h3>
+<h3 class="text-center text-static-title">Contact Us</h3>
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
