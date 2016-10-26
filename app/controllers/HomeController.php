@@ -16,7 +16,7 @@ class HomeController extends BaseController {
                 ->join('ne_consulting_roles as c', 'a.consulting_role_id', '=', 'c.consulting_role_id')
                 ->join('ne_currencies as d', 'a.currency_id', '=', 'd.currency_id')
                 ->groupBy('b.consulting_market_id', 'c.consulting_role_id', 'd.currency_id')
-                ->select(DB::raw('SUM(a.rate) as rating'), 'b.consulting_market', 'c.consulting_role', 'd.currency')
+                ->select(DB::raw('AVG(a.rate) as rating'), 'b.consulting_market', 'c.consulting_role', 'd.currency')
                 ->get();
 
         $realTimeRatesDashboardArr = array();
