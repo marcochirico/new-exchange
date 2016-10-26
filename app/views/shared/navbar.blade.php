@@ -17,7 +17,7 @@
                         <a href="/client/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> <?php echo Model\Client::getNavbarName(Session::get('client_id')); ?> (Client)<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/client/dashboard">Dashboard</a></li>
-                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="/client/edit">Edit Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/client/logout">Logout</a></li>
                         </ul>
@@ -29,7 +29,7 @@
                         <a href="/contractor/dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> <?php echo Model\Contractor::getNavbarName(Session::get('contractor_id')); ?> (Contractor)<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/contractor/dashboard">Dashboard</a></li>
-                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="/contractor/edit">Edit Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/contractor/logout">Logout</a></li>
                         </ul>
