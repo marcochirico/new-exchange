@@ -118,7 +118,7 @@
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <label>Consulting Role</label>
-                {{ Form::select('consulting_role_id', $data->consultingRoles, $data->details->consulting_market_id,['class' => 'form-control']) }}
+                {{ Form::select('consulting_role_id', $data->consultingRoles, $data->details->consulting_role_id,['class' => 'form-control']) }}
                 <span class="form_field_error"><?php echo $errors->first('consulting_role_id'); ?></span>
             </div>
         </div>
