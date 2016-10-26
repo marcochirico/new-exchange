@@ -24,12 +24,12 @@ $(document).ready(function () {
                         });
                         $('#client_interview_request').modal();
                         break;
-                    case'replace_client_for_interview':
-                        $.post('/client/interview/request/replace', {'actionId': actionId}, function (data) {
-                            $('#client_interview_request').html(data);
-                        });
-                        $('#client_interview_request').modal();
-                        break;
+//                    case'replace_client_for_interview':
+//                        $.post('/client/interview/request/replace', {'actionId': actionId}, function (data) {
+//                            $('#client_interview_request').html(data);
+//                        });
+//                        $('#client_interview_request').modal();
+//                        break;
                     case'contractor_accept_interview':
                         $('#confirm_modal').modal();
                         $.post('/contractor/ajax/interview/received/accept', {'actionId': actionId}, function (data) {

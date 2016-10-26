@@ -31,7 +31,7 @@ if ($data->interview['interview_id']) {
         <div class="modal-body">
             <div class="row outcome-message" style="display:none;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 message">
-
+                    
                 </div>
             </div>
             <div class="row form">
@@ -105,6 +105,7 @@ if ($data->interview['interview_id']) {
         $.post('/client/interview/request/save', params, function (data) {
             if (data) {
                 var obj = jQuery.parseJSON(data);
+                
                 if (obj.error === true) {
                     $('.outcome-message .message').html(obj.html);
                     $('.outcome-message').fadeIn();

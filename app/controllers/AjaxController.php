@@ -34,33 +34,38 @@ class AjaxController extends BaseController {
         }
 
         try {
+
             $objInterview = Model\Interview::make();
 
             if ($objInterview->validate($input)) {
+//                print_r($input['interview_request']);die;
 
                 $objInterview->client_id = $input['client_id'];
                 $objInterview->contractor_id = $input['contractor_id'];
-                $objInterview->timezone_id = $input['interview_request']['timezone_id'];
+                $objInterview->timezone_id = 1;//$input['interview_request']['timezone_id'];
                 $objInterview->date = Utils\Helper::dateToDb($input['interview_request']['proposed_date']) . ' ' . $input['interview_request']['proposed_time'] . ':00';
                 $objInterview->location = $input['interview_request']['proposed_location'];
                 $objInterview->rate = $input['interview_request']['proposed_rate'];
                 $objInterview->reference = $input['interview_request']['job_reference'];
                 $objInterview->preview = $input['interview_request']['job_preview'];
                 $objInterview->status = $status;
-                //replace
-                if ($input['interview_id'] != '') {
+
+//replace                
+                if (isset($input['interview_id']) && $input['interview_id'] != '') {
                     $objInterview->parent_interview_id = $interviewId;
                 }
+//                print_r($objInterview);die;
                 $objInterview->save();
 
                 //Send confirmation email
+                
                 $data = new stdClass();
                 $data->client_id = $input['client_id'];
                 $data->contractor_id = $input['contractor_id'];
-                $data->interview_id = $objInterview->id;
+                $data->interview_id = $objInterview->interview_id;
 
                 Event::fire('sendMail.clientInterviewRequired', array($data));
-
+                
                 return Response\Helper::ajaxDone('Invitation Sent.');
             } else {
                 $failed = $objInterview->errors->messages()->all();
@@ -112,7 +117,7 @@ class AjaxController extends BaseController {
                 $objInterview->project_rate = $input['interview_feedback']['project_rate'];
                 $objInterview->project_payment_method_id = $input['interview_feedback']['project_billing_method'];
                 $objInterview->project_billing_cycle_id = $input['interview_feedback']['project_billing_cycle'];
-                
+
                 //Send confirmation email
                 $data = new stdClass();
                 $data->interview_id = $input['interview_id'];
@@ -166,7 +171,7 @@ class AjaxController extends BaseController {
         $data->client_id = $interviewObj->client_id;
         $data->interview = $interviewObj;
         $data->timezones = Model\Timezone::all();
-        
+
         return View::make('client.modals.sendInvitation')->with('data', $data);
     }
 
