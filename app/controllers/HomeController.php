@@ -24,9 +24,9 @@ class HomeController extends BaseController {
             $realTimeRatesDashboardArr[$row->consulting_market][$row->consulting_role][$row->currency] = $row->rating;
         }
 
-//        echo '<pre>';
-//        print_r($realTimeRatesDashboardArr);
-//        die;
+        echo '<pre>';
+        print_r($realTimeRatesDashboardArr);
+        die;
         /*
          * 
           SELECT SUM(a.rate), b.consulting_market, c.consulting_role, d.currency FROM ne_contractors a LEFT JOIN ne_consulting_markets b ON a.consulting_market_id = b.consulting_market_id LEFT JOIN ne_consulting_roles c ON a.consulting_role_id = c.consulting_role_id LEFT JOIN ne_currencies d ON a.currency_id = d.currency_id GROUP BY b.consulting_market_id, c.consulting_market_id, d.currency_id
